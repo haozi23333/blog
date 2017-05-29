@@ -25,7 +25,10 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src')
+      '@': resolve('src'),
+      'haozi': resolve('src/components/haozi'),
+      'keke': resolve('src/components/keke'),
+      'emoticon': resolve(('src/assets/emoticon'))
     }
   },
   module: {
@@ -47,7 +50,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [resolve('src'), resolve('test')]
+        include: [resolve('src'), resolve('test'), resolve('node_modules/vue-awesome')]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
