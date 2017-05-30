@@ -1,13 +1,8 @@
 <template>
   <section class="posts">
-    <ul>
-      <post></post>
-      <post></post>
-      <post></post>
-      <post></post>
-      <post></post>
-      <post></post>
-    </ul>
+    <post></post>
+    <post></post>
+    <post></post>
   </section>
 </template>
 <script>
@@ -31,5 +26,7 @@
   @import "../../assets/css/global"
 
   .posts
+    ul
+      list-style-type: none
 
 </style>

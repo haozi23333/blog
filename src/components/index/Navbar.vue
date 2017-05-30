@@ -22,7 +22,7 @@
 
   @Component()
   export default class Navbar extends Vue {
-    active = 0
+    active = -1
     navigations = [
       {
         path: '/haozi',
@@ -33,12 +33,12 @@
         title: 'Markdown'
       },
       {
-        path: '/3',
-        title: '示例'
+        path: '/haoziPosts',
+        title: 'Posts'
       },
       {
-        path: 's/4',
-        title: '社区'
+        path: '/about',
+        title: 'about'
       }
     ]
     selectNavigations (index) {
@@ -71,11 +71,11 @@
     padding-left: 60px
     z-index: 99
 
+    flex: 1
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.25)
 
     .logo
       height: 40px
-      display: initial
       overflow: hidden
       margin-right: 6px
       width: auto

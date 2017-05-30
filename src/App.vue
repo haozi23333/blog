@@ -4,6 +4,7 @@
     <main>
       <router-view></router-view>
     </main>
+    <Tail></Tail>
   </div>
 </template>
 
@@ -12,10 +13,12 @@
   import Vue from 'vue'
   import Component from 'vue-class-component'
   import Navbar from './components/index/Navbar.vue'
+  import Tail from './components/haozi/Tail.vue'
 
   @Component({
     components: {
-      Navbar
+      Navbar,
+      Tail
     }
   })
   export default class App extends Vue {
@@ -30,14 +33,17 @@
 @import "./assets/css/cover.sass"
 
 #app
-  font-family: 'Avenir', Helvetica, Arial, sans-serif
-  -webkit-font-smoothing: antialiased
-  -moz-osx-font-smoothing: grayscale
-  color: #2c3e50
+  display: flex
+  flex-direction: column
+  flex-wrap: nowrap
+  justify-content: flex-start
+
 
 main
+  min-height: calc(100vh - 100px)
   position: relative
-  z-index: 1
+  flex: 1
+  z-index: 2
   padding: 0 60px 30px
   overflow-x: hidden
   top: 60px
