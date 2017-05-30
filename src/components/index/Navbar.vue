@@ -2,7 +2,7 @@
   <header id="header">
     <a class="logo" href="!#">
       <img src="../../assets/image/ph.png" width="40" height="40" alt="haozi's faceImage">
-      <span>Vue.js</span>
+      <span>haozi</span>
     </a>
     <nav>
       <ul>
@@ -15,7 +15,7 @@
     </nav>
   </header>
 </template>
-<script>
+<script type="text/javascript">
 
   import Vue from 'vue'
   import Component from 'vue-class-component'
@@ -46,6 +46,11 @@
     }
 
     mounted () {
+      this.navigations.map((v, i) => {
+        if (v.path === this.$route.path) {
+          this.active = i
+        }
+      })
     }
   }
 </script>
@@ -73,15 +78,20 @@
       display: initial
       overflow: hidden
       margin-right: 6px
+      width: auto
+      display: block
+      float: left
 
       img
-        vertical-align: middle
-
+        float: left
+        vertical-align: center
       span
         color: black
         font-size: 1.5em
         line-height: 40px
         font-weight: 500
+        width: auto
+        height: 40px
 
         margin-left: 10px
 
@@ -93,6 +103,8 @@
     right: 60px
     position: fixed
     display: inline
+
+    float: left
 
   ul
     float: left

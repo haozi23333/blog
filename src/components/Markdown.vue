@@ -1,47 +1,48 @@
 <template>
   <div class="markdown">
-  <article><h1>Table Layout</h1><div>Oct 9, 2016</div><div><p>本文是阅读<a href="https://book.douban.com/subject/20440003/" target="_blank" rel="external">《HTML5 与 CSS3 设计模式》</a>时摘录的一篇读书笔记，内容主要是使用 table 标签设计列布局，这里讲的布局适用于表格式数据（tabular data），不建议用于页面布局，使用表格设计页面布局会降低内容的可访问性。在讲布局之前，先说两条 table 元素的特殊特性：</p>
-    <p>一是，表格单元格 td / th 的 height 属性只能指定单元格的最小高度，当内容过长超过容器容量时，容器高度就会自动增大。解决这个问题有两种方法：为单元格内的内容设置一层容器，比如 div，并为容器设置 <code>height: 固定高度值;</code> 和 <code>overflow: hidden</code> 样式；为单元格内容设置 <code>white-space: nowrap</code>，杜绝自动换行行为，继而在水平方向隐藏溢出。</p>
-    <p>二是，单元格上设置 <code>visibility: hidden</code> 只会隐藏单元格内容，单元格的边框样式仍然存在。</p>
-    <p>使用表格布局主要有四种方案，而这四种方案由 <code>table-layout</code> 和 <code>width</code> 两个 CSS 样式决定。<code>table-layout</code> 支持两个值：<code>auto</code> 和 <code>fixed</code>，<code>auto</code> 自动布局的表格会根据内容宽度、单元格宽度设置列宽，而 <code>fixed</code> 固定布局会忽略内容宽度，仅仅根据第一行单元格的宽度来设置列宽。<code>width</code> 支持三种值：<code>auto</code>、固定值和百分比。四种布局如下（）：</p>
-    <ul>
-      <li>表格 <code>table-layout: auto</code> 和单元格 <code>width: auto</code>，收缩适应型，表格会自动缩小到所有列宽之和，且不会超过容器宽度</li>
-      <li>表格 <code>table-layout: auto</code> 和单元格 <code>width: 固定宽度</code>，设定尺寸型，表格会根据宽度值按比例分配列宽</li>
-      <li>表格 <code>table-layout: auto</code> 和单元格 <code>width: 100%</code>，拉伸型，表格宽度会拉伸为父容器的宽度，并按比例分配列宽</li>
-      <li>表格 <code>table-layout: fixed</code> 和单元格 <code>width: 固定宽度</code>，固定尺寸型，表格会忽略内容高度而设置列宽 <img src="../assets/emoticon/haode.jpg" alt=""></li>
-    </ul>
-    <a id="more"></a>
-    <p>除固定尺寸型表格外，其他类型的表格列宽都是由浏览器决定的，这里涉及到一个概念：<code>最小内容宽度</code>，指单元格中最宽单词的宽度，中文是一个字，英文是一个以空白符分割的词块，比如 ‘a alkdjsfka b’ 中的 ‘a’、’alkdjsfka’ 和 ‘b’ 都是词块，其中 ‘alkdjsfka’ 就是这个单元格的最宽词块。浏览器会按照如下规则设置列宽：</p>
-    <ol>
-      <li>列默认设置为自动宽度，也就是根据宽度类型（width 的值类型）、最大宽度值、最小内容宽度和最大内容宽度自动设置列宽</li>
-      <li>如果 <code>width</code> 为固定值，比如 ‘100px’，那么这个固定宽度就会成为列宽（取当前列的最大固定宽度），替代当前列的默认值</li>
-      <li>如果 <code>width</code> 为百分比，比如 ‘10%’，那么这个百分比宽度就会成为列宽（去当前列的最大百分比），替代当前列的固定值和默认值</li>
-      <li>如果列宽小于最小内容宽度了，那么使用最小内容宽度成为列宽，替代当前列的百分比、固定值和默认值 <h1>2333<img src="https://img.shields.io/npm/v/npm.svg" alt=""></h1></li>
-      <li>如果列宽大于最大内容宽度了，那么使用最大内容宽度成为列宽，替代当前列的百分比、固定值和默认值 <img src="https://img.shields.io/npm/v/npm.svg" alt=""></li>
-    </ol>
-    <blockquote>
-      <p>通过 <code>width</code> 设置的列宽并不会完全生效，当表格容器宽度过大或过小时，浏览器会按比例设置列宽。</p>
-    </blockquote>
-    <h2 id="收缩适应型表格"><a href="#收缩适应型表格" title="收缩适应型表格"></a>收缩适应型表格</h2><figure><table><tbody><tr><td><pre><div><span>table</span> {</div><div>    <span>width</span>: auto;</div><div>    <span>table-layout</span>: auto;</div><div>}</div><div></div><div><span>td</span> {</div><div>    <span>width</span>: auto;</div><div>}</div></pre></td></tr></tbody></table></figure>
-    <p>表格中的单元格会自动收缩到最小宽度，但如果内容很长，又会扩展到容器的最大宽度，一旦出现这种情况，浏览器会按照内容比例配置列宽。</p>
-    <h2 id="设定尺寸型表格"><a href="#设定尺寸型表格" title="设定尺寸型表格"></a>设定尺寸型表格</h2><figure><table><tbody><tr><td><pre><div><span>table</span> {</div><div>    <span>width</span>: auto;</div><div>    <span>table-layout</span>: auto;</div><div>}</div><div></div><div><span>td</span> {</div><div>    <span>width</span>: &lt;固定值&gt; | &lt;百分比&gt;;</div><div>}</div></pre></td></tr></tbody></table></figure>
-    <p>只有当同一行单元格的总宽度小于等于容器宽度，设置的固定值才会生效，否则浏览器会按宽度比例设定列宽，无论设置什么样的宽度值，列宽都不会小于最小内容宽度。</p>
-    <h2 id="拉伸尺寸型表格"><a href="#拉伸尺寸型表格" title="拉伸尺寸型表格"></a>拉伸尺寸型表格</h2><figure><table><tbody><tr><td><pre><div><span>table</span> {</div><div>    <span>width</span>: auto;</div><div>    <span>table-layout</span>: auto;</div><div>}</div><div></div><div><span>td</span> {</div><div>    <span>width</span>: <span>100%</span>;</div><div>}</div></pre></td></tr></tbody></table></figure>
-    <p>在拉伸尺寸型表格中，百分比宽度具有最高优先级，如果空间不足够，则会压缩固定宽度和自动宽度列到最小内容宽度。</p>
-    <h2 id="固定尺寸型表格"><a href="#固定尺寸型表格" title="固定尺寸型表格"></a>固定尺寸型表格</h2><figure><table><tbody><tr><td><pre><div><span>table</span> {</div><div>    <span>width</span>: &lt;固定值&gt; | &lt;百分比&gt;;</div><div>    <span>table-layout</span>: fixed;</div><div>}</div><div></div><div><span>td</span> {</div><div>    <span>width</span>: &lt;固定值&gt;;</div><div>}</div></pre></td></tr></tbody></table></figure>
-    <p>在固定尺寸型表格中，固定值具有最高优先级，然后是百分比宽度和自动宽度，也就是说，如果空间不够，使用自动宽度和百分比宽度的列都会被折叠。</p>
-    <h2 id="参考资料"><a href="#参考资料" title="参考资料"></a>参考资料</h2><ul>
-      <li><a href="https://book.douban.com/subject/20440003/" target="_blank" rel="external">《HTML5 与 CSS3 设计模式》P319~P371</a></li>
-      <li><a href="https://book.douban.com/subject/20440003/" target="_blank" rel="external">《HTML5 与 CSS3 设计模式》P319~P371</a>
-        <img src="../assets/emoticon/bigPic.jpg" big alt="">
-        <ul>
-          <li>23333
-            <img src="../assets/emoticon/bibixing.jpg" alt="">
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </div></article>
+    <article class="post-block"><h1 class="post-title">Flexbox</h1><div class="post-info">Jul 20, 2016</div><div class="post-content"><p>几年前学习 <a href="http://zh.learnlayout.com/toc.html" target="_blank" rel="external">learnlayout</a> 时第一次了解到 flexbox，后来写 CSS 的任务越来越少，但还是挺关注 flexbox 的兼容情况，这几年移动端对 flexbox 的使用越来越多，相关的实践也越来越成熟。去年了解到 React Native 也在使用 flexbox 做布局设计的时候，我第一次完整地学习了 flexbox 的使用方式并写了这篇博客，但最近重新阅读之后，发现自己对相关概念仍然存在误区，所以花了一天左右的时间做各种布局实践，来检验自己对相关概念的理解并整理如下。</p>
+      <p>哈哈在 flexbox 布局中有两个核心元素：<code>container</code> 和 <code>item</code>。item 是 container 所包含的直接子节点，它们的布局方式会受到 container 的约束。对于 container，必须理解两条轴和四个点：main axis、cross axis、main start、main end、cross start、cross end。下图是两轴四点在<strong>默认情况</strong>下的位置，这里的默认情况是指 <code>flex-flow: row nowrap;</code>。理解 main axis 和 cross axis 能够根据 <code>flex-flow</code>动态变化这一点很重要，这也是它为什么不叫作 x 轴和 y 轴的原因，以 main axis 举例来说，<code>flex-flow: row nowrap</code> 时它是水平方向的，<code>flex-flow: column nowrap</code> 则是垂直方向的。</p>
+      <p><img big src="http://pinggod.com/img/flexbox.png" alt="Flexbox"></p>
+      <a id="more"></a>
+      <h2 id="Container"><a href="#Container" class="headerlink" title="Container"></a>Container</h2><p>一个元素要成为 flexbox 中的 container，有两种声明类型：</p>
+      <figure class="highlight scss"><table><tbody><tr><td class="code"><pre><div class="line"><span class="selector-class">.container</span> {</div><div class="line">    <span class="attribute">display</span>: flex;</div><div class="line">}</div><div class="line"></div><div class="line"><span class="comment">// or</span></div><div class="line"><span class="selector-class">.container</span> {</div><div class="line">    <span class="attribute">display</span>: inline-flex</div><div class="line">}</div></pre></td></tr></tbody></table></figure>
+      <p>每一个 flexbox container 可以使用五种规则对 item 进行约束：</p>
+      <ul>
+        <li><code>flex-flow: &lt;flex-direction&gt; &lt;flex-wrpa&gt;</code>，一种缩写形式</li>
+        <li><code>flex-direction</code>，约束 item 的布局排列方向，决定 main axis 的方向</li>
+        <li><code>flex-wrap</code>，约束 item 在超出布局边界的处理方式，决定 cross axis 的方向</li>
+        <li><code>justify-content</code>，约束 item 在 main axis 上的排列方式</li>
+        <li><code>align-items</code>，约束 item 在 cross axis 上的排列方式</li>
+        <li><code>align-content</code>，约束 main axis 在 cross axis 上的排列方式</li>
+      </ul>
+      <p>如果使用 flexbox 布局的结果与预期不一致，问题很可能出现在对上述属性的误解上。这些属性从上到下是一种相互制约的关系，如果你无法在思维中明确 flex-flow 所指定的 main axis 和 cross axis，那么后续的布局都是盲目的：</p>
+      <ul>
+        <li><code>flex-direction: row</code>，默认值，main axis 与水平方向平行，由左到右走向</li>
+        <li><code>flex-direction: row-reverse</code>，main axis 与水平方向平行，由右到左走向</li>
+        <li><code>flex-direction: column</code>，main axis 与垂直方向平行，由上到下走向</li>
+        <li><code>flex-direction: column-reverse</code>，main axis 与垂直方向平行，由下到上走向</li>
+        <li><code>flex-wrap: nowrap</code>，默认值，cross axis 与 main axis 方向垂直，由上到下或者由左到右走向</li>
+        <li><code>flex-wrap: wrap</code>，cross axis 与 main axis 方向垂直，由上到下或者由左到右走向</li>
+        <li><code>flex-wrap: wrap-reverse</code>，cross axis 与 main axis 方向垂直，由上到下或者由右到左走向</li>
+      </ul>
+      <p>每一个 flexbox item 可以使用六种规则对自身在 container 中的布局方式进行微调：</p>
+      <ul>
+        <li><code>order</code>，默认值为 0，数值越小，排列时越靠前</li>
+        <li><code>align-self</code>，调整 item 在 cross axis 上的排列方式</li>
+        <li><code>flex: &lt;flex-grow&gt; &lt;flex-shrink&gt; &lt;flex-basis&gt;</code>，一种缩写形式</li>
+        <li><code>flex-grow</code>，当 container 空间多余 item 所需空间时，该属性决定 item 的放大比例，默认值为 0，表示不放大</li>
+        <li><code>flex-shrink</code>，当 container 空间不足时，该属性决定 item 的缩小比例，默认值为 1，如果值为 0，则表示不收缩</li>
+        <li><code>flex-basis</code>，决定 item 在 main axis 的大小</li>
+      </ul>
+      <p>这里的 <code>flex-basis</code> 与 <code>width</code> 是不同的概念，当 <code>flex-direction: row</code> main axis 与水平方向平行时，<code>flex-basis</code> 用于控制 <code>item</code> 的宽度；当 <code>flex-direction: column</code> main-axis 与垂直方向平行时，<code>flex-basis</code> 用于控制 <code>item</code> 的高度。更多 <code>flex-basis</code> 与 <code>width</code> 和 <code>height</code> 的不同，请参考 Stack Overflow 上的问题<a href="http://stackoverflow.com/questions/34352140/what-are-the-differences-between-flex-basis-and-width" target="_blank" rel="external">《What are the differences between flex-basis and width?》</a>。</p>
+      <h2 id="box-sizing"><a href="#box-sizing" class="headerlink" title="box-sizing"></a>box-sizing</h2><p>话外提一下 <code>box-sizing</code>， 该属性用于声明 <code>width</code> 和 <code>height</code> 的约束范围：<code>border-box</code> 表示边框、内边距和内容块的宽高计入容器宽高；<code>content-box</code> 表示只有内容块的宽高计入容器宽高。此外，该属性可继承，可以通过设置 body 的 box-sizing 统一约束容器的宽高。</p>
+      <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+        <li><a href="http://flexboxfroggy.com" target="_blank" rel="external">flexfroggy</a></li>
+        <li><a href="http://zh.learnlayout.com/toc.html" target="_blank" rel="external">learnlayout</a></li>
+        <li><a href="http://stackoverflow.com/questions/34352140/what-are-the-differences-between-flex-basis-and-width" target="_blank" rel="external">What are the differences between flex-basis and width?</a></li>
+        <li><a href="http://www.ruanyifeng.com/blog/2015/07/flex-examples.html" target="_blank" rel="external">flexbox 布局实例</a></li>
+      </ul>
+    </div></article>
   </div>
 </template>
 <script>
