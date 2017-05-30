@@ -1,135 +1,47 @@
 <template>
-  <div>
-    <h1>给 ghost 图片服务加上 CDN</h1>
-    <div id="ember1592">
-      <p>注意: 只是图片服务. 🌰(栗子)是七牛云的  、</p>
-
-      <ul>
-        <li>图片CDN </li>
-        <li>图片CDN参数压缩 <img src="https://img.shields.io/npm/v/node-coolq.svg" alt=""><br>
-          可以参考我的
-          <a href="https://github.com/haozi23333/ghost/commit/e71c9dc23592ba2d11523968b59b82a73d90cb01">commit</a>
-        </li>
-        <li>
-          4444
-          <ul>
-            <li>
-              23333
-            </li>
-          </ul>
-        </li>
-      </ul>
-      <hr>
-
-      <h2 id="233">效果</h2>
-
-      <p><a href="https://cdn.hao-zi.com/content/images/2017/04/62463049_p0-2.jpg?imageView2/0/q/75|imageslim">测试图片</a> <br>
-        我的原图是 859KB <br>
-        使用七牛压缩参数</p>
-
-      <pre><code>imageView2/1/w/800/h/600/interlace/1/q/100|watermark/2/text/QGhhb3pp/font/Y29uc29sYXM=/fontsize/500/fill/I0E3QTdBNw==/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim
-</code></pre>
-
-      <p>图片指定800*600的区域中心剪裁，加上@haozi的水印压缩图片，图片质量100% <br>
-        这个缩略图是用在正文当中的 <br>
-        : 60.7KB
-        参数
-
-      </p>
-
-      <pre><code>imageView2/0/q/75|imageslim
-</code></pre>
-
-      <p>不剪裁，75%的质量，做图片压缩: 155kb
-        这个是用在正文图片被点击放大的时候加载的 <br>
-        压缩效果还是不错的。大图片我这边访问还是比较慢的，尤其是做了处理的</p>
-
-      <h2 id="">实践</h2>
-
-      <h3 id="configjs">config.js</h3>
-
-      <p>我们先在config.js中加上我们需要的配置</p>
-
-      <pre><code>   production: {
-        url: 'http://my-ghost-blog.com',
-        mail: {},
-        database: {
-            client: 'sqlite3',
-            connection: {
-                filename: path.join(__dirname, '/content/data/ghost.db')
-            },
-            debug: false
-        },
-
-        server: {
-            host: '127.0.0.1',
-            port: '2368'
-        },
-        cdn: {
-            url: 'https://cdn.hao-zi.com',
-            defaultImageParam: '?imageView2/0/q/100|imageslim',
-            imageParam: '?imageView2/1/w/800/h/600/interlace/1/q/100|watermark/2/text/QGhhb3pp/font/Y29uc29sYXM=/fontsize/500/fill/I0E3QTdBNw%3d%3d/dissolve/100/gravity/SouthEast/dx/10/dy/10|imageslim'
-        }
-    },
-</code></pre>
-
-      <img src="../assets/emoticon/bigPic.jpg" big alt="">
-
-      <p>在这注意一下<code>==</code>会被解析成<code>&lt;mark&gt;</code>所以要转义<code>%3d%3d</code></p>
-
-      <h3 id="localfilestorejs">local-file.store.js</h3>
-
-      <p>找到<code>core/server/storage/local-file-store.js</code>
-        在第42行 返回了一个相对于我们域名的一个资源地址(/content/images/xxx.png)。我们在这个路径前面加上cdn的地址，后面加上默认的图片处理参数。 <br>
-        在这个地方修改了之后，新上传的图片都会被转换成带cdn和处理参数的地址。(旧的图片需要重新上传)</p>
-
-      <pre><code>return config.cdn.url + fullUrl + config.cdn.defaultImageParam;
-</code></pre>
-
-      <h3 id="markdown">markdown</h3>
-
-      <p>ghostBlog 使用的是 <a href="https://github.com/bsansouci/showdown-ghost">showdown-ghost</a> 来解析markdown语法的。在文档中有介绍如何去编写扩展。 <br>
-        我从这个插件<code>/src/extensions/ghostgfm.js</code>中找到了用来匹配出<code>![]</code>语法的<a href="https://github.com/bsansouci/showdown-ghost/blob/master/src/extensions/ghostgfm.js#L38">正则表达式</a><del>不会写QAQ</del> <br>
-        在<code>/core/server/models</code>下面新建一个文件'cdnImage.js'导出一个函数，并返回一个数组. <br>
-        <code>type: lang</code>的意思语言扩展(扩展语法) <br>
-        <code>filter</code>就是过滤器，传入整个markdown文本，返回被处理好的文本. <br>
-        下面的代码基本都是<a href="https://github.com/bsansouci/showdown-ghost/blob/master/src/extensions/ghostgfm.js">ghostgfm.js</a>的东西,不做过多的解释。在img的src加上我们config里面的cdn.imageParam</p>
-
-      <pre><code>var config = require('../config')
-module.exports = function () {
-    return [
-        {
-            type: 'lang',
-            filter: function (text) {
-                imageMarkdownRegex = /^(?:\{(.*?)\})?!(?:\[([^\n\]]*)\])(?:\(([^\n\]]*)\))?$/gim
-                return text.replace(imageMarkdownRegex, function (match, key, alt, src) {
-                    if (src) {
-                        if (src.indexOf(".pdf") === src.length-4){
-                            return '&lt;object data="' + src + '" type="application/pdf" width="100%" height="100%"&gt;' + alt + '&lt;/object&gt;';
-                        }
-
-                        return '&lt;img src="' + src.replace(/\?.*/, "") + config.cdn.imageParam + '" alt="' + alt + '" /&gt;';
-                    }
-                    return '';
-                });
-            }
-        }
-    ]
-}
-</code></pre>
-
-      <p>找到<code>/core/content/models/post.js</code>在Showdown的扩展上加上我们刚刚编写的扩展<code>require('./cdnImage')</code>。这样我们的扩展会被优先处理. <br>
-        重启ghost看看有没有成功.</p>
-
-      <h2 id="">后记</h2>
-
-      <p>蓝瘦，ghost都没有插件机制，加功能还要改源码~~</p>
-
-      <blockquote>
-        <p>有什么问题的话请在下面的评论区告诉我QAQ(评论需要翻墙)</p>
-      </blockquote>
-
-      <!----></div>
+  <div class="markdown">
+  <article><h1>Table Layout</h1><div>Oct 9, 2016</div><div><p>本文是阅读<a href="https://book.douban.com/subject/20440003/" target="_blank" rel="external">《HTML5 与 CSS3 设计模式》</a>时摘录的一篇读书笔记，内容主要是使用 table 标签设计列布局，这里讲的布局适用于表格式数据（tabular data），不建议用于页面布局，使用表格设计页面布局会降低内容的可访问性。在讲布局之前，先说两条 table 元素的特殊特性：</p>
+    <p>一是，表格单元格 td / th 的 height 属性只能指定单元格的最小高度，当内容过长超过容器容量时，容器高度就会自动增大。解决这个问题有两种方法：为单元格内的内容设置一层容器，比如 div，并为容器设置 <code>height: 固定高度值;</code> 和 <code>overflow: hidden</code> 样式；为单元格内容设置 <code>white-space: nowrap</code>，杜绝自动换行行为，继而在水平方向隐藏溢出。</p>
+    <p>二是，单元格上设置 <code>visibility: hidden</code> 只会隐藏单元格内容，单元格的边框样式仍然存在。</p>
+    <p>使用表格布局主要有四种方案，而这四种方案由 <code>table-layout</code> 和 <code>width</code> 两个 CSS 样式决定。<code>table-layout</code> 支持两个值：<code>auto</code> 和 <code>fixed</code>，<code>auto</code> 自动布局的表格会根据内容宽度、单元格宽度设置列宽，而 <code>fixed</code> 固定布局会忽略内容宽度，仅仅根据第一行单元格的宽度来设置列宽。<code>width</code> 支持三种值：<code>auto</code>、固定值和百分比。四种布局如下（）：</p>
+    <ul>
+      <li>表格 <code>table-layout: auto</code> 和单元格 <code>width: auto</code>，收缩适应型，表格会自动缩小到所有列宽之和，且不会超过容器宽度</li>
+      <li>表格 <code>table-layout: auto</code> 和单元格 <code>width: 固定宽度</code>，设定尺寸型，表格会根据宽度值按比例分配列宽</li>
+      <li>表格 <code>table-layout: auto</code> 和单元格 <code>width: 100%</code>，拉伸型，表格宽度会拉伸为父容器的宽度，并按比例分配列宽</li>
+      <li>表格 <code>table-layout: fixed</code> 和单元格 <code>width: 固定宽度</code>，固定尺寸型，表格会忽略内容高度而设置列宽 <img src="../assets/emoticon/haode.jpg" alt=""></li>
+    </ul>
+    <a id="more"></a>
+    <p>除固定尺寸型表格外，其他类型的表格列宽都是由浏览器决定的，这里涉及到一个概念：<code>最小内容宽度</code>，指单元格中最宽单词的宽度，中文是一个字，英文是一个以空白符分割的词块，比如 ‘a alkdjsfka b’ 中的 ‘a’、’alkdjsfka’ 和 ‘b’ 都是词块，其中 ‘alkdjsfka’ 就是这个单元格的最宽词块。浏览器会按照如下规则设置列宽：</p>
+    <ol>
+      <li>列默认设置为自动宽度，也就是根据宽度类型（width 的值类型）、最大宽度值、最小内容宽度和最大内容宽度自动设置列宽</li>
+      <li>如果 <code>width</code> 为固定值，比如 ‘100px’，那么这个固定宽度就会成为列宽（取当前列的最大固定宽度），替代当前列的默认值</li>
+      <li>如果 <code>width</code> 为百分比，比如 ‘10%’，那么这个百分比宽度就会成为列宽（去当前列的最大百分比），替代当前列的固定值和默认值</li>
+      <li>如果列宽小于最小内容宽度了，那么使用最小内容宽度成为列宽，替代当前列的百分比、固定值和默认值 <h1>2333<img src="https://img.shields.io/npm/v/npm.svg" alt=""></h1></li>
+      <li>如果列宽大于最大内容宽度了，那么使用最大内容宽度成为列宽，替代当前列的百分比、固定值和默认值 <img src="https://img.shields.io/npm/v/npm.svg" alt=""></li>
+    </ol>
+    <blockquote>
+      <p>通过 <code>width</code> 设置的列宽并不会完全生效，当表格容器宽度过大或过小时，浏览器会按比例设置列宽。</p>
+    </blockquote>
+    <h2 id="收缩适应型表格"><a href="#收缩适应型表格" title="收缩适应型表格"></a>收缩适应型表格</h2><figure><table><tbody><tr><td><pre><div><span>table</span> {</div><div>    <span>width</span>: auto;</div><div>    <span>table-layout</span>: auto;</div><div>}</div><div></div><div><span>td</span> {</div><div>    <span>width</span>: auto;</div><div>}</div></pre></td></tr></tbody></table></figure>
+    <p>表格中的单元格会自动收缩到最小宽度，但如果内容很长，又会扩展到容器的最大宽度，一旦出现这种情况，浏览器会按照内容比例配置列宽。</p>
+    <h2 id="设定尺寸型表格"><a href="#设定尺寸型表格" title="设定尺寸型表格"></a>设定尺寸型表格</h2><figure><table><tbody><tr><td><pre><div><span>table</span> {</div><div>    <span>width</span>: auto;</div><div>    <span>table-layout</span>: auto;</div><div>}</div><div></div><div><span>td</span> {</div><div>    <span>width</span>: &lt;固定值&gt; | &lt;百分比&gt;;</div><div>}</div></pre></td></tr></tbody></table></figure>
+    <p>只有当同一行单元格的总宽度小于等于容器宽度，设置的固定值才会生效，否则浏览器会按宽度比例设定列宽，无论设置什么样的宽度值，列宽都不会小于最小内容宽度。</p>
+    <h2 id="拉伸尺寸型表格"><a href="#拉伸尺寸型表格" title="拉伸尺寸型表格"></a>拉伸尺寸型表格</h2><figure><table><tbody><tr><td><pre><div><span>table</span> {</div><div>    <span>width</span>: auto;</div><div>    <span>table-layout</span>: auto;</div><div>}</div><div></div><div><span>td</span> {</div><div>    <span>width</span>: <span>100%</span>;</div><div>}</div></pre></td></tr></tbody></table></figure>
+    <p>在拉伸尺寸型表格中，百分比宽度具有最高优先级，如果空间不足够，则会压缩固定宽度和自动宽度列到最小内容宽度。</p>
+    <h2 id="固定尺寸型表格"><a href="#固定尺寸型表格" title="固定尺寸型表格"></a>固定尺寸型表格</h2><figure><table><tbody><tr><td><pre><div><span>table</span> {</div><div>    <span>width</span>: &lt;固定值&gt; | &lt;百分比&gt;;</div><div>    <span>table-layout</span>: fixed;</div><div>}</div><div></div><div><span>td</span> {</div><div>    <span>width</span>: &lt;固定值&gt;;</div><div>}</div></pre></td></tr></tbody></table></figure>
+    <p>在固定尺寸型表格中，固定值具有最高优先级，然后是百分比宽度和自动宽度，也就是说，如果空间不够，使用自动宽度和百分比宽度的列都会被折叠。</p>
+    <h2 id="参考资料"><a href="#参考资料" title="参考资料"></a>参考资料</h2><ul>
+      <li><a href="https://book.douban.com/subject/20440003/" target="_blank" rel="external">《HTML5 与 CSS3 设计模式》P319~P371</a></li>
+      <li><a href="https://book.douban.com/subject/20440003/" target="_blank" rel="external">《HTML5 与 CSS3 设计模式》P319~P371</a>
+        <img src="../assets/emoticon/bigPic.jpg" big alt="">
+        <ul>
+          <li>23333
+            <img src="../assets/emoticon/bibixing.jpg" alt="">
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div></article>
   </div>
 </template>
 <script>
@@ -140,12 +52,15 @@ module.exports = function () {
   import 'vue-awesome/icons/clock-o'
   import 'vue-awesome/icons/tags'
 
+  import Picture from './markdown/Picture.vue'
+
   @Component({
     props: {
 
     },
     components: {
-      Icon
+      Icon,
+      Picture
     }
   })
   export default class Markdown extends Vue {
