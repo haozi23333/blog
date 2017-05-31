@@ -5,6 +5,21 @@
       <hr>
       <ul>
         <li>
+          <time>2017/5/31</time><span></span>
+          <ul>
+            <li>修改了 post.vue 的文章标题的间距</li>
+            <li>提交了 blog-server 项目</li>
+            <li>server - 替换了 Nodejs 本来的 Promise 为 bluebird</li>
+            <li>钦点了响应式库为 sass-mq </li>
+            <li>修复了 haozi - index的页脚</li>
+            <li>server - 大概的设计了一下 restful api </li>
+            <li>server - 设计了{file, user, post, tag} 的数据库模型</li>
+            <li>server - 规划了文件夹</li>
+            <li> <s>怕是开了一个网盘{...}的大坑</s></li>
+            <li>困死了,早点睡😴. 肝崩坏去~~~</li>
+          </ul>
+        </li>
+        <li>
           <time>2017/5/30</time><span></span>
           <ul>
             <li>微调 markdown.sass</li>
@@ -46,6 +61,7 @@
   import Vue from 'vue'
   import Component from 'vue-class-component'
   import Markdown from '../Markdown.vue'
+
   @Component({
     props: {
 

@@ -19,8 +19,14 @@
 
   import Vue from 'vue'
   import Component from 'vue-class-component'
+  import Icon from 'vue-awesome/components/Icon.vue'
+  import 'vue-awesome/icons/slack'
 
-  @Component()
+  @Component({
+    components: {
+      Icon
+    }
+  })
   export default class Navbar extends Vue {
     active = -1
     navigations = [
@@ -57,9 +63,9 @@
 <style scoped lang="sass" rel="stylesheet/sass" media="all">
 
   @import "../../assets/css/global.sass"
+  @import "../../assets/css/mq"
 
   #header
-    position: fixed
     top: 0
     left: 0
     width: 100%
@@ -71,7 +77,7 @@
     padding-left: 60px
     z-index: 99
 
-    flex: 1
+    flex: 0 0 auto
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.25)
 
     .logo
@@ -99,9 +105,8 @@
     padding-left: 20px
     padding-top: 10px
     padding-bottom: 10px
-
     right: 60px
-    position: fixed
+    position: absolute
     display: inline
 
     float: left
@@ -124,5 +129,16 @@
 
   .active
     border-bottom: solid 3px $green
+
+  @include mq($from: mobile)
+    nav
+      display: block
+      content: '<i class="fa fa-slack"><i>'
+      background: green
+
+      ul
+        display: none
+        background: red
+        &::after
 
 </style>

@@ -1,4 +1,4 @@
-# 可可和haozi的 blog
+# blog
 
 > A Vue.js project. 还不知道可可喜欢什么风格的QAQ
 于2017年5月28日开工

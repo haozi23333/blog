@@ -19,7 +19,7 @@
   @import "../../assets/css/global.sass"
 
   footer
-    flex: 1
+    flex: 0 0 auto
     height: 60px
     width: 100%
     line-height: 60px

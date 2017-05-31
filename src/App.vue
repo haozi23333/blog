@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Navbar></Navbar>
-    <main>
+    <main class="main">
       <router-view></router-view>
     </main>
     <Tail></Tail>
@@ -31,20 +31,35 @@
 <style lang="sass" rel="stylesheet/sass">
 @import "./assets/css/global.sass"
 @import "./assets/css/cover.sass"
+@import "./assets/css/mq"
 
 #app
   display: flex
   flex-direction: column
   flex-wrap: nowrap
   justify-content: flex-start
+  align-items: center
 
 
-main
+.main
   min-height: calc(100vh - 100px)
-  position: relative
-  flex: 1
+  min-width: 320px
+  max-width: 1280px
+  flex: 1 0 auto
   z-index: 2
   padding: 0 60px 30px
   overflow-x: hidden
   top: 60px
+
+  @include mq($from: mobile)
+    /*width: 100%*/
+    padding-left: 10px
+    padding-right: 10px
+  @include mq($until: tablet)
+
+  @include mq($until: tablet, $and: '(orientation: landscape)')
+  @include mq(tablet, desktop)
+
+
+
 </style>
