@@ -53,12 +53,13 @@
 
     h1[role="title"]
       margin-top: 0.7em
-      margin-bottom: 0.7em
+      margin-bottom: 2em
 
       a
         color: black
         font-size: 1.2em
         font-weight: 400
+        padding-bottom: 3px
 
         &:hover
           border-bottom: 1.5px solid $green
