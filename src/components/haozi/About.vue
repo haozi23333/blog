@@ -9,8 +9,13 @@
           <ul>
             <li>今天俱乐部有那个什么61儿童节活动,过去逛了一圈,吸收了一堆灰(路上灰大)</li>
             <li>然后.......忘记昨晚记录的 todo 了</li>
-            <li>稍微整改了 haozi 页面的响应式布局</li>
-            <li>迷</li>
+            <li>稍微整改了 haozi 页面的响应式布局(然而写炸了<code>flex</code>不是万能的)</li>
+            <li>server - 创建了README.MD 文件( 但是并没有写东西</li>
+            <li>server - 开始写用户控制器</li>
+            <li>server - 对数据库的的user模型进行了一些新的设计</li>
+            <li>server - 新增了config文件</li>
+            <li>脑海里面规划了一下验证参数的做法</li>
+            <li><s> 明天一定记得看 todo</s></li>
           </ul>
         </li>
         <li>

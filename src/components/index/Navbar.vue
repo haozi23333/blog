@@ -16,6 +16,7 @@
         </li>
       </ul>
     </nav>
+    <span></span>
   </header>
 </template>
 <script type="text/javascript">
@@ -147,7 +148,7 @@
 
   @include mq($until: tablet)
     #header
-      justify-content: center
+      justify-content: space-between
       .logo
         margin-left: 0
         span
@@ -160,7 +161,6 @@
         margin-left: 60px
         padding: 5px
         box-shadow: 0 0 2px rgba(0, 0, 0, 0.25)
-        align-self: flex-start
 
         line-height: 20px
         svg[bars]
