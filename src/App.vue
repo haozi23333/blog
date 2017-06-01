@@ -38,7 +38,6 @@
   flex-direction: column
   flex-wrap: nowrap
   justify-content: flex-start
-  align-items: center
 
 
 .main

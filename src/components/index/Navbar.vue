@@ -1,5 +1,8 @@
 <template>
   <header id="header">
+    <div class="openBar" @click="openNav">
+      <Icon bars name="bars" scale="1.5"  :class="{open: isOpen}"></Icon>
+    </div>
     <a class="logo" href="!#">
       <img src="../../assets/image/ph.png" width="40" height="40" alt="haozi's faceImage">
       <span>haozi</span>
@@ -20,7 +23,7 @@
   import Vue from 'vue'
   import Component from 'vue-class-component'
   import Icon from 'vue-awesome/components/Icon.vue'
-  import 'vue-awesome/icons/slack'
+  import 'vue-awesome/icons/bars'
 
   @Component({
     components: {
@@ -29,6 +32,7 @@
   })
   export default class Navbar extends Vue {
     active = -1
+    isOpen = false
     navigations = [
       {
         path: '/haozi',
@@ -58,6 +62,10 @@
         }
       })
     }
+
+    openNav () {
+      alert(1)
+    }
   }
 </script>
 <style scoped lang="sass" rel="stylesheet/sass" media="all">
@@ -66,19 +74,27 @@
   @import "../../assets/css/mq"
 
   #header
-    top: 0
-    left: 0
     width: 100%
     background-color: #fff
     height: 40px
     padding-top: 10px
-    padding-right: 60px
     padding-bottom: 10px
-    padding-left: 60px
     z-index: 99
+    display: flex
+    flex-wrap: nowrap
+    flex-direction: row
+    justify-content: flex-start
 
     flex: 0 0 auto
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.25)
+
+    *
+      transition: all .5s
+
+    .openBar
+      flex: 0 0 1
+      align-self: flex-start
+      display: none
 
     .logo
       height: 40px
@@ -86,7 +102,8 @@
       margin-right: 6px
       width: auto
       display: block
-      float: left
+      flex: 0 0 auto
+      margin-left: 60px
 
       img
         float: left
@@ -108,11 +125,9 @@
     right: 60px
     position: absolute
     display: inline
-
-    float: left
+    flex: 1
 
   ul
-    float: left
     list-style-type: none
 
     li
@@ -130,15 +145,30 @@
   .active
     border-bottom: solid 3px $green
 
-  @include mq($from: mobile)
-    nav
-      display: block
-      content: '<i class="fa fa-slack"><i>'
-      background: green
+  @include mq($until: tablet)
+    #header
+      justify-content: center
+      .logo
+        margin-left: 0
+        span
+          display: none
 
-      ul
+      div.openBar
+        display: block
+        width: 20px
+        height: 20px
+        margin-left: 60px
+        padding: 5px
+        box-shadow: 0 0 2px rgba(0, 0, 0, 0.25)
+        align-self: flex-start
+
+        line-height: 20px
+        svg[bars]
+          height: 20px
+          transition: all .5s
+
+        &.open
+          transform: rotate(90deg)
+      nav
         display: none
-        background: red
-        &::after
-
 </style>
