@@ -1,7 +1,7 @@
 <template>
-  <header id="header">
-    <div class="openBar" @click="openNav">
-      <Icon bars name="bars" scale="1.5"  :class="{open: isOpen}"></Icon>
+  <header>
+    <div class="openBar" @click="openNav" :class="{open: isOpen}">
+      <Icon bars name="bars" scale="1.5"></Icon>
     </div>
     <a class="logo" href="!#">
       <img src="../../assets/image/ph.png" width="40" height="40" alt="haozi's faceImage">
@@ -16,7 +16,6 @@
         </li>
       </ul>
     </nav>
-    <span></span>
   </header>
 </template>
 <script type="text/javascript">
@@ -65,7 +64,8 @@
     }
 
     openNav () {
-      alert(1)
+      document.body.style.overflowY = this.isOpen ? 'hidden' : 'block'
+      this.isOpen = !this.isOpen
     }
   }
 </script>
@@ -74,7 +74,7 @@
   @import "../../assets/css/global.sass"
   @import "../../assets/css/mq"
 
-  #header
+  header
     width: 100%
     background-color: #fff
     height: 40px
@@ -85,7 +85,7 @@
     flex-wrap: nowrap
     flex-direction: row
     justify-content: flex-start
-
+    min-width: 200px
     flex: 0 0 auto
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.25)
 
@@ -147,10 +147,19 @@
     border-bottom: solid 3px $green
 
   @include mq($until: tablet)
-    #header
-      justify-content: space-between
+    header
+      justify-content: flex-start
+      align-items: center
+      flex-direction: column
+
       .logo
         margin-left: 0
+        align-self: center
+        margin-top: -20px
+
+        img
+          border-radius: 40px
+
         span
           display: none
 
@@ -158,17 +167,16 @@
         display: block
         width: 20px
         height: 20px
-        margin-left: 60px
-        padding: 5px
-        box-shadow: 0 0 2px rgba(0, 0, 0, 0.25)
+        margin-left: 20px
 
         line-height: 20px
         svg[bars]
           height: 20px
           transition: all .5s
-
+          margin-top: 10px
         &.open
-          transform: rotate(90deg)
+          svg
+            transform: rotate(90deg)
       nav
         display: none
 </style>

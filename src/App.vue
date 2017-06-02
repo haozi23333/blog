@@ -2,6 +2,7 @@
   <div id="app">
     <Navbar></Navbar>
     <main class="main">
+      <mobileNavBar></mobileNavBar>
       <router-view></router-view>
     </main>
     <Tail></Tail>
@@ -14,11 +15,13 @@
   import Component from 'vue-class-component'
   import Navbar from './components/index/Navbar.vue'
   import Tail from './components/haozi/Tail.vue'
+  import mobileNavBar from './components/index/mobileNavBar.vue'
 
   @Component({
     components: {
       Navbar,
-      Tail
+      Tail,
+      mobileNavBar
     }
   })
   export default class App extends Vue {
