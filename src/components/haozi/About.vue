@@ -5,6 +5,17 @@
       <hr>
       <ul>
         <li>
+          <time>2017/6/2</time><span></span>
+          <ul>
+            <li>安装了<code>Vuex</code>感觉很好用</li>
+            <li>导航条依然是用<code>flex</code>修好了所以<code>flex</code>大法好,<code>flex</code>是万能的<s>(简直打脸</s></li>
+            <li><s>辣鸡时钟机关之心</s> 狐妖大法好 <s><strong>蓉蓉赛高</strong></s></li>
+            <li>server - 一字未动</li>
+            <li>好累准备在梦里规划一下<code>store</code></li>
+            <li>todo 虽然是记起来了 但是今天并没有动 server 的代码</li>
+          </ul>
+        </li>
+        <li>
           <time>2017/6/1</time><span></span>
           <ul>
             <li>今天俱乐部有那个什么61儿童节活动,过去逛了一圈,吸收了一堆灰(路上灰大)</li>

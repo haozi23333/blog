@@ -24,6 +24,11 @@
   import Component from 'vue-class-component'
   import Icon from 'vue-awesome/components/Icon.vue'
   import 'vue-awesome/icons/bars'
+  import {store} from '../../store/haozi'
+  import {
+      OPEN_NAVBAR,
+      CLOSE_NAVBAR
+  } from '../../store/haoziMutationsType'
 
   @Component({
     components: {
@@ -33,6 +38,7 @@
   export default class Navbar extends Vue {
     active = -1
     isOpen = false
+    store = store
     navigations = [
       {
         path: '/haozi',
@@ -66,6 +72,11 @@
     openNav () {
       document.body.style.overflowY = this.isOpen ? 'hidden' : 'block'
       this.isOpen = !this.isOpen
+      if (this.isOpen) {
+        this.store.commit(OPEN_NAVBAR)
+      } else {
+        this.store.commit(CLOSE_NAVBAR)
+      }
     }
   }
 </script>
@@ -151,11 +162,13 @@
       justify-content: flex-start
       align-items: center
       flex-direction: column
-
+      padding-top: 5px
+      padding-bottom: 5px
       .logo
         margin-left: 0
         align-self: center
         margin-top: -20px
+
 
         img
           border-radius: 40px
@@ -168,7 +181,6 @@
         width: 20px
         height: 20px
         margin-left: 20px
-
         line-height: 20px
         svg[bars]
           height: 20px
@@ -176,7 +188,7 @@
           margin-top: 10px
         &.open
           svg
-            transform: rotate(90deg)
+            transform: rotate(-90deg)
       nav
         display: none
 </style>

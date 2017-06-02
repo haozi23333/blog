@@ -41,27 +41,20 @@
   flex-direction: column
   flex-wrap: nowrap
   justify-content: flex-start
-
+  align-self: center
 
 .main
   min-height: calc(100vh - 100px)
   min-width: 320px
-  max-width: 1280px
+  width: 90%
+  max-width: 740px
   flex: 1 0 auto
   z-index: 2
-  padding: 0 60px 30px
   overflow-x: hidden
   top: 60px
+  align-content: center
+  align-self: center
 
-  @include mq($from: mobile)
-    /*width: 100%*/
-    padding-left: 10px
-    padding-right: 10px
-  @include mq($until: tablet)
-
-  @include mq($until: tablet, $and: '(orientation: landscape)')
-  @include mq(tablet, desktop)
-
-
+@include mq($until: tablet)
 
 </style>
