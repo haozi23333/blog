@@ -46,3 +46,14 @@ export const GET_HAOZI_POST = 'GET_HAOZI_POST'
  * @type {string}
  */
 export const GET_HAOZI_POSTLIST = 'GET_HAOZI_POSTLIST'
+
+/**
+ * 获取post 的目录 用来生成
+ * @type {string}
+ */
+export const GET_POST_CATALOG = 'GET_POST_CATALOG'
+
+/**
+ * 预留给评论功能的位置
+ */
+// _(:зゝ∠)_
