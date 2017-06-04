@@ -5,6 +5,13 @@
       <hr>
       <ul>
         <li>
+          <time>2017/6/4</time><span></span>
+          <ul>
+            <li><s>洗衣机股大跌</s></li>
+            <li>哎 昨天智障吧config.ts 丢到git上去了 </li>
+          </ul>
+        </li>
+        <li>
           <time>2017/6/3</time><span></span>
           <ul>
             <li><s> 发现一件事情我的手指打字的时候,每根手指是单独的进程, 进程之间同步的方式是 <code>setTimeOut</code>所以我打字经常错字</s></li>

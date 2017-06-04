@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Navbar></Navbar>
-    <main class="main">
+    <main class="main" @click="">
       <mobileNavBar></mobileNavBar>
       <router-view></router-view>
     </main>
@@ -27,6 +27,8 @@
   export default class App extends Vue {
     mounted () {
 
+    }
+    closeNavBar () {
     }
   }
 </script>
