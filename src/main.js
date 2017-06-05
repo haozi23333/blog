@@ -5,8 +5,10 @@ import Vuex from 'vuex'
 import App from './App'
 import router from './router'
 import Icon from 'vue-awesome/components/Icon'
+import VueResoure from 'vue-resource'
 
 Vue.use(Vuex)
+Vue.use(VueResoure)
 Vue.component('icon', Icon)
 
 Vue.config.productionTip = false

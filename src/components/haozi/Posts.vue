@@ -1,8 +1,6 @@
 <template>
   <section class="posts">
-    <post></post>
-    <post></post>
-    <post></post>
+    <post postId="1"></post>
   </section>
 </template>
 <script>

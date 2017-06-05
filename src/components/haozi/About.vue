@@ -5,12 +5,21 @@
       <hr>
       <ul>
         <li>
+          <time>2017/6/5</time><span></span>
+          <ul>
+            <li>页面没动</li>
+            <li><s>昨天的flag 炸了</s></li>
+            <li>server - 基本的完成了 PostController 可以通过 restful api 进行请求了</li>
+            <li>晚上放个假补补番 <s> 贼困</s></li>
+          </ul>
+        </li>
+        <li>
           <time>2017/6/4</time><span></span>
           <ul>
             <li><s>洗衣机股大跌<s>(妖精我的</s></s></li>
             <li>哎 昨天智障吧config.ts 丢到git上去了 </li>
             <li>server - 基本的完成了 UserController</li>
-            <li>flag -> 明天吧 PostController 写完 大后天就开始开工后台管理页面了(雾</li>
+            <li>flag -> 明天吧PostController 写完 大后天就开始开工后台管理页面了(雾</li>
             <li><s> 此处应该有前端规划图一份</s></li>
             <li><s> 说好的 ts 呢???????? :黑人问号: -> 等一次重构吧</s></li>
           </ul>

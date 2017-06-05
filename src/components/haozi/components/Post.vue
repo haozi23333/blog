@@ -16,16 +16,20 @@
   import Vue from 'vue'
   import Component from 'vue-class-component'
   import Markdown from '../../Markdown.vue'
-
+//  import {posts} from '../../api/posts'
   @Component({
     props: {
-
+      postId: ''
     },
     components: {
       Markdown
     }
   })
   export default class Post extends Vue {
+
+    mounted () {
+//      posts.getPostById(this.postId)
+    }
   }
 </script>
 <style scoped lang="sass" rel="stylesheet/sass" media="all">
