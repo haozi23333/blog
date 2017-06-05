@@ -10,6 +10,7 @@
             <li>页面没动</li>
             <li><s>昨天的flag 炸了</s></li>
             <li>server - 基本的完成了 PostController 可以通过 restful api 进行请求了</li>
+            <li>server - 做了简单的错误处理</li>
             <li>晚上放个假补补番 <s> 贼困</s></li>
           </ul>
         </li>
