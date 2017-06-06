@@ -1,8 +1,8 @@
 <template>
   <section class="posts">
-    <post postId="1"></post>
-    <!--<post postId="2"></post>-->
-    <!--<post postId="3"></post>-->
+    <post v-once postId="1"></post>
+    <post v-once postId="2"></post>
+    <post v-once postId="3"></post>
   </section>
 </template>
 <script>

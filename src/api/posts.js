@@ -3,7 +3,7 @@
  */
 import Vue from 'vue'
 
-const apiUrl = 'http://hao-zi.com/api'
+const apiUrl = 'http://haozi.com/api'
 
 export class posts {
   static async getPostById (id) {

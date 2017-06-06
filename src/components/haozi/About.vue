@@ -5,6 +5,15 @@
       <hr>
       <ul>
         <li>
+          <time>2017/6/6</time><span></span>
+          <ul>
+            <li>修改了 posts 的页面, 解决了 Markdown 页面的样式无法 v-html</li>
+            <li>post list 界面加入了 loading </li>
+            <li> server - post 里面多加一个了 文章摘要</li>
+            <li>喵了一眼那个微信小程序</li>
+          </ul>
+        </li>
+        <li>
           <time>2017/6/5</time><span></span>
           <ul>
             <li>页面没动</li>
@@ -130,15 +139,15 @@
   }
 </script>
 <style scoped lang="sass" rel="stylesheet/sass" media="all">
-  @import "../../assets/css/global.sass"
+  /*@import "../../assets/css/global.sass"*/
 
   .center
     text-align: center
 
-  .changlog
-    .markdown
-      ul
-        li
-          border-bottom: 1px solid $red
+  /*.changlog*/
+    /*.markdown*/
+      /*ul*/
+        /*li*/
+          /*border-bottom: 1px solid $red*/
 
 </style>

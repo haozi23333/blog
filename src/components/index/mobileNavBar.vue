@@ -59,6 +59,7 @@
     position: absolute
     top: 50px
     left: -100%
+    z-index: 99999999999999
 
     nav
       height: 100%

@@ -7,7 +7,7 @@
     >
       <article role="article" v-if="loaded">
         <h1 role="title">
-          <router-link to="23">{{post.title}}</router-link>
+          <router-link :to="postUrl">{{post.title}}</router-link>
         </h1>
         <time></time>
         <Markdown v-html="post.excerpt">
@@ -15,7 +15,13 @@
         <a href="" class="more">more</a>
       </article>
     </transition>
-    <!--<LoadOne hide="" class="load"></LoadOne>-->
+    <transition
+      name="custom-classes-transition"
+      enter-active-class="animated fadeIn"
+      leave-active-class="animated fadeOut"
+    >
+      <LoadOne class="load" v-if="!loaded"></LoadOne>
+    </transition>
   </div>
 </template>
 <script>
@@ -34,7 +40,8 @@
     }
   })
   export default class Post extends Vue {
-    loaded = true
+    loaded = false
+    postUrl = `/posts/${this.postId}`
     post = {
       title: '',
       html: '',
@@ -47,6 +54,7 @@
     async getData () {
       const post = await posts.getPostById(this.postId)
       if (post) {
+        this.loaded = true
         this.post = post
       }
     }
@@ -61,7 +69,6 @@
     margin-bottom: 30px
     min-height: 150px
     flex: 0 0 1
-    position: relative
     width: 100%
 
     &:last-child
@@ -86,14 +93,12 @@
       margin-top: 5px
       margin-bottom: 8px
     .load
-      position: absolute
       height: 100%
       width: 100%
       max-height: 500px
       min-height: 150px
 
   article
-    /*position: absolute*/
     width: 100%
 
   .more
