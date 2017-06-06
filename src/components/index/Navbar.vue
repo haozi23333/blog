@@ -20,65 +20,65 @@
 </template>
 <script type="text/javascript">
 
-  import Vue from 'vue'
-  import Component from 'vue-class-component'
-  import Icon from 'vue-awesome/components/Icon.vue'
-  import 'vue-awesome/icons/bars'
-  import {store} from '../../store/haozi'
-  import {
-      OPEN_NAVBAR,
-      CLOSE_NAVBAR
-  } from '../../store/haoziMutationsType'
+import Vue from 'vue'
+import Component from 'vue-class-component'
+import Icon from 'vue-awesome/components/Icon.vue'
+import 'vue-awesome/icons/bars'
+import { store } from '../../store/haozi'
+import {
+  OPEN_NAVBAR,
+  CLOSE_NAVBAR
+} from '../../store/haoziMutationsType'
 
-  @Component({
-    components: {
-      Icon
+@Component({
+  components: {
+    Icon
+  }
+})
+export default class Navbar extends Vue {
+  active = -1
+  isOpen = false
+  store = store
+  navigations = [
+    {
+      path: '/haozi',
+      title: 'haozi'
+    },
+    {
+      path: '/markdown',
+      title: 'Markdown'
+    },
+    {
+      path: '/haoziPosts',
+      title: 'Posts'
+    },
+    {
+      path: '/about',
+      title: 'about'
     }
-  })
-  export default class Navbar extends Vue {
-    active = -1
-    isOpen = false
-    store = store
-    navigations = [
-      {
-        path: '/haozi',
-        title: 'haozi'
-      },
-      {
-        path: '/markdown',
-        title: 'Markdown'
-      },
-      {
-        path: '/haoziPosts',
-        title: 'Posts'
-      },
-      {
-        path: '/about',
-        title: 'about'
+  ]
+  selectNavigations (index) {
+    this.active = index
+  }
+
+  mounted () {
+    this.navigations.map((v, i) => {
+      if (v.path === this.$route.path) {
+        this.active = i
       }
-    ]
-    selectNavigations (index) {
-      this.active = index
-    }
+    })
+  }
 
-    mounted () {
-      this.navigations.map((v, i) => {
-        if (v.path === this.$route.path) {
-          this.active = i
-        }
-      })
-    }
-
-    openNav () {
-      document.body.style.overflowY = this.isOpen ? 'hidden' : 'block'
-      this.isOpen = !this.isOpen
-      if (this.isOpen) {
-        this.store.commit(OPEN_NAVBAR)
-      } else {
-        this.store.commit(CLOSE_NAVBAR)
-      }
+  openNav () {
+    document.body.style.overflowY = this.isOpen ? 'hidden' : 'block'
+    this.isOpen = !this.isOpen
+    if (this.isOpen) {
+      this.store.commit(OPEN_NAVBAR)
+    } else {
+      this.store.commit(CLOSE_NAVBAR)
     }
   }
+}
 </script>
 <style scoped lang="sass" rel="stylesheet/sass" media="all">
 

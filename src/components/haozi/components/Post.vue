@@ -1,34 +1,54 @@
 <template>
   <div class="post">
-    <article role="article">
-      <h1 role="title">
-        <router-link to="23">文章标题</router-link>
-      </h1>
-      <time>Oct 9, 2016</time>
-      <Markdown>
-        没有任何东西
-      </Markdown>
-      <a href="" class="more">more</a>
-    </article>
+    <transition
+      name="custom-classes-transition"
+      enter-active-class="animated fadeIn"
+      leave-active-class="animated fadeOut"
+    >
+      <article role="article" v-if="loaded">
+        <h1 role="title">
+          <router-link to="23">{{post.title}}</router-link>
+        </h1>
+        <time></time>
+        <Markdown v-html="post.excerpt">
+        </Markdown>
+        <a href="" class="more">more</a>
+      </article>
+    </transition>
+    <!--<LoadOne hide="" class="load"></LoadOne>-->
   </div>
 </template>
 <script>
   import Vue from 'vue'
   import Component from 'vue-class-component'
   import Markdown from '../../Markdown.vue'
-//  import {posts} from '../../api/posts'
+  import LoadOne from '../../css-load/LoadOne.vue'
+  import {posts} from '../../../api/posts'
   @Component({
     props: {
       postId: ''
     },
     components: {
-      Markdown
+      Markdown,
+      LoadOne
     }
   })
   export default class Post extends Vue {
-
+    loaded = true
+    post = {
+      title: '',
+      html: '',
+      excerpt: ''
+    }
     mounted () {
-//      posts.getPostById(this.postId)
+//      posts.getPostById(this.postId).then()
+      this.getData().then(() => {})
+    }
+    async getData () {
+      const post = await posts.getPostById(this.postId)
+      if (post) {
+        this.post = post
+      }
     }
   }
 </script>
@@ -39,6 +59,10 @@
     border-bottom: 1px solid rgba($gray, 0.2)
     padding-bottom: 20px
     margin-bottom: 30px
+    min-height: 150px
+    flex: 0 0 1
+    position: relative
+    width: 100%
 
     &:last-child
       border: 0 solid
@@ -61,6 +85,16 @@
       font-size: 0.8em
       margin-top: 5px
       margin-bottom: 8px
+    .load
+      position: absolute
+      height: 100%
+      width: 100%
+      max-height: 500px
+      min-height: 150px
+
+  article
+    /*position: absolute*/
+    width: 100%
 
   .more
     display: block

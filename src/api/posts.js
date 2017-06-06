@@ -3,14 +3,18 @@
  */
 import Vue from 'vue'
 
-const apiUrl = 'http://haozi.com/api'
+const apiUrl = 'http://hao-zi.com/api'
 
 export class posts {
   static async getPostById (id) {
     try {
-      return (await Vue.http.get(`${apiUrl}/posts/${id}`)).body
+      const res = await Vue.http.get(`${apiUrl}/posts/${id}`)
+      if (res.body && res.status === 200) {
+        return res.body
+      }
+      return null
     } catch (e) {
-      return {}
+      return null
     }
   }
   static async getPostList () {
