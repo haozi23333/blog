@@ -32,4 +32,5 @@
       font-size: 0.8em
       color: #2c3e50
       text-align: center
+
 </style>

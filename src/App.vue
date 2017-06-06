@@ -46,7 +46,7 @@
   align-self: center
 
 .main
-  min-height: calc(100vh - 100px)
+  min-height: calc(100vh - 120px)
   min-width: 320px
   width: 90%
   max-width: 740px
@@ -57,6 +57,8 @@
   align-content: center
   align-self: center
 
-@include mq($until: tablet)
+  @include mq($until: tablet)
+    min-height: calc(100vh - 120px)
+
 
 </style>

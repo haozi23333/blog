@@ -10,7 +10,6 @@
 
   @Component({
     props: {
-
     },
     components: {
       Posts
