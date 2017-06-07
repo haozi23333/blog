@@ -4,8 +4,10 @@
       <div class="zhanwei"></div>
       <ul class="navigation">
         <li class="search">这里应该有一个搜索框，但是现在没有</li>
-        <li></li>
-        <li v-for="(navigation, index) in navigations" role="presentation">
+        <li>
+          <ul v-html="contents" class="contents"></ul>
+        </li>
+        <li class="routerLink" v-for="(navigation, index) in store.state.navigations" role="presentation">
           <router-link :to="navigation.path">
             <a :herf="navigation.path" @click="closeNavBar">{{navigation.title}}</a>
           </router-link>
@@ -13,8 +15,8 @@
       </ul>
       <div class="functionBar">
         <ul>
-          <li><span><Icon name="moon-o"></Icon>夜间模式</span></li>
-          <li><span><Icon name="moon-o"></Icon>夜间模式</span></li>
+          <li><label><Icon name="moon-o"></Icon>夜间模式</label></li>
+          <li><span><Icon name="moon-o"></Icon>???????</span></li>
         </ul>
       </div>
     </nav>
@@ -41,31 +43,14 @@
   })
   export default class MobileNavBar extends Vue {
     store = store
-    navigations = [
-      {
-        path: '/haozi',
-        title: 'haozi'
-      },
-      {
-        path: '/markdown',
-        title: 'Markdown'
-      },
-      {
-        path: '/haoziPosts',
-        title: 'PostList'
-      },
-      {
-        path: '/about',
-        title: 'about'
-      }
-    ]
+    contents = null
     mounted () {
       this.$watch(() => {
         return this.store.state.isOpenBar
       }, () => {
         document.querySelector('.mobileBar nav').scrollTop = 0
+        this.contents = this.createContents(this.store.state.nowPost)
       })
-      this.createContents(this.store.state.post)
     }
     closeNavBar () {
       this.store.commit(CLOSE_NAVBAR)
@@ -83,18 +68,18 @@
       if (!contents) {
         return
       }
-      var html = `<li>${list[0][0]}</li>`
-      for (let i = 1; i < list.length; i++) {
-        if (list[i - 1][1] != list[i][1]) {
-          if (list[i -1] [1] > list[i][1]) {
-            html += `</ul>`
-            html +=  `<li>${list[i][0]}</li>`
+      let html = `<li>${contents[0][0]}</li>`
+      for (let i = 1; i < contents.length; i++) {
+        if (contents[i - 1][1] !== contents[i][1]) {
+          if (contents[i - 1][1] > contents[i][1]) {
+            html += `</li></ul>`
+            html += `<li>${contents[i][0]}</li>`
           } else {
-            html += `<ul>`
-            html +=  `<li>${list[i][0]}</li>`
+            html += `<li><ul>`
+            html += `<li>${contents[i][0]}</li>`
           }
-        }else {
-          html +=  `<li>${list[i][0]}</li>`
+        } else {
+          html += `<li>${contents[i][0]}</li>`
         }
       }
       return html
@@ -151,7 +136,8 @@
         line-height: 40px
 
         ul
-          width: 100%
+          width: 90%
+          margin-left: 5%
           height: 40px
           display: flex
           flex-direction: row
@@ -161,18 +147,24 @@
     .takeplace
       flex: 1
 
-  ul.navigation
-    li
-      ul
-        li
-          margin-left: 1.5em
 
 
-
+  .contents
+    list-style-type: none
+    font-size: 0.8em
+    width: 90%
+    margin-left: 5%
+    ul
+      background-color: red
+    *
+      color: red
 
   .search
     margin-bottom: 2em
 
 
-
+  .routerLink
+    margin-left: 20%
+    height: 40px
+    line-height: 40px
 </style>

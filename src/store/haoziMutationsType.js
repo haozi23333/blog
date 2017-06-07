@@ -28,6 +28,7 @@ export const MOBILE_SCLOLL = 'MOBILE_SCLOLL'
  */
 export const SEARCH = 'SEARCH'
 export const OPEN_POST = 'SEARCH'
+export const CLOSE_POST = 'SEARCH'
 
 /**
  * 获取信息

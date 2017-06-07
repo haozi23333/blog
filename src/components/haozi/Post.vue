@@ -26,13 +26,12 @@
 <script>
   import Vue from 'vue'
   import Component from 'vue-class-component'
-//  import {Prop} from 'vue-property-decorator'
   import Markdown from '../Markdown.vue'
   import LoadOne from '../css-load/LoadOne.vue'
   import posts from '../../api/posts'
   import {formatDate} from '../../util/formatDate'
   import {store} from '../../store/haozi'
-  import {OPEN_POST} from '../../store/haoziMutationsType'
+  import {OPEN_POST, CLOSE_POST} from '../../store/haoziMutationsType'
 
   @Component({
     props: {
@@ -43,7 +42,7 @@
       LoadOne
     }
   })
-  export default class PostListItem extends Vue {
+  export default class Post extends Vue {
     store = store
     loaded = false
     post = {
@@ -57,6 +56,9 @@
       this.post.postId = this.$route.params.postId || this.postId
       this.getData().then(() => {})
     }
+    destroyed () {
+      this.store.commit(CLOSE_POST)
+    }
     async getData () {
       const post = await posts.getPostById(this.post.postId)
       if (post) {
@@ -66,6 +68,7 @@
         this.post.createDate = formatDate(this.post.createDate)
       }
     }
+
   }
 </script>
 <style scoped lang="sass" rel="stylesheet/sass" media="all">

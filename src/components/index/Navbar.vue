@@ -9,7 +9,7 @@
     </a>
     <nav>
       <ul>
-        <li v-for="(navigation, index) in navigations" role="presentation">
+        <li v-for="(navigation, index) in store.state.navigations" role="presentation">
           <router-link :to="navigation.path">
             <a :herf="navigation.path" :class="{'active': index === active}" @click="selectNavigations(index)">{{navigation.title}}</a>
           </router-link>
@@ -39,30 +39,12 @@ import {
 export default class Navbar extends Vue {
   active = -1
   store = store
-  navigations = [
-    {
-      path: '/haozi',
-      title: 'haozi'
-    },
-    {
-      path: '/markdown',
-      title: 'Markdown'
-    },
-    {
-      path: '/haoziPosts',
-      title: 'PostList'
-    },
-    {
-      path: '/about',
-      title: 'about'
-    }
-  ]
   selectNavigations (index) {
     this.active = index
   }
 
   mounted () {
-    this.navigations.map((v, i) => {
+    this.store.state.navigations.map((v, i) => {
       if (v.path === this.$route.path) {
         this.active = i
       }
@@ -71,13 +53,8 @@ export default class Navbar extends Vue {
   }
 
   openNav () {
-    document.body.style.overflowY = this.isOpen ? 'hidden' : 'block'
     this.isOpen = !this.isOpen
-    if (this.isOpen) {
-      this.store.commit(OPEN_NAVBAR)
-    } else {
-      this.store.commit(CLOSE_NAVBAR)
-    }
+    this.store.commit(this.isOpen ? OPEN_NAVBAR : CLOSE_NAVBAR)
   }
   reloadLogo () {
     this.$watch(() => {
@@ -179,7 +156,7 @@ export default class Navbar extends Vue {
       padding-top: 5px
       padding-bottom: 5px
       box-shadow: none
-      height: 150px
+      height: 115px
 
       .logo
         transition: all .5s
@@ -217,6 +194,7 @@ export default class Navbar extends Vue {
     margin-left: calc(250px)
     width: calc(100% - 250px)
     .logo
+      transform: rotate(360deg)
       top: 1em
       left: 1em
       z-index: 99999999

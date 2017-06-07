@@ -9,7 +9,8 @@ import {
   SWITCH_DEVICE,
   CLOSE_NAVBAR,
   MOBILE_SCLOLL,
-  OPEN_POST
+  OPEN_POST,
+  CLOSE_POST
 } from './haoziMutationsType'
 
 Vue.use(Vuex)
@@ -19,7 +20,24 @@ const store = new Vuex.Store({
     isMobile: false,
     isOpenBar: false,
     logoTop: 0,
-    nowPost: null
+    nowPost: null,
+    navigations: [
+      {
+        path: '/haozi',
+        title: 'HOME'
+      },
+      {
+        path: '/markdown',
+        title: 'Markdown Test'
+      },
+      {
+        path: '/haoziPosts',
+        title: '文章列表'
+      },
+      {
+        path: '/about',
+        title: 'about'
+      }]
   },
   mutations: {
     [SWITCH_DEVICE] (state, {isMobile}) {
@@ -34,10 +52,13 @@ const store = new Vuex.Store({
       state.isOpenBar = false
     },
     [MOBILE_SCLOLL] (state, {scrollTop}) {
-      state.logoTop = ~scrollTop
+      state.logoTop = ~scrollTop + 1
     },
     [OPEN_POST] (state, post) {
       state.nowPost = post
+    },
+    [CLOSE_POST] (state) {
+      state.nowPost = null
     }
   }
 })

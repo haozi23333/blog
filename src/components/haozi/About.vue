@@ -7,6 +7,17 @@
         <li>
           <time>2017/6/6</time><span></span>
           <ul>
+            <li>大调了移动端的样式</li>
+            <li>移动端的导航条的文章索引还不能点</li>
+            <li>post list 界面移除了 loading </li>
+            <li>文章页面还在考虑是否使用占位图 </li>
+            <li> 明天一定开始做后台管理界面</li>
+            <li>本来打算用 ace.js 来做代码高亮的,想办法看看能不能把代码高亮在服务端进行渲染(但是 html 体积增加, 客户端可以少加载 一套 ace</li>
+          </ul>
+        </li>
+        <li>
+          <time>2017/6/6</time><span></span>
+          <ul>
             <li>修改了 posts 的页面, 解决了 Markdown 页面的样式无法 v-html</li>
             <li>post list 界面加入了 loading </li>
             <li> server - post 里面多加一个了 文章摘要</li>
@@ -149,5 +160,4 @@
       /*ul*/
         /*li*/
           /*border-bottom: 1px solid $red*/
-
 </style>

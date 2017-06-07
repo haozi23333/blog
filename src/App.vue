@@ -55,7 +55,6 @@
   flex: 1 0 auto
   z-index: 2
   overflow-x: hidden
-  top: 60px
   align-content: center
   align-self: center
 

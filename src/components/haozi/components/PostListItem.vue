@@ -1,10 +1,5 @@
 <template>
   <div class="post">
-    <!--<transition-->
-      <!--name="custom-classes-transition"-->
-      <!--enter-active-class="animated fadeIn"-->
-      <!--leave-active-class="animated fadeOut"-->
-    <!--&gt;-->
       <article role="article" v-if="loaded">
         <h1 role="title">
           <router-link :to="postUrl">{{post.title}}</router-link>
@@ -12,16 +7,10 @@
         <time></time>
         <Markdown v-html="post.excerpt">
         </Markdown>
-        <a href="" class="more">more</a>
+        <a href="" class="more">
+          <router-link :to="postUrl">more</router-link>
+        </a>
       </article>
-    <!--</transition>-->
-    <!--<transition-->
-      <!--name="custom-classes-transition"-->
-      <!--enter-active-class="animated fadeIn"-->
-      <!--leave-active-class="animated fadeOut"-->
-    <!--&gt;-->
-      <!--<LoadOne class="load" v-if="!loaded"></LoadOne>-->
-    <!--</transition>-->
   </div>
 </template>
 <script>
