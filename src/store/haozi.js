@@ -7,7 +7,9 @@ import Vue from 'vue'
 import {
   OPEN_NAVBAR,
   SWITCH_DEVICE,
-  CLOSE_NAVBAR
+  CLOSE_NAVBAR,
+  MOBILE_SCLOLL,
+  OPEN_POST
 } from './haoziMutationsType'
 
 Vue.use(Vuex)
@@ -15,7 +17,9 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     isMobile: false,
-    isOpenBar: false
+    isOpenBar: false,
+    logoTop: 0,
+    nowPost: null
   },
   mutations: {
     [SWITCH_DEVICE] (state, {isMobile}) {
@@ -28,6 +32,12 @@ const store = new Vuex.Store({
     [CLOSE_NAVBAR] (state) {
       document.body.style.overflowY = ''
       state.isOpenBar = false
+    },
+    [MOBILE_SCLOLL] (state, {scrollTop}) {
+      state.logoTop = ~scrollTop
+    },
+    [OPEN_POST] (state, post) {
+      state.nowPost = post
     }
   }
 })

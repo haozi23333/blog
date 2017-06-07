@@ -1,10 +1,10 @@
 <template>
-  <header>
-    <div class="openBar" @click="openNav" :class="{open: isOpen}">
+  <header :class="{openNav: store.state.isOpenBar}">
+    <div class="openBar" @click="openNav" :class="{open: store.state.isOpenBar}">
       <Icon bars name="bars" scale="1.5"></Icon>
     </div>
-    <a class="logo" href="!#">
-      <img src="../../assets/image/ph.png" width="40" height="40" alt="haozi's faceImage">
+    <a class="logo" href="" :style="{top: store.state.logoTop + 'px'}">
+      <img src="../../assets/image/ph.png" alt="haozi's faceImage">
       <span>haozi</span>
     </a>
     <nav>
@@ -27,7 +27,8 @@ import 'vue-awesome/icons/bars'
 import { store } from '../../store/haozi'
 import {
   OPEN_NAVBAR,
-  CLOSE_NAVBAR
+  CLOSE_NAVBAR,
+  MOBILE_SCLOLL
 } from '../../store/haoziMutationsType'
 
 @Component({
@@ -37,7 +38,6 @@ import {
 })
 export default class Navbar extends Vue {
   active = -1
-  isOpen = false
   store = store
   navigations = [
     {
@@ -50,7 +50,7 @@ export default class Navbar extends Vue {
     },
     {
       path: '/haoziPosts',
-      title: 'Posts'
+      title: 'PostList'
     },
     {
       path: '/about',
@@ -67,6 +67,7 @@ export default class Navbar extends Vue {
         this.active = i
       }
     })
+    this.reloadLogo()
   }
 
   openNav () {
@@ -77,6 +78,15 @@ export default class Navbar extends Vue {
     } else {
       this.store.commit(CLOSE_NAVBAR)
     }
+  }
+  reloadLogo () {
+    this.$watch(() => {
+      return this.store.state.isOpenBar
+    }, () => {
+      this.store.commit(MOBILE_SCLOLL, {
+        scrollTop: 0
+      })
+    })
   }
 }
 </script>
@@ -99,6 +109,7 @@ export default class Navbar extends Vue {
     min-width: 200px
     flex: 0 0 auto
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.25)
+    transition: all .5s
 
     *
       transition: all .5s
@@ -109,6 +120,7 @@ export default class Navbar extends Vue {
       display: none
 
     .logo
+      transition: all .5s
       height: 40px
       overflow: hidden
       margin-right: 6px
@@ -120,6 +132,8 @@ export default class Navbar extends Vue {
       img
         float: left
         vertical-align: center
+        height: 40px
+        width: 40px
       span
         color: black
         font-size: 1.5em
@@ -164,15 +178,22 @@ export default class Navbar extends Vue {
       flex-direction: column
       padding-top: 5px
       padding-bottom: 5px
+      box-shadow: none
+      height: 150px
+
       .logo
+        transition: all .5s
         margin-left: 0
         align-self: center
-        margin-top: -20px
-
-
+        height: 80px
+        margin-top: 40px
+        position: absolute
+        left: calc(50% - 40px)
+        top: 20px
         img
-          border-radius: 40px
-
+          border-radius: 160px
+          height: 80px
+          width: 80px
         span
           display: none
 
@@ -182,13 +203,23 @@ export default class Navbar extends Vue {
         height: 20px
         margin-left: 20px
         line-height: 20px
+        padding: 5px
         svg[bars]
           height: 20px
           transition: all .5s
-          margin-top: 10px
         &.open
           svg
             transform: rotate(-90deg)
       nav
         display: none
+
+  .openNav
+    margin-left: calc(250px)
+    width: calc(100% - 250px)
+    .logo
+      top: 1em
+      left: 1em
+      z-index: 99999999
+
+
 </style>

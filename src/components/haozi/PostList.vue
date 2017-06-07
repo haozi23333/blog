@@ -1,36 +1,41 @@
 <template>
   <section class="posts">
-    <post v-once postId="1"></post>
-    <post v-once postId="2"></post>
-    <post v-once postId="3"></post>
+    <PostListItem v-once postId="1"></PostListItem>
+    <PostListItem v-once postId="2"></PostListItem>
+    <PostListItem v-once postId="3"></PostListItem>
   </section>
 </template>
 <script>
   import Vue from 'vue'
   import Component from 'vue-class-component'
-  import Post from './components/Post.vue'
+  import PostListItem from './components/PostListItem.vue'
 
   @Component({
     props: {
 
     },
     components: {
-      Post
+      PostListItem
     }
   })
   export default class Posts extends Vue {
   }
 </script>
-<style scoped lang="sass" rel="stylesheet/sass" media="all">
-  @import "../../assets/css/global"
+<style lang="sass" rel="stylesheet/sass" media="all">
 
   .posts
     display: flex
     flex-wrap: nowrap
     flex-direction: column
     height: 100%
+    width: 90%
+    margin-left: 5%
+
 
     ul
       list-style-type: none
+
+  img
+    box-shadow: none !important
 
 </style>

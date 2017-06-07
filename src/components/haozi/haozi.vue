@@ -6,7 +6,7 @@
 <script>
   import Vue from 'vue'
   import Component from 'vue-class-component'
-  import Posts from './Posts.vue'
+  import Posts from './PostList.vue'
 
   @Component({
     props: {

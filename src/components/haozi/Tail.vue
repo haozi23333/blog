@@ -30,6 +30,7 @@
 
     p
       font-size: 0.8em
+      line-height: 60px
       color: #2c3e50
       text-align: center
 

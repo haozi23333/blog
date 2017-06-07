@@ -6,9 +6,11 @@ import App from './App'
 import router from './router'
 import Icon from 'vue-awesome/components/Icon'
 import VueResoure from 'vue-resource'
+import VueScroll from 'vue-scroll'
 
 Vue.use(Vuex)
 Vue.use(VueResoure)
+Vue.use(VueScroll)
 Vue.component('icon', Icon)
 
 Vue.config.productionTip = false

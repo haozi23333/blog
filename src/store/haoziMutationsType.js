@@ -21,11 +21,13 @@ export const OPEN_NAVBAR = 'OPEN_NAVBAR'
  * @type {string}
  */
 export const CLOSE_NAVBAR = 'CLOSE_NAVBAR'
+export const MOBILE_SCLOLL = 'MOBILE_SCLOLL'
 /**
  * 搜索
  * @type {string}
  */
 export const SEARCH = 'SEARCH'
+export const OPEN_POST = 'SEARCH'
 
 /**
  * 获取信息

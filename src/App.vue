@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <Navbar></Navbar>
-    <main class="main" @click="">
-      <mobileNavBar></mobileNavBar>
+    <mobileNavBar></mobileNavBar>
+    <main class="main" :class="{openNav: store.state.isOpenBar }" @click="">
       <router-view></router-view>
     </main>
     <Tail></Tail>
@@ -16,6 +16,7 @@
   import Navbar from './components/index/Navbar.vue'
   import Tail from './components/haozi/Tail.vue'
   import mobileNavBar from './components/index/mobileNavBar.vue'
+  import {store} from './store/haozi'
 
   @Component({
     components: {
@@ -25,6 +26,7 @@
     }
   })
   export default class App extends Vue {
+    store = store
     mounted () {
 
     }
@@ -48,7 +50,7 @@
 .main
   min-height: calc(100vh - 120px)
   min-width: 320px
-  width: 90%
+  width: 100%
   max-width: 740px
   flex: 1 0 auto
   z-index: 2
@@ -60,5 +62,5 @@
   @include mq($until: tablet)
     min-height: calc(100vh - 120px)
 
-
+.openNav
 </style>
