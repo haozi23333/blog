@@ -85,10 +85,10 @@ export default class Navbar extends Vue {
     min-width: 200px
     flex: 0 0 auto
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.25)
-    transition: all .5s
+    transition: all .5s ease
 
     *
-      transition: all .5s
+      transition: all .5s ease
 
     .openBar
       flex: 0 0 1
@@ -96,7 +96,7 @@ export default class Navbar extends Vue {
       display: none
 
     .logo
-      transition: all .5s
+      transition: all .5s ease
       height: 40px
       overflow: hidden
       margin-right: 6px
@@ -159,7 +159,7 @@ export default class Navbar extends Vue {
       height: 115px
 
       .logo
-        transition: all .5s
+        transition: all .5s ease
         margin-left: 0
         align-self: center
         height: 80px
@@ -183,7 +183,7 @@ export default class Navbar extends Vue {
         padding: 5px
         svg[bars]
           height: 20px
-          transition: all .5s
+          transition: all .5s ease
         &.open
           svg
             transform: rotate(-90deg)

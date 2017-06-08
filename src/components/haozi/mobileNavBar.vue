@@ -90,7 +90,7 @@
   @import "../../assets/css/global"
 
   *
-    transition: all .5s
+    transition: all .5s ease
 
 
   div.open

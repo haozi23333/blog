@@ -39,6 +39,8 @@
     height: 100%
     flex: 1 1 50%
     box-shadow: $shadow
+    overflow: auto
+    overflow-x: hidden
     /*max-width: calc(50% - 125px)*/
     margin: 5px
 </style>

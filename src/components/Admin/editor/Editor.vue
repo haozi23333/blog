@@ -1,6 +1,6 @@
 <template>
   <div class="admin-editor-edit">
-      <textarea ref="textarea" @keydown="keyDown" v-model="markdown">
+      <textarea ref="textarea" spellcheck="false" @keydown="keyDown" v-model="markdown">
 
       </textarea>
   </div>

@@ -5,6 +5,18 @@
       <hr>
       <ul>
         <li>
+          <time>2017/6/7</time><span></span>
+          <ul>
+            <li>修复了昨日 fixed 下 <code>z-index</code> 失效的问题 <s>(眼瞎</s></li>
+            <li>稍微微调了手机的导航条样式</li>
+            <li>更换了 markdown 解析库 </li>
+            <li>开始做后台管理页面了</li>
+            <li>新建了一个项目用来放置自己定义的 markdown 的规则</li>
+            <li>server - 更换 markdown 解析库 <s> 就package.json</s></li>
+            <li>准备找工作了~~~</li>
+          </ul>
+        </li>
+        <li>
           <time>2017/6/6</time><span></span>
           <ul>
             <li>大调了移动端的样式</li>
