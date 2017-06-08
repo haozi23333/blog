@@ -87,7 +87,7 @@
   }
 </script>
 <style scoped lang="sass" rel="stylesheet/sass" media="all">
-  @import "../../assets/css/global.sass"
+  @import "../../assets/css/global"
 
   *
     transition: all .5s
@@ -104,12 +104,11 @@
     left: -100%
     z-index: 90
     display: flex
-
+    flex-direction: row
 
     nav
       height: 100%
-      max-width: 250px
-      width: 100%
+      width: 250px
       display: flex
       flex-direction: column
       background-color: #f9f9f9
@@ -119,7 +118,7 @@
       align-items: flex-start
       overflow-x: auto
       overflow-y: visible
-
+      z-index: 100
       .zhanwei
         flex: 0 0 auto
         height: 140px
@@ -146,6 +145,7 @@
             flex: 1
     .takeplace
       flex: 1
+      z-index: 100
 
 
 
@@ -154,10 +154,6 @@
     font-size: 0.8em
     width: 90%
     margin-left: 5%
-    ul
-      background-color: red
-    *
-      color: red
 
   .search
     margin-bottom: 2em

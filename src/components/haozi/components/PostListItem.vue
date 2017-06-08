@@ -16,7 +16,7 @@
 <script>
   import Vue from 'vue'
   import Component from 'vue-class-component'
-  import Markdown from '../../Markdown.vue'
+  import Markdown from '../../markdown/Markdown.vue'
   import LoadOne from '../../css-load/LoadOne.vue'
   import posts from '../../../api/posts'
 
@@ -31,7 +31,7 @@
   })
   export default class PostListItem extends Vue {
     loaded = false
-    postUrl = `/post/${this.postId}`
+    postUrl = `/haozi/post/${this.postId}`
     post = {
       title: '',
       html: '',

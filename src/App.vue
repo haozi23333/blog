@@ -1,65 +1,32 @@
 <template>
   <div id="app">
-    <Navbar></Navbar>
-    <mobileNavBar></mobileNavBar>
-    <main class="main" :class="{openNav: store.state.isOpenBar }" @click="">
-      <router-view></router-view>
-    </main>
-    <Tail></Tail>
+    <router-view>
+      </router-view>
   </div>
 </template>
-
 <script >
 
   import Vue from 'vue'
   import Component from 'vue-class-component'
-  import Navbar from './components/index/Navbar.vue'
-  import Tail from './components/haozi/Tail.vue'
-  import mobileNavBar from './components/index/mobileNavBar.vue'
-  import {store} from './store/haozi'
 
   @Component({
     components: {
-      Navbar,
-      Tail,
-      mobileNavBar
     }
   })
   export default class App extends Vue {
-    store = store
-    mounted () {
-
-    }
-    closeNavBar () {
-    }
   }
 </script>
 
 <style lang="sass" rel="stylesheet/sass">
-@import "./assets/css/global.sass"
-@import "./assets/css/cover.sass"
-@import "./assets/css/mq"
+  @import "./assets/css/global.sass"
+  @import "./assets/css/cover.sass"
+  @import "./assets/css/mq"
+  @import "assets/css/normalize.css"
+  #app
+    display: flex
+    flex-direction: column
+    flex-wrap: nowrap
+    justify-content: flex-start
+    align-self: center
 
-#app
-  display: flex
-  flex-direction: column
-  flex-wrap: nowrap
-  justify-content: flex-start
-  align-self: center
-
-.main
-  min-height: calc(100vh - 120px)
-  min-width: 320px
-  width: 100%
-  max-width: 740px
-  flex: 1 0 auto
-  z-index: 2
-  overflow-x: hidden
-  align-content: center
-  align-self: center
-
-  @include mq($until: tablet)
-    min-height: calc(100vh - 120px)
-
-.openNav
 </style>

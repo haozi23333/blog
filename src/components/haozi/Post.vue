@@ -26,7 +26,7 @@
 <script>
   import Vue from 'vue'
   import Component from 'vue-class-component'
-  import Markdown from '../Markdown.vue'
+  import Markdown from '../markdown/Markdown.vue'
   import LoadOne from '../css-load/LoadOne.vue'
   import posts from '../../api/posts'
   import {formatDate} from '../../util/formatDate'

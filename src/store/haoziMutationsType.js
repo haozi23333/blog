@@ -27,8 +27,8 @@ export const MOBILE_SCLOLL = 'MOBILE_SCLOLL'
  * @type {string}
  */
 export const SEARCH = 'SEARCH'
-export const OPEN_POST = 'SEARCH'
-export const CLOSE_POST = 'SEARCH'
+export const OPEN_POST = 'OPEN_POST'
+export const CLOSE_POST = 'CLOSE_POST'
 
 /**
  * 获取信息

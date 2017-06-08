@@ -69,7 +69,7 @@ export default class Navbar extends Vue {
 </script>
 <style scoped lang="sass" rel="stylesheet/sass" media="all">
 
-  @import "../../assets/css/global.sass"
+  @import "../../assets/css/global"
   @import "../../assets/css/mq"
 
   header
@@ -78,7 +78,6 @@ export default class Navbar extends Vue {
     height: 40px
     padding-top: 10px
     padding-bottom: 10px
-    z-index: 99
     display: flex
     flex-wrap: nowrap
     flex-direction: row
@@ -105,6 +104,7 @@ export default class Navbar extends Vue {
       display: block
       flex: 0 0 auto
       margin-left: 60px
+      z-index: 999999999999
 
       img
         float: left
@@ -197,7 +197,6 @@ export default class Navbar extends Vue {
       transform: rotate(360deg)
       top: 1em
       left: 1em
-      z-index: 99999999
 
 
 </style>

@@ -27,15 +27,15 @@ const store = new Vuex.Store({
         title: 'HOME'
       },
       {
-        path: '/markdown',
+        path: '/haozi/markdown',
         title: 'Markdown Test'
       },
       {
-        path: '/haoziPosts',
+        path: '/haozi/posts',
         title: '文章列表'
       },
       {
-        path: '/about',
+        path: '/haozi/about',
         title: 'about'
       }]
   },
@@ -55,6 +55,7 @@ const store = new Vuex.Store({
       state.logoTop = ~scrollTop + 1
     },
     [OPEN_POST] (state, post) {
+      console.log(OPEN_POST)
       state.nowPost = post
     },
     [CLOSE_POST] (state) {

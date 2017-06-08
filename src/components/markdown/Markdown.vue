@@ -11,7 +11,7 @@
   import 'vue-awesome/icons/clock-o'
   import 'vue-awesome/icons/tags'
 
-  import Picture from './markdown/Picture.vue'
+  import Picture from './Picture.vue'
 
   @Component({
     props: {
@@ -26,9 +26,9 @@
   }
 </script>
 <style lang="sass" rel="stylesheet/sass" media="all">
-  @import "../assets/css/global"
-  @import "../assets/css/markdown"
-
+  @import "../../assets/css/global"
+  @import "../../assets/css/markdown"
+  /*@import "../../assets/css/vue"*/
 
 
 </style>
