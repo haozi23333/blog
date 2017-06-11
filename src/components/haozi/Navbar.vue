@@ -1,71 +1,122 @@
 <template>
-  <header :class="{openNav: store.state.isOpenBar}">
-    <div class="openBar" @click="openNav" :class="{open: store.state.isOpenBar}">
-      <Icon bars name="bars" scale="1.5"></Icon>
-    </div>
-    <a class="logo" href="" :style="{top: store.state.logoTop + 'px'}">
-      <img src="../../assets/image/ph.png" alt="haozi's faceImage">
-      <span>haozi</span>
-    </a>
-    <nav>
-      <ul>
-        <li v-for="(navigation, index) in store.state.navigations" role="presentation">
-          <router-link :to="navigation.path">
-            <a :herf="navigation.path" :class="{'active': index === active}" @click="selectNavigations(index)">{{navigation.title}}</a>
-          </router-link>
-        </li>
-      </ul>
-    </nav>
-  </header>
+  <div>
+    <div class="zhanwei"></div>
+    <header :class="{openNav: store.state.isOpenBar}" :style="bar">
+      <div class="openBar" @click="openNav" :class="{open: store.state.isOpenBar}">
+        <Icon bars name="bars" scale="1.5"></Icon>
+      </div>
+      <a class="logo" href="" :style="logo">
+        <img src="../../assets/image/ph.png" alt="haozi's faceImage" :style="logo">
+        <span>haozi</span>
+      </a>
+      <nav>
+        <ul>
+          <li v-for="(navigation, index) in store.state.navigations" role="presentation">
+            <router-link :to="navigation.path">
+              <a :herf="navigation.path" :class="{'active': index === active}" @click="selectNavigations(index)">{{navigation.title}}</a>
+            </router-link>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  </div>
 </template>
 <script type="text/javascript">
 
-import Vue from 'vue'
-import Component from 'vue-class-component'
-import Icon from 'vue-awesome/components/Icon.vue'
-import 'vue-awesome/icons/bars'
-import { store } from '../../store/haozi'
-import {
-  OPEN_NAVBAR,
-  CLOSE_NAVBAR,
-  MOBILE_SCLOLL
-} from '../../store/haoziMutationsType'
+  import Vue from 'vue'
+  import Component from 'vue-class-component'
+  import Icon from 'vue-awesome/components/Icon.vue'
+  import 'vue-awesome/icons/bars'
+  import { store } from '../../store/haozi'
+  import {
+    OPEN_NAVBAR,
+    CLOSE_NAVBAR,
+    MOBILE_SCLOLL,
+    BODY_SCROLL
+  } from '../../store/haoziMutationsType'
 
-@Component({
-  components: {
-    Icon
-  }
-})
-export default class Navbar extends Vue {
-  active = -1
-  store = store
-  selectNavigations (index) {
-    this.active = index
-  }
+  @Component({
+    components: {
+      Icon
+    }
+  })
+  export default class Navbar extends Vue {
+    active = -1
+    logo = {
+      width: '80px',
+      height: '80px',
+      transition: 'none'
+    }
+    saveLogoPostion = {
+      width: '80px',
+      height: '80px',
+      transition: 'none'
+    }
+    bar = {
+      background: 'transparent',
+      height: '50px'
+    }
+    store = store
+    selectNavigations (index) {
+      this.active = index
+    }
 
-  mounted () {
-    this.store.state.navigations.map((v, i) => {
-      if (v.path === this.$route.path) {
-        this.active = i
-      }
-    })
-    this.reloadLogo()
-  }
-
-  openNav () {
-    this.isOpen = !this.isOpen
-    this.store.commit(this.isOpen ? OPEN_NAVBAR : CLOSE_NAVBAR)
-  }
-  reloadLogo () {
-    this.$watch(() => {
-      return this.store.state.isOpenBar
-    }, () => {
-      this.store.commit(MOBILE_SCLOLL, {
-        scrollTop: 0
+    mounted () {
+      this.store.state.navigations.map((v, i) => {
+        if (v.path === this.$route.path) {
+          this.active = i
+        }
       })
-    })
+      this.reloadLogo()
+      this.getBodyScroll()
+      document.onscroll = this.getBodyScroll.bind(this)
+      this.$watch(() => {
+        return this.store.state.isOpenBar
+      }, (isOpen) => {
+        if (this.isOpen) {
+          this.logo.transition = 'all .5s ease'
+        } else {
+          this.logo.transition = 'none'
+        }
+      })
+    }
+
+    /**
+     * 滚动事件
+     */
+    getBodyScroll () {
+      this.store.commit(BODY_SCROLL, {
+        x: document.body.scrollLeft,
+        y: document.body.scrollTop
+      })
+      if ((80 - this.store.state.bodyScroll.y) > 40) {
+        this.logo.width = this.logo.height = 80 - this.store.state.bodyScroll.y + 'px'
+      }
+      if (parseInt(this.store.state.bodyScroll.y) < 40) {
+        this.bar.background = '#fff'
+      }
+    }
+    openNav () {
+      this.isOpen = !this.isOpen
+      if (this.isOpen) {
+        this.logo.transition = 'all .5s ease'
+        this.saveLogoPostion = this.logo
+      } else {
+        this.logo.transition = 'none'
+      }
+      this.store.commit(this.isOpen ? OPEN_NAVBAR : CLOSE_NAVBAR)
+    }
+
+    reloadLogo () {
+      this.$watch(() => {
+        return this.store.state.isOpenBar
+      }, () => {
+        this.store.commit(MOBILE_SCLOLL, {
+          scrollTop: 0
+        })
+      })
+    }
   }
-}
 </script>
 <style scoped lang="sass" rel="stylesheet/sass" media="all">
 
@@ -86,9 +137,7 @@ export default class Navbar extends Vue {
     flex: 0 0 auto
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.25)
     transition: all .5s ease
-
-    *
-      transition: all .5s ease
+    z-index: 9090
 
     .openBar
       flex: 0 0 1
@@ -96,7 +145,6 @@ export default class Navbar extends Vue {
       display: none
 
     .logo
-      transition: all .5s ease
       height: 40px
       overflow: hidden
       margin-right: 6px
@@ -157,20 +205,19 @@ export default class Navbar extends Vue {
       padding-bottom: 5px
       box-shadow: none
       height: 115px
-
+      position: fixed
+      background: transparent
       .logo
-        transition: all .5s ease
         margin-left: 0
         align-self: center
         height: 80px
-        margin-top: 40px
-        position: absolute
-        left: calc(50% - 40px)
-        top: 20px
+        /*margin-top: 20px*/
+        /*position: absolute*/
+        /*top: 20px*/
         img
           border-radius: 160px
-          height: 80px
-          width: 80px
+          height: inherit
+          width: inherit
         span
           display: none
 
@@ -191,12 +238,15 @@ export default class Navbar extends Vue {
         display: none
 
   .openNav
-    margin-left: calc(250px)
+    margin-left: calc(256px)
     width: calc(100% - 250px)
     .logo
+      position: absolute
       transform: rotate(360deg)
+      margin-left: -250px
       top: 1em
       left: 1em
 
-
+  div.zhanwei
+    height: 120px
 </style>

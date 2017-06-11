@@ -23,6 +23,7 @@
     "remark": "^7.0.1",
     "remark-collapse": "^0.1.2",
     "remark-github": "^7.0.0",
+    "remark-haozi-extend": "haozi23333/remark-haozi-extend",
     "remark-html": "^6.0.0",
     "sass-loader": "^6.0.5",
     "sass-mq": "^3.3.2",

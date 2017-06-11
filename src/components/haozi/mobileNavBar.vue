@@ -99,12 +99,13 @@
   .mobileBar
     height: 100%
     width: 100%
-    position: absolute
+    position: fixed
     top: 0
     left: -100%
     z-index: 90
     display: flex
     flex-direction: row
+
 
     nav
       height: 100%

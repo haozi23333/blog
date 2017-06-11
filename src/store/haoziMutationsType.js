@@ -29,6 +29,7 @@ export const MOBILE_SCLOLL = 'MOBILE_SCLOLL'
 export const SEARCH = 'SEARCH'
 export const OPEN_POST = 'OPEN_POST'
 export const CLOSE_POST = 'CLOSE_POST'
+export const BODY_SCROLL = 'BODY_SCROLL'
 
 /**
  * 获取信息

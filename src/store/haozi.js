@@ -10,7 +10,8 @@ import {
   CLOSE_NAVBAR,
   MOBILE_SCLOLL,
   OPEN_POST,
-  CLOSE_POST
+  CLOSE_POST,
+  BODY_SCROLL
 } from './haoziMutationsType'
 
 Vue.use(Vuex)
@@ -21,6 +22,10 @@ const store = new Vuex.Store({
     isOpenBar: false,
     logoTop: 0,
     nowPost: null,
+    bodyScroll: {
+      x: 0,
+      y: 0
+    },
     navigations: [
       {
         path: '/haozi',
@@ -60,6 +65,9 @@ const store = new Vuex.Store({
     },
     [CLOSE_POST] (state) {
       state.nowPost = null
+    },
+    [BODY_SCROLL] (state, scroll) {
+      state.bodyScroll = scroll
     }
   }
 })

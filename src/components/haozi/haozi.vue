@@ -28,7 +28,13 @@
   export default class App extends Vue {
     store = store
     mounted () {
-
+//      this.$watch(() => {
+//          return this.store.state.isOpenBar
+//      }, (isOpenBar) => {
+//          if (isOpenBar) {
+//
+//          }
+//      })
     }
     closeNavBar () {
     }
@@ -60,8 +66,16 @@
     overflow-x: hidden
     align-content: center
     align-self: center
+    transition: all 0.5s
 
     @include mq($until: tablet)
       min-height: calc(100vh - 120px)
+
+  @include mq($until: tablet)
+    /*.main*/
+      /*margin-left: 250px*/
+
+  .openNav
+    margin-left: 250px
 
 </style>
