@@ -45,12 +45,12 @@
     logo = {
       width: '80px',
       height: '80px',
-      transition: 'none'
+      transition: 'all .5s ease'
     }
     saveLogoPostion = {
       width: '80px',
       height: '80px',
-      transition: 'none'
+      transition: 'all .5s ease'
     }
     bar = {
       background: 'transparent',
@@ -76,7 +76,7 @@
         if (this.isOpen) {
           this.logo.transition = 'all .5s ease'
         } else {
-          this.logo.transition = 'none'
+          this.logo.transition = 'all .5s ease'
         }
       })
     }
@@ -123,6 +123,8 @@
   @import "../../assets/css/global"
   @import "../../assets/css/mq"
 
+  div.zhanwei
+    height: 0px
   header
     width: 100%
     background-color: #fff
@@ -197,6 +199,8 @@
     border-bottom: solid 3px $green
 
   @include mq($until: tablet)
+    div.zhanwei
+      height: 120px
     header
       justify-content: flex-start
       align-items: center
@@ -241,12 +245,11 @@
     margin-left: calc(256px)
     width: calc(100% - 250px)
     .logo
-      position: absolute
+      /*position: */
       transform: rotate(360deg)
-      margin-left: -250px
+      margin-left: -550px
       top: 1em
       left: 1em
 
-  div.zhanwei
-    height: 120px
+
 </style>

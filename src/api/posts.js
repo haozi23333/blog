@@ -2,13 +2,12 @@
  * Created by haozi on 2017/06/05.
  */
 import Vue from 'vue'
-
-const apiUrl = 'http://127.0.0.1:3000/api'
+import config from '../config/index'
 
 export default class posts {
   static async getPostById (id) {
     try {
-      const res = await Vue.http.get(`${apiUrl}/post/${id}`)
+      const res = await Vue.http.get(`${config.apiUrl}/post/${id}`)
       if (res.body && res.status === 200) {
         return res.body
       }
@@ -19,12 +18,15 @@ export default class posts {
   }
   static async getPostList () {
     try {
-      return (await Vue.http.get(`${apiUrl}/posts`)).body
+      return (await Vue.http.get(`${config.apiUrl}/posts`)).body
     } catch (e) {
       return []
     }
   }
 
+  static async savePost (post) {
+    await Vue.http.put(`${config.apiUrl}/post/${post.postId}`, post)
+  }
   /**
    * 获取目录结果类似
    * {

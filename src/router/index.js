@@ -7,6 +7,7 @@ import About from 'haozi/About.vue'
 import Post from 'haozi/Post.vue'
 import Admin from '../components/Admin/Admin.vue'
 import EditorBox from '../components/Admin/editor/EditorBox.vue'
+import AdminPosts from '../components/Admin/posts.vue'
 
 Vue.use(Router)
 
@@ -47,6 +48,16 @@ export default new Router({
         path: 'editor',
         name: 'post -> ',
         component: EditorBox
+      },
+      {
+        path: 'editor/:postId',
+        name: 'post -> ',
+        component: EditorBox
+      },
+      {
+        path: 'posts',
+        name: 'post -> ',
+        component: AdminPosts
       }
     ]
   }

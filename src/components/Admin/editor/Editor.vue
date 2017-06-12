@@ -1,27 +1,35 @@
 <template>
   <div class="admin-editor-edit">
-      <textarea ref="textarea" spellcheck="false" @keydown="keyDown" v-model="markdown">
-
-      </textarea>
+      <textarea ref="textarea" spellcheck="false" @keydown="keyDown" v-model="markdown"></textarea>
   </div>
 </template>
 <script type="text/javascript">
 
   import Vue from 'vue'
   import Component from 'vue-class-component'
+  import {Store} from 'vuex'
   import {
     CHANGE_MARKDOWN
   } from '../../../store/editorMutationsType'
-  import {store} from '../../../store/editor'
+  import {store as editorStore} from '../../../store/editor'
+  import {store as adminStore} from '../../../store/admin'
 
   @Component({
     components: {
     }
   })
   export default class Editor extends Vue {
-    store = store
+    store = new Store({
+      modules: {
+        adminStore,
+        editorStore
+      }
+    })
     markdown = '1'
     keyDown (e) {
+      /**
+       * tab
+       */
       if (e.keyCode === 9) {
         e.preventDefault()
         let indent = '  '
@@ -32,13 +40,23 @@
         this.markdown = this.markdown.substring(0, start) + selected + this.markdown.substring(end)
         this.$refs.textarea.setSelectionRange(start + indent.length, start + selected.length)
       }
+      /**
+       * ctrl + s
+       */
+      if (e.ctrlKey === true && (e.keyCode === 83 || e.keyCode === 115)) {
+        event.preventDefault()
+        console.log('save')
+        return false
+      }
     }
     mounted () {
       this.$watch(() => {
         return this.markdown
       }, () => {
-        this.store.commit(CHANGE_MARKDOWN, this.markdown)
+        this.store.editorStore.commit(CHANGE_MARKDOWN, this.markdown)
       })
+    }
+    save () {
     }
   }
 </script>
