@@ -12,7 +12,7 @@ function resolve (dir) {
 
 module.exports = {
   entry: {
-    app: './src/main.js'
+    app: './src/main.ts'
   },
   output: {
     path: config.build.assetsRoot,
@@ -50,6 +50,11 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
+        include: [resolve('src'), resolve('te   st'), resolve('node_modules/vue-awesome')]
+      },
+      {
+        test: /\.ts$/,
+        loader: 'ts-loader',
         include: [resolve('src'), resolve('test'), resolve('node_modules/vue-awesome')]
       },
       {

@@ -3,7 +3,7 @@
       <textarea ref="textarea" spellcheck="false" @keydown="keyDown" v-model="markdown"></textarea>
   </div>
 </template>
-<script type="text/javascript">
+<script type="text/typescript" lang="typescript">
 
   import Vue from 'vue'
   import Component from 'vue-class-component'
@@ -13,13 +13,13 @@
   } from '../../../store/editorMutationsType'
   import {store as editorStore} from '../../../store/editor'
   import {store as adminStore} from '../../../store/admin'
-
   @Component({
     components: {
     }
   })
+
   export default class Editor extends Vue {
-    store = new Store({
+    store: Store = new Store({
       modules: {
         adminStore,
         editorStore
@@ -55,8 +55,6 @@
       }, () => {
         this.store.editorStore.commit(CHANGE_MARKDOWN, this.markdown)
       })
-    }
-    save () {
     }
   }
 </script>
