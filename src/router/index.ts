@@ -5,6 +5,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Haozi from '../components/haozi/Haozi/Haozi'
+import {About} from '../components/haozi'
 
 Vue.use(Router)
 export default new Router({
@@ -13,7 +14,14 @@ export default new Router({
     {
       path: '/haozi',
       name: 'haozi index',
-      component: Haozi
+      component: Haozi,
+      children: [
+        {
+          path: 'about',
+          name: 'about',
+          component: About
+        }
+      ]
     }
   ]
 })

@@ -1,23 +1,21 @@
-<div>
-  <div>
-    <div class="zhanwei"></div>
-    <header :class="{openNav: store.state.isOpenBar}" :style="bar">
-      <div class="openBar" @click="openNav" :class="{open: store.state.isOpenBar}">
-        <Icon bars name="bars" scale="1.5"></Icon>
-      </div>
-      <a class="logo" href="" :style="logo">
-        <img src="../../../assets/image/ph.png" alt="haozi's faceImage" :style="logo">
-        <span>haozi</span>
-      </a>
-      <nav>
-        <ul>
-          <li v-for="(navigation, index) in store.state.navigations" role="presentation">
-            <router-link :to="navigation.path">
-              <a :herf="navigation.path" :class="{'active': index === active}" @click="selectNavigations(index)">{{navigation.title}}</a>
-            </router-link>
-          </li>
-        </ul>
-      </nav>
-    </header>
-  </div>
+<div class="haozi-header">
+  <div class="zhanwei"></div>
+  <header :class="{openNav: store.state.isOpenBar}" :style="bar">
+    <div class="openBar" @click="openNav" :class="{open: store.state.isOpenBar}">
+      <Icon bars name="bars" scale="1.5"></Icon>
+    </div>
+    <a class="logo" href="" :style="logo">
+      <img src="../../../assets/image/ph.png" alt="haozi's faceImage" :style="logo">
+      <span>haozi</span>
+    </a>
+    <nav>
+      <ul>
+        <li v-for="(navigation, index) in store.state.navigations" role="presentation">
+          <router-link :to="navigation.path">
+            <a :herf="navigation.path" :class="{'active': index === active}" @click="selectNavigations(index)">{{navigation.title}}</a>
+          </router-link>
+        </li>
+      </ul>
+    </nav>
+  </header>
 </div>

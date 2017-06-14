@@ -22,7 +22,6 @@
   </div>
 </template>
 <script type="text/javascript">
-
   import Vue from 'vue'
   import Component from 'vue-class-component'
   import Icon from 'vue-awesome/components/Icon.vue'

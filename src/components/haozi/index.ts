@@ -14,11 +14,12 @@
 import Navbar from './Navbar/Navbar'
 import Tail from './Tail/Tail'
 import MobileNavBar from './MobileNavBar/MobileNavBar'
-
+import About from './About/About'
 export {
   // Haozi,
   Navbar,
   Tail,
-  MobileNavBar
+  MobileNavBar,
+  About
 }
 
