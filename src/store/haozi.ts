@@ -16,7 +16,7 @@ import {
 
 Vue.use(Vuex)
 
-const store = new Vuex.Store({
+export default new Vuex.Store({
   state: {
     isMobile: false,
     isOpenBar: false,
@@ -72,6 +72,3 @@ const store = new Vuex.Store({
   }
 })
 
-export {
-  store
-}

@@ -1,0 +1,8 @@
+<div>
+  <Navbar></Navbar>
+  <mobileNavBar></mobileNavBar>
+  <main class="main" :class="{openNav: store.state.isOpenBar }" @click="">
+    <router-view></router-view>
+  </main>
+  <Tail></Tail>
+</div>

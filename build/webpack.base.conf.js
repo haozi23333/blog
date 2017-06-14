@@ -22,7 +22,7 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],
+    extensions: ['.js', '.vue', '.json', '.ts'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
@@ -33,6 +33,10 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.(html|template)$/,
+        loader: 'html-loader'
+      },
       {
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
@@ -55,6 +59,9 @@ module.exports = {
       {
         test: /\.ts$/,
         loader: 'ts-loader',
+        options: {
+          transpileOnly: true
+        },
         include: [resolve('src'), resolve('test'), resolve('node_modules/vue-awesome')]
       },
       {

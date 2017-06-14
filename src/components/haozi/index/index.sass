@@ -1,0 +1,35 @@
+@import "../../../assets/css/global.sass"
+@import "../../../assets/css/cover.sass"
+@import "../../../assets/css/mq"
+
+div
+  display: flex
+  flex-direction: column
+  flex-wrap: nowrap
+  justify-content: flex-start
+  align-self: center
+  flex: 1
+  width: 100%
+
+
+.main
+  min-height: calc(100vh - 120px)
+  min-width: 320px
+  width: 100%
+  max-width: 740px
+  flex: 1 0 auto
+  z-index: 2
+  overflow-x: hidden
+  align-content: center
+  align-self: center
+  transition: all 0.5s
+
+  @include mq($until: tablet)
+    min-height: calc(100vh - 120px)
+
+@include mq($until: tablet)
+/*.main*/
+  /*margin-left: 250px*/
+
+.openNav
+  margin-left: 250px

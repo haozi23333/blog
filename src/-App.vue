@@ -4,17 +4,18 @@
       </router-view>
   </div>
 </template>
-<script >
+<script lang="ts">
 
-  import Vue from 'vue'
-  import Component from 'vue-class-component'
+//  import Vue from 'vue'
+//  import Component from 'vue-class-component'
+//
+//  @Component({
+//    components: {
+//    }
+//  })
+//  export default class App extends Vue {
+//  }
 
-  @Component({
-    components: {
-    }
-  })
-  export default class App extends Vue {
-  }
 </script>
 
 <style lang="sass" rel="stylesheet/sass">

@@ -1,0 +1,132 @@
+
+@import "../../assets/css/global"
+@import "../../assets/css/mq"
+
+div.zhanwei
+  height: 0px
+header
+  width: 100%
+  background-color: #fff
+  height: 40px
+  padding-top: 10px
+  padding-bottom: 10px
+  display: flex
+  flex-wrap: nowrap
+  flex-direction: row
+  justify-content: flex-start
+  min-width: 200px
+  flex: 0 0 auto
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.25)
+  transition: all .5s ease
+  z-index: 9090
+
+  .openBar
+    flex: 0 0 1
+    align-self: flex-start
+    display: none
+
+  .logo
+    height: 40px
+    overflow: hidden
+    margin-right: 6px
+    width: auto
+    display: block
+    flex: 0 0 auto
+    margin-left: 60px
+    z-index: 999999999999
+
+    img
+      float: left
+      vertical-align: center
+      height: 40px
+      width: 40px
+    span
+      color: black
+      font-size: 1.5em
+      line-height: 40px
+      font-weight: 500
+      width: auto
+      height: 40px
+
+      margin-left: 10px
+
+nav
+  padding-left: 20px
+  padding-top: 10px
+  padding-bottom: 10px
+  right: 60px
+  position: absolute
+  display: inline
+  flex: 1
+
+ul
+  list-style-type: none
+
+  li
+    list-style-type: none
+    float: left
+    margin: 0 0.6em
+    cursor: pointer
+
+    a
+      color: black
+
+      &:hover
+        border-bottom: solid 3px $green
+
+.active
+  border-bottom: solid 3px $green
+
+@include mq($until: tablet)
+  div.zhanwei
+    height: 120px
+  header
+    justify-content: flex-start
+    align-items: center
+    flex-direction: column
+    padding-top: 5px
+    padding-bottom: 5px
+    box-shadow: none
+    height: 115px
+    position: fixed
+    background: transparent
+    .logo
+      margin-left: 0
+      align-self: center
+      height: 80px
+      /*margin-top: 20px*/
+      /*position: absolute*/
+      /*top: 20px*/
+      img
+        border-radius: 160px
+        height: inherit
+        width: inherit
+      span
+        display: none
+
+    div.openBar
+      display: block
+      width: 20px
+      height: 20px
+      margin-left: 20px
+      line-height: 20px
+      padding: 5px
+      svg[bars]
+        height: 20px
+        transition: all .5s ease
+      &.open
+        svg
+          transform: rotate(-90deg)
+    nav
+      display: none
+
+.openNav
+  margin-left: calc(256px)
+  width: calc(100% - 250px)
+  .logo
+    /*position: */
+    transform: rotate(360deg)
+    margin-left: -550px
+    top: 1em
+    left: 1em
+
