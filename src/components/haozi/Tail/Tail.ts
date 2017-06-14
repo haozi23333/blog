@@ -8,5 +8,5 @@ import Component from 'vue-class-component'
   template: require('./Tail.html'),
   name: 'Tail'
 })
-export default class Tail extends Vue {
+export default class extends Vue {
 }

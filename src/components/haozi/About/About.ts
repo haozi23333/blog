@@ -11,6 +11,6 @@ import {Markdown} from '../../index'
     Markdown
   }
 })
-export default class About extends Vue {
+export class About extends Vue {
 
 }

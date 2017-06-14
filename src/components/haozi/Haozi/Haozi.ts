@@ -13,8 +13,9 @@ import haoziStore from '../../../store/haozi'
     Tail,
     MobileNavBar
   },
-  template: require('./Haozi.html')
+  template: require('./Haozi.html'),
+  name: 'Haozi'
 })
-export default class Haozi extends Vue {
+export default class extends Vue {
   store = haoziStore
 }

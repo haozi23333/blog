@@ -15,9 +15,10 @@ import haoziStore from '../../../store/haozi'
   template: require('./MobileNavBar.html'),
   components: {
     Icon
-  }
+  },
+  name: 'MobileNavBar'
 })
-export default class MobileNavBar extends Vue {
+export default class extends Vue {
   store = haoziStore
   contents = null
   mounted () {

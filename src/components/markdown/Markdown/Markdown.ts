@@ -11,5 +11,5 @@ const Icon = require('vue-awesome/components/Icon.vue')
     Icon
   }
 })
-export default class Markdown extends Vue {
+export class Markdown extends Vue {
 }

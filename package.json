@@ -14,7 +14,6 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
-    "@types/vue-resource": "^0.9.31",
     "ace": "ajaxorg/ace",
     "animate.css": "^3.5.2",
     "axios": "^0.16.2",
@@ -45,6 +44,7 @@
     "vuex-class": "^0.2.0"
   },
   "devDependencies": {
+    "@types/vue-resource": "^0.9.31",
     "@types/vue": "^2.0.0",
     "autoprefixer": "^6.7.2",
     "babel-core": "^6.22.1",

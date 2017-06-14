@@ -11,6 +11,6 @@ import {Markdown} from '../../../index'
     Markdown
   }
 })
-export default class PostListItem extends Vue {
+export class PostListItem extends Vue {
 
 }
