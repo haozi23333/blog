@@ -4,14 +4,12 @@
 
 import Vue from 'vue'
 import Component from 'vue-class-component'
-
-import NavBar from '../index'
+const Icon = require('vue-awesome/components/Icon.vue')
 
 @Component({
   components: {
-
+    Icon
   }
 })
-export default class Haozi extends Vue {
-
+export default class Markdown extends Vue {
 }

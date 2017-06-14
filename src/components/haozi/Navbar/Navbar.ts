@@ -7,19 +7,12 @@ import Component from 'vue-class-component'
 const Icon = require('vue-awesome/components/Icon.vue')
 import 'vue-awesome/icons/bars'
 
-import NavBar from '../index'
 import store from '../../../store/haozi'
-import {
-  OPEN_NAVBAR,
-  CLOSE_NAVBAR,
-  MOBILE_SCLOLL,
-  BODY_SCROLL
-} from '../../../store/haoziMutationsType'
+import haoziTypes from '../../../store/haoziTypes'
 
 @Component({
   components: {
-    Icon,
-    NavBar
+    Icon
   }
 })
 export default class Navbar extends Vue {
@@ -68,7 +61,7 @@ export default class Navbar extends Vue {
    * 滚动事件
    */
   getBodyScroll () {
-    this.store.commit(BODY_SCROLL, {
+    this.store.commit(haoziTypes.BODY_SCROLL, {
       x: document.body.scrollLeft,
       y: document.body.scrollTop
     })
@@ -87,14 +80,14 @@ export default class Navbar extends Vue {
     } else {
       this.logo.transition = 'none'
     }
-    this.store.commit(this.isOpen ? OPEN_NAVBAR : CLOSE_NAVBAR)
+    this.store.commit(this.isOpen ? haoziTypes.OPEN_NAVBAR : haoziTypes.CLOSE_NAVBAR)
   }
 
   reloadLogo () {
     this.$watch(() => {
       return this.store.state.isOpenBar
     }, () => {
-      this.store.commit(MOBILE_SCLOLL, {
+      this.store.commit(haoziTypes.MOBILE_SCLOLL, {
         scrollTop: 0
       })
     })

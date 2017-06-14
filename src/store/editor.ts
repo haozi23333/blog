@@ -1,23 +1,20 @@
 /**
- * Created by haozi on 2017/06/02.
+ * Created by haozi on 6/14/2017.
  */
 
 import Vuex from 'vuex'
 import Vue from 'vue'
-import {
-  CHANGE_MARKDOWN,
-  SAVE_POST_SERVER,
-  SAVE_POST_LOCALSTORAGE,
-  SAVE_POST_SUCCESS
-} from './editorMutationsType'
+
+import editorTypes from './editorTypes'
 
 import remark from 'remark'
 import remarkHtml from 'remark-html'
 import qwq from 'remark-haozi-extend'
 import posts from '../api/posts'
+
 Vue.use(Vuex)
 
-const store = new Vuex.Store({
+export default new Vuex.Store({
   state: {
     html: '',
     markdown: ''
@@ -28,7 +25,7 @@ const store = new Vuex.Store({
      * @param state
      * @param markdown
      */
-    [CHANGE_MARKDOWN] (state, markdown) {
+      [editorTypes.CHANGE_MARKDOWN] (state, markdown) {
       state.markdown = markdown
       state.html = String(
         remark()
@@ -37,26 +34,22 @@ const store = new Vuex.Store({
           .processSync(markdown)
       )
     },
-    [SAVE_POST_LOCALSTORAGE] (state, post) {
+    [editorTypes.SAVE_POST_LOCALSTORAGE] (state, post) {
       localStorage.setItem(`post-${post.postId}`, JSON.stringify({
         saveTime: new Date()
       }))
     },
-    [SAVE_POST_SUCCESS] (state, savePosition) {
+    [editorTypes.SAVE_POST_SUCCESS] (state, savePosition) {
     }
   },
   actions: {
-    async [SAVE_POST_SERVER] ({commit}, post) {
+    async [editorTypes.SAVE_POST_SERVER] ({commit}, post) {
       try {
         await posts.savePost(post)
-        commit()
+        // commit()
       } catch (e) {
         console.log('save error')
       }
     }
   }
 })
-
-export {
-  store
-}

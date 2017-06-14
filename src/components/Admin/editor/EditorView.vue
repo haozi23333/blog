@@ -10,7 +10,7 @@
   import Vue from 'vue'
   import {Store} from 'vuex'
   import Component from 'vue-class-component'
-  import Markdown from '../../markdown/Markdown.vue'
+  import Markdown from '../../markdown/-Markdown.vue'
   import {store as adminStore} from '../../../store/admin'
 //  import {
 //    CHANGE_MARKDOWN

@@ -8,7 +8,7 @@
 <script>
   import Vue from 'vue'
   import Component from 'vue-class-component'
-  import PostListItem from './components/PostListItem.vue'
+  import PostListItem from './components/-PostListItem.vue'
 
   @Component({
     props: {

@@ -1,16 +1,19 @@
 /**
- * Created by haozi on 2017/06/05.
+ * Created by haozi on 6/14/2017.
  */
-import Vue from 'vue'
-import config from '../config/-index'
 
-export default class posts {
-  static async getPostById (id) {
+import Vue from 'vue'
+import Config from '../config/config'
+import axios from 'axios'
+
+export default class Posts {
+  static async getPostById(id: string) {
     try {
-      const res = await Vue.http.get(`${config.apiUrl}/post/${id}`)
-      if (res.body && res.status === 200) {
-        return res.body
-      }
+
+      const res = await axios.get(`${Config.apiUrl}/post/${id}`)
+      // if (res.body && res.status === 200) {
+      //   return res.body
+      // }
       return null
     } catch (e) {
       return null
@@ -18,14 +21,14 @@ export default class posts {
   }
   static async getPostList () {
     try {
-      return (await Vue.http.get(`${config.apiUrl}/posts`)).body
+      return (await axios.get(`${Config.apiUrl}/posts`))
     } catch (e) {
       return []
     }
   }
 
   static async savePost (post) {
-    await Vue.http.put(`${config.apiUrl}/post/${post.postId}`, post)
+    await axios.get(`${Config.apiUrl}/post/${post.postId}`, post)
   }
   /**
    * 获取目录结果类似

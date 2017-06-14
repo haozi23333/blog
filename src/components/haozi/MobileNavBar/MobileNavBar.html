@@ -1,0 +1,24 @@
+<div :class="{open: store.state.isOpenBar}" class="mobileBar">
+  <nav v-scroll="onNavScroll">
+    <div class="zhanwei"></div>
+    <ul class="navigation">
+      <li class="search">这里应该有一个搜索框，但是现在没有</li>
+      <li>
+        <ul v-html="contents" class="contents"></ul>
+      </li>
+      <li class="routerLink" v-for="(navigation, index) in store.state.navigations" role="presentation">
+        <router-link :to="navigation.path">
+          <a :herf="navigation.path" @click="closeNavBar">{{navigation.title}}</a>
+        </router-link>
+      </li>
+    </ul>
+    <div class="functionBar">
+      <ul>
+        <li><label><Icon name="moon-o"></Icon>夜间模式</label></li>
+        <li><span><Icon name="moon-o"></Icon>???????</span></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="takeplace" @click="closeNavBar">
+  </div>
+</div>

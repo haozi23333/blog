@@ -1,0 +1,13 @@
+<div class="post">
+  <article role="article" v-if="loaded">
+    <h1 role="title">
+      <router-link :to="postUrl">{{post.title}}</router-link>
+    </h1>
+    <time></time>
+    <Markdown v-html="post.excerpt">
+    </Markdown>
+    <a href="" class="more">
+      <router-link :to="postUrl">more</router-link>
+    </a>
+  </article>
+</div>

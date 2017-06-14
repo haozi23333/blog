@@ -31,7 +31,7 @@
   import {
     CLOSE_NAVBAR,
     MOBILE_SCLOLL
-  } from '../../store/haoziMutationsType'
+  } from '../../store/haoziTypes'
   import Icon from 'vue-awesome/components/Icon.vue'
   import 'vue-awesome/icons/moon-o'
   import posts from '../../api/posts'

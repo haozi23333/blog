@@ -13,9 +13,9 @@
 
   import Vue from 'vue'
   import Component from 'vue-class-component'
-  import Navbar from './Navbar.vue'
+  import Navbar from './-Navbar.vue'
   import Tail from './Tail.vue'
-  import mobileNavBar from './mobileNavBar.vue'
+  import mobileNavBar from './-mobileNavBar.vue'
   import {store} from '../../store/haozi'
 
   @Component({

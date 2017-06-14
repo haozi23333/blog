@@ -33,7 +33,7 @@
     CLOSE_NAVBAR,
     MOBILE_SCLOLL,
     BODY_SCROLL
-  } from '../../store/haoziMutationsType'
+  } from '../../store/haoziTypes'
 
   @Component({
     components: {

@@ -1,0 +1,77 @@
+@import "../../../assets/css/global"
+
+*
+  transition: all .5s ease
+
+
+div.open
+  left: 0
+
+.mobileBar
+  height: 100%
+  width: 100%
+  position: fixed
+  top: 0
+  left: -100%
+  z-index: 90
+  display: flex
+  flex-direction: row
+
+
+  nav
+    height: 100%
+    width: 250px
+    display: flex
+    flex-direction: column
+    background-color: #f9f9f9
+    box-shadow: 0 0 10px rgba(0,0,0,0.2)
+    flex-wrap: nowrap
+    justify-content: flex-start
+    align-items: flex-start
+    overflow-x: auto
+    overflow-y: visible
+    z-index: 100
+    .zhanwei
+      flex: 0 0 auto
+      height: 140px
+      width: 100%
+    ul
+      flex: 1 0 auto
+      li
+        list-style-type: none
+
+    .functionBar
+      flex: 0 0 40px
+      height: 40px
+      width: 100%
+      line-height: 40px
+
+      ul
+        width: 90%
+        margin-left: 5%
+        height: 40px
+        display: flex
+        flex-direction: row
+        li
+          text-align: center
+          flex: 1
+  .takeplace
+    flex: 1
+    z-index: 100
+
+
+
+.contents
+  list-style-type: none
+  font-size: 0.8em
+  width: 90%
+  margin-left: 5%
+
+.search
+  margin-bottom: 2em
+
+
+.routerLink
+  margin-left: 20%
+  height: 40px
+  line-height: 40px

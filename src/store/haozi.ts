@@ -4,15 +4,7 @@
 
 import Vuex from 'vuex'
 import Vue from 'vue'
-import {
-  OPEN_NAVBAR,
-  SWITCH_DEVICE,
-  CLOSE_NAVBAR,
-  MOBILE_SCLOLL,
-  OPEN_POST,
-  CLOSE_POST,
-  BODY_SCROLL
-} from './haoziMutationsType'
+import haoziTypes from './haoziTypes'
 
 Vue.use(Vuex)
 
@@ -45,28 +37,28 @@ export default new Vuex.Store({
       }]
   },
   mutations: {
-    [SWITCH_DEVICE] (state, {isMobile}) {
+    [haoziTypes.SWITCH_DEVICE] (state, {isMobile}) {
       state.isMobile = isMobile
     },
-    [OPEN_NAVBAR] (state) {
+    [haoziTypes.OPEN_NAVBAR] (state) {
       state.isOpenBar = true
       document.body.style.overflowY = 'hidden'
     },
-    [CLOSE_NAVBAR] (state) {
+    [haoziTypes.CLOSE_NAVBAR] (state) {
       document.body.style.overflowY = ''
       state.isOpenBar = false
     },
-    [MOBILE_SCLOLL] (state, {scrollTop}) {
+    [haoziTypes.MOBILE_SCLOLL] (state, {scrollTop}) {
       state.logoTop = ~scrollTop + 1
     },
-    [OPEN_POST] (state, post) {
-      console.log(OPEN_POST)
+    [haoziTypes.OPEN_POST] (state, post) {
+      console.log(haoziTypes.OPEN_POST)
       state.nowPost = post
     },
-    [CLOSE_POST] (state) {
+    [haoziTypes.CLOSE_POST] (state) {
       state.nowPost = null
     },
-    [BODY_SCROLL] (state, scroll) {
+    [haoziTypes.BODY_SCROLL] (state, scroll) {
       state.bodyScroll = scroll
     }
   }

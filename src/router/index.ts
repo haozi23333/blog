@@ -4,7 +4,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Haozi from '../components/haozi/'
+import {Haozi} from '../components/haozi/'
 
 Vue.use(Router)
 export default new Router({
@@ -15,5 +15,5 @@ export default new Router({
       name: 'haozi index',
       component: Haozi
     }
-    ]
+  ]
 })
