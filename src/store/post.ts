@@ -1,5 +1,5 @@
 /**
- * Created by haozi on 2017/06/03.
+ * Created by haozi on 6/15/2017.
  */
 
 import Vuex from 'vuex'
@@ -7,7 +7,7 @@ import Vue from 'vue'
 
 Vue.use(Vuex)
 
-const post = new Vuex.Store({
+export default new Vuex.Store({
   state: {
 
   },
@@ -18,7 +18,3 @@ const post = new Vuex.Store({
 
   }
 })
-
-export {
-  post
-}

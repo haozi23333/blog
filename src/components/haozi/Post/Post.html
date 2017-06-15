@@ -1,0 +1,23 @@
+<div class="haozi-post">
+  <transition
+    name="custom-classes-transition"
+    enter-active-class="animated fadeIn"
+    leave-active-class="animated fadeOut"
+  >
+    <article role="article" v-if="loaded">
+      <h1 role="title">
+        <router-link :to="this.post.postId">{{post.title}}</router-link>
+      </h1>
+      <time>{{ post.createDate }}</time>
+      <Markdown v-html="post.html">
+      </Markdown>
+    </article>
+  </transition>
+  <transition
+    name="custom-classes-transition"
+    enter-active-class="animated fadeIn"
+    leave-active-class="animated fadeOut"
+  >
+    <LoadOne class="load" v-if="!loaded"></LoadOne>
+  </transition>
+</div>

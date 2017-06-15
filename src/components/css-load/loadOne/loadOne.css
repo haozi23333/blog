@@ -1,24 +1,24 @@
-#cssload-pgloading {
+.cssload .cssload-pgloading {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
 }
 
-#cssload-pgloading:after {
+.cssload .cssload-pgloading:after {
   content: "";
   z-index: -1;
   position: absolute;
   /*top: 0; right: 0; bottom: 0; left: 0;*/
 }
-#cssload-pgloading .cssload-loadingwrap {
+.cssload .cssload-pgloading .cssload-loadingwrap {
   /*position:absolute;*/
   top:45%;
   bottom:45%;
   left:25%;
   right:25%;
 }
-#cssload-pgloading .cssload-bokeh {
+.cssload .cssload-pgloading .cssload-bokeh {
   font-size: 97px;
   width: 1em;
   height: 1em;
@@ -33,7 +33,7 @@
   -moz-border-radius: 50%;
 }
 
-#cssload-pgloading .cssload-bokeh li {
+.cssload .cssload-pgloading .cssload-bokeh li {
   position: absolute;
   width: .2em;
   height: .2em;
@@ -44,7 +44,7 @@
   -moz-border-radius: 50%;
 }
 
-#cssload-pgloading .cssload-bokeh li:nth-child(1) {
+.cssload .cssload-pgloading .cssload-bokeh li:nth-child(1) {
   left: 50%;
   top: 0;
   margin: 0 0 0 -.1em;
@@ -71,7 +71,7 @@
           cssload-opa 4.22s ease-in-out infinite alternate;
 }
 
-#cssload-pgloading .cssload-bokeh li:nth-child(2) {
+.cssload .cssload-pgloading .cssload-bokeh li:nth-child(2) {
   top: 50%;
   right: 0;
   margin: -.1em 0 0 0;
@@ -98,7 +98,7 @@
           cssload-opa 4.93s ease-in-out infinite alternate;
 }
 
-#cssload-pgloading .cssload-bokeh li:nth-child(3) {
+.cssload .cssload-pgloading .cssload-bokeh li:nth-child(3) {
   left: 50%;
   bottom: 0;
   margin: 0 0 0 -.1em;
@@ -125,7 +125,7 @@
           cssload-opa 5.89s ease-in-out infinite alternate;
 }
 
-#cssload-pgloading .cssload-bokeh li:nth-child(4) {
+.cssload .cssload-pgloading .cssload-bokeh li:nth-child(4) {
   top: 50%;
   left: 0;
   margin: -.1em 0 0 0;
