@@ -1,0 +1,11 @@
+<div class="admin-nav">
+  <nav>
+    <ul>
+      <li v-for="(navigation, index) in store.state.navigations" role="presentation">
+        <router-link :to="navigation.path">
+          <a :herf="navigation.path" :class="{'active': index === active}" @click="selectNavigations(index)">{{navigation.title}}</a>
+        </router-link>
+      </li>
+    </ul>
+  </nav>
+</div>

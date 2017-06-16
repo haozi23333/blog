@@ -5,7 +5,7 @@ import Markdown from '../components/markdown/-Markdown.vue'
 import PostList from 'haozi/PostList.vue'
 import About from 'haozi/About.vue'
 import Post from 'haozi/Post.vue'
-import Admin from '../components/Admin/Admin.vue'
+import Admin from '../components/Admin/-Admin.vue'
 import EditorBox from '../components/Admin/editor/EditorBox.vue'
 import AdminPosts from '../components/Admin/posts.vue'
 

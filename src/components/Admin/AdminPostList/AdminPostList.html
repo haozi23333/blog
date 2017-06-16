@@ -1,0 +1,16 @@
+<div class="admin-postlist">
+  <div class="admin-post-list">
+    <ul>
+      <li v-for="post in posts" @click="preview(post.postId)">
+        title: {{ post.title}}
+      </li>
+    </ul>
+  </div>
+  <div class="admin-preview">
+    <div>
+      <a @click="edit">Edit</a>
+      <a>Preview</a>
+    </div>
+    <Markdown v-html="selectpost.html"></Markdown>
+  </div>
+</div>

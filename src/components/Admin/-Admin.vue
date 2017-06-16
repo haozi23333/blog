@@ -12,7 +12,7 @@
 <script>
   import Vue from 'vue'
   import Component from 'vue-class-component'
-  import NavBar from './NavBar.vue'
+  import NavBar from './-NavBar.vue'
   import {store} from '../../store/admin'
   @Component({
     props: {

@@ -6,140 +6,140 @@
   height: 100%
   width: 100%
 
-a
-  color: $green
-  cursor: pointer
-  word-break: break-all
-  background-color: transparent
-  line-height: 1em
-
-a:link
-  color: $green
-  text-decoration: none
-
-a:visited
-  color: $green
-  text-decoration: none
-
-a:hover
-  color: $green
-  text-decoration: none
-
-// 文字被选中之后
-::selection
-  color: #ffffff
-  background-color: $green
-
-code
-  color: #e96900
-  padding: 3px 5px
-  margin: 0 2px
-  border-radius: 2px
-  white-space: pre-wrap
-
-code, pre
-  font-family: 'Roboto Mono', Monaco, courier, monospace
-  font-size: 0.80em
-  background-color: #f8f8f8
-  -webkit-font-smoothing: initial
-
-pre
-  padding: 2px
-  //code
-
-svg[class]
-  color: $gray
-
-
-
-//h1 - h6
-h1, h2, h3, h4, h5, h6
-  font-weight: 300
-h2, h3, h4, h5
-  &::before
-    content: "#"
-    color: #42b983
-    position: inherit
-    font-weight: bold
-    margin-right: 0.5em
-    margin-left: 0em
+  a
+    color: $green
     cursor: pointer
+    word-break: break-all
+    background-color: transparent
+    line-height: 1em
+
+  a:link
+    color: $green
+    text-decoration: none
+
+  a:visited
+    color: $green
+    text-decoration: none
+
+  a:hover
+    color: $green
+    text-decoration: none
+
+  // 文字被选中之后
+  ::selection
+    color: #ffffff
+    background-color: $green
+
+  code
+    color: #e96900
+    padding: 3px 5px
+    margin: 0 2px
+    border-radius: 2px
+    white-space: pre-wrap
+
+  code, pre
+    font-family: 'Roboto Mono', Monaco, courier, monospace
+    font-size: 0.80em
+    background-color: #f8f8f8
+    -webkit-font-smoothing: initial
+
+  pre
+    padding: 2px
+    //code
+
+  svg[class]
+    color: $gray
 
 
-h1
-  color: black
-  font-weight: 400
-  font-size: 2rem
-  margin: 0 0 1rem
 
-h2
-  font-size: 1.75rem
-  margin: 45px 0 0.8rem
-
-h3
-  font-size: 1.5rem
-  margin: 40px 0 .6rem
-
-h4
-  font-size: 1.25rem
-
-h5
-  font-size: 1rem
-
-h6
-  color: #777
-  font-size: 1rem
-
-//p
-p
-  margin: 0 0 10px
-  word-spacing: 0.05em
-  line-height: 1.6
-  word-break: break-all
+  //h1 - h6
+  h1, h2, h3, h4, h5, h6
+    font-weight: 300
+  h2, h3, h4, h5
+    &::before
+      content: "#"
+      color: #42b983
+      position: inherit
+      font-weight: bold
+      margin-right: 0.5em
+      margin-left: 0em
+      cursor: pointer
 
 
+  h1
+    color: black
+    font-weight: 400
+    font-size: 2rem
+    margin: 0 0 1rem
 
-// ol, ul
-ol, ul
-  padding-left: 3em
-  text-rendering: geometricPrecision
-  margin-bottom: 10px
+  h2
+    font-size: 1.75rem
+    margin: 45px 0 0.8rem
 
-li
-  margin: 0.4em 0
+  h3
+    font-size: 1.5rem
+    margin: 40px 0 .6rem
 
+  h4
+    font-size: 1.25rem
+
+  h5
+    font-size: 1rem
+
+  h6
+    color: #777
+    font-size: 1rem
+
+  //p
+  p
+    margin: 0 0 10px
+    word-spacing: 0.05em
+    line-height: 1.6
+    word-break: break-all
+
+
+
+  // ol, ul
+  ol, ul
+    padding-left: 3em
+    text-rendering: geometricPrecision
+    margin-bottom: 10px
+
+  li
+    margin: 0.4em 0
+
+    img
+      height: inherit
+  // hr
+  hr
+    display: block
+    height: 1px
+    border: 0
+    border-top: #EBF2F6 1px solid !important
+    padding: 0
+    margin-top: 20px
+    margin-bottom: 20px
+
+  // img
   img
-    height: inherit
-// hr
-hr
-  display: block
-  height: 1px
-  border: 0
-  border-top: #EBF2F6 1px solid !important
-  padding: 0
-  margin-top: 20px
-  margin-bottom: 20px
+    margin-top: 5px
+    &[big="true"]
+      width: 100%
 
-// img
-img
-  margin-top: 5px
-  &[big="true"]
-    width: 100%
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.25)
 
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.25)
-
-// emoji
-i[emoji]
-  margin-right: 6px
+  // emoji
+  i[emoji]
+    margin-right: 6px
 
 
-// blockquote
-blockquote
-  margin: 2em 0
-  padding-left: 20px
-  border-left: 4px solid #42b983
+  // blockquote
+  blockquote
+    margin: 2em 0
+    padding-left: 20px
+    border-left: 4px solid #42b983
 
 
-// time
-time
-  margin-right: 10px
+  // time
+  time
+    margin-right: 10px

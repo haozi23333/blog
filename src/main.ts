@@ -5,6 +5,9 @@ import Vuex from 'vuex'
 import App from './App/App'
 import router from './router/index'
 import VueResoure from 'vue-resource'
+const Icon = require('vue-awesome/components/Icon.vue')
+
+
 
 /**
  * 加载Vuex的插件
@@ -18,7 +21,7 @@ Vue.use(VueResoure)
  *  加载Vue的
  */
 // Vue.use(VueScroll)
-// Vue.component('icon', Icon)
+Vue.component('Icon', Icon)
 /**
  * 生产模式的提示
  * @type {boolean}
@@ -26,11 +29,6 @@ Vue.use(VueResoure)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
-// @Component({
-//   components: {
-//     App
-//   }
-// })
 new Vue({
   el: '#app',
   router,

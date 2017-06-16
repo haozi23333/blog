@@ -6,7 +6,6 @@ import './Navbar.sass?scoped'
 
 import Vue from 'vue'
 import Component from 'vue-class-component'
-const Icon = require('vue-awesome/components/Icon.vue')
 import 'vue-awesome/icons/bars'
 
 import store from '../../../store/haozi'
@@ -15,7 +14,6 @@ import haoziTypes from '../../../store/haoziTypes'
 @Component({
   template: require('./NavBar.html'),
   components: {
-    Icon
   },
   name: 'Navbar',
   style: ''

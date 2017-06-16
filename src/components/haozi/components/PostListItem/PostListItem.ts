@@ -6,8 +6,10 @@ import Component from 'vue-class-component'
 import {Prop} from 'vue-property-decorator'
 import Posts from '../../../../api/posts'
 import {Markdown} from '../../../index'
+import {formatDate} from '../../../../util/formatDate'
 
 @Component({
+  template: require('./PostListItem.html'),
   components: {
     Markdown
   },
@@ -33,6 +35,10 @@ export default class extends Vue {
     if (post) {
       this.loaded = true
       this.post = post
+      this.post.excerpt = (`<h1 role="title">
+      <router-link :to="postUrl">${this.post.title}</router-link>
+    </h1>
+    <time>${formatDate(this.post.createDate)}</time>` + this.post.excerpt)
     }
   }
 }
