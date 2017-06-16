@@ -4,14 +4,13 @@
 
 import Vue from 'vue'
 import Vuex from 'vuex'
-
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
     navigations: [
       {
-        path: '/admin/editor',
+        path: '/admin/Editor',
         title: 'new Post'
       },
       {

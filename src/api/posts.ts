@@ -19,7 +19,7 @@ export default class Posts {
       return null
     }
   }
-  static async getPostList () {
+  static async getPostList (): any[] {
     try {
       return (await axios.get(`${Config.apiUrl}/posts`))
     } catch (e) {

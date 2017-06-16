@@ -1,6 +1,7 @@
 /**
  * Created by haozi on 6/14/2017.
  */
+import './PostListItem.sass'
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import {Prop} from 'vue-property-decorator'

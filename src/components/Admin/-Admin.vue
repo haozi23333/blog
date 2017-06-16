@@ -29,8 +29,7 @@
   }
 </script>
 <style scoped lang="sass" rel="stylesheet/sass" media="all">
-  @import "../../assets/css/global.sass"
-
+  // @import "../../assets/css/global.sass"
   .admin
     display: flex
     flex-direction: row

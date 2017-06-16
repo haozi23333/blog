@@ -7,6 +7,8 @@ import Router from 'vue-router'
 import Haozi from '../components/haozi/Haozi/Haozi'
 import {About, PostList, Post} from '../components/haozi'
 import {Markdown} from '../components'
+import Admin from '../components/Admin/Admin/Admin'
+import {AdminPostList, EditorBox} from '../components/Admin'
 
 Vue.use(Router)
 export default new Router({
@@ -36,6 +38,28 @@ export default new Router({
           path: 'post/:postId',
           name: 'post -> ',
           component: Post
+        }
+      ]
+    },
+    {
+      path: '/admin',
+      name: 'admin',
+      component: Admin,
+      children: [
+        {
+          path: 'posts',
+          name: 'post -> ',
+          component: AdminPostList
+        },
+        {
+          path: 'editor',
+          name: 'editor',
+          component: EditorBox
+        },
+        {
+          path: 'editor/:postId',
+          name: 'post -> ',
+          component: EditorBox
         }
       ]
     }

@@ -14,4 +14,5 @@ const Icon = require('vue-awesome/components/Icon.vue')
   name: 'Markdown'
 })
 export default class extends Vue {
+  
 }

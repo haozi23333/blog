@@ -2,6 +2,8 @@
  * Created by haozi on 6/16/2017.
  */
 
+import './AdminNavBar.sass'
+
 import Vue from 'vue'
 import {Component} from 'vue-property-decorator'
 import adminStore from '../../../store/admin'
@@ -9,7 +11,8 @@ import adminStore from '../../../store/admin'
 @Component({
   template: require('./AdminNavBar.html'),
   components: {
-  }
+  },
+  name: 'AdminNavBar'
 })
 export default class extends Vue {
   active = -1

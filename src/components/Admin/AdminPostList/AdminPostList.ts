@@ -2,17 +2,21 @@
  * Created by haozi on 6/16/2017.
  */
 
+import './AdminPostList.sass'
 import Vue from 'vue'
 import {Component} from 'vue-property-decorator'
 import Posts from '../../../api/posts'
+import {Markdown} from '../../'
 
 @Component({
   template: require('./AdminPostList.html'),
   components: {
-  }
+    Markdown
+  },
+  name: 'AdminPostList'
 })
 export default class extends Vue {
-  posts = []
+  posts: any[] = []
   selectpost = {
     html: '????'
   }
