@@ -11,17 +11,20 @@ export default class Posts {
     try {
 
       const res = await axios.get(`${Config.apiUrl}/post/${id}`)
-      // if (res.body && res.status === 200) {
-      //   return res.body
-      // }
+      if (res.data && res.status === 200) {
+        return res.data
+      }
       return null
     } catch (e) {
       return null
     }
   }
-  static async getPostList (): any[] {
+  static async getPostList (): Promise<any[]> {
     try {
-      return (await axios.get(`${Config.apiUrl}/posts`))
+      const res = await axios.get(`${Config.apiUrl}/posts`)
+      if (res.data && res.status === 200) {
+        return res.data
+      }
     } catch (e) {
       return []
     }

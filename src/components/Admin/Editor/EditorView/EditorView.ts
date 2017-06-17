@@ -8,15 +8,17 @@ import adminStore from '../../../../store/admin'
 import editorStore from '../../../../store/editor'
 
 @Component({
-    components: {
-      Markdown
+  template: require('./EditorView.html'),
+  components: {
+    Markdown
+  },
+  name: 'EditorView'
+})
+export default class extends Vue {
+  store = new Store({
+    modules: {
+      adminStore,
+      editorStore
     }
   })
-  export default class EditorView extends Vue {
-    store = new Store({
-      modules: {
-        adminStore,
-        editorStore
-      }
-    })
-  }
+}

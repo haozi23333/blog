@@ -5,7 +5,7 @@
 import './AdminPostList.sass'
 import Vue from 'vue'
 import {Component} from 'vue-property-decorator'
-import Posts from '../../../api/posts'
+import Posts from '../../../api/posts.ts'
 import {Markdown} from '../../'
 
 @Component({

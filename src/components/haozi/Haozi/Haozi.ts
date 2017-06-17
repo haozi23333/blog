@@ -15,8 +15,7 @@ import haoziStore from '../../../store/haozi'
     MobileNavBar
   },
   template: require('./Haozi.html'),
-  name: 'Haozi',
-  style: ''
+  name: 'Haozi'
 })
 export default class extends Vue {
   store = haoziStore

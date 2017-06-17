@@ -9,10 +9,11 @@ import {Store} from 'vuex'
 import {Component} from 'vue-property-decorator'
 import editorStore from '../../../../store/editor'
 import adminStore from '../../../../store/admin'
-import {CHANGE} from '../../../../store/editorTypes'
+import {CHANGE_MARKDOWN} from '../../../../store/editorTypes'
 
 @Component({
-  template: require('./Editor.html')
+  template: require('./Editor.html'),
+  name: 'Editor'
 })
 export default class extends Vue {
   store = new Store({

@@ -7,16 +7,16 @@ import './EditorBox.sass'
 import Vue from 'vue'
 import {Store} from 'vuex'
 import {Component} from 'vue-property-decorator'
-import {Editor, EditorView} from '../../'
-
+import {Editor, EditorView} from '../../index'
+import 'vue-awesome/icons/cog'
+console.log(Editor)
 @Component({
   template: require('./EditorBox.html'),
-  component: {
+  components: {
     Editor,
     EditorView
   },
   name: 'EditorBox'
 })
-export default class extends Vue{ 
-
+export default class extends Vue { 
 }

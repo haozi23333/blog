@@ -10,7 +10,7 @@ import editorTypes from './editorTypes'
 import remark from 'remark'
 import remarkHtml from 'remark-html'
 import qwq from 'remark-haozi-extend'
-import posts from '../api/posts'
+import posts from '../api/posts.ts'
 
 Vue.use(Vuex)
 

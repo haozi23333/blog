@@ -10,7 +10,7 @@ export default new Vuex.Store({
   state: {
     navigations: [
       {
-        path: '/admin/Editor',
+        path: '/admin/editor',
         title: 'new Post'
       },
       {

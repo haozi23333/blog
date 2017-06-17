@@ -8,7 +8,8 @@ import Haozi from '../components/haozi/Haozi/Haozi'
 import {About, PostList, Post} from '../components/haozi'
 import {Markdown} from '../components'
 import Admin from '../components/Admin/Admin/Admin'
-import {AdminPostList, EditorBox} from '../components/Admin'
+import EditorBox from '../components/Admin/Editor/EditorBox/EditorBox'
+import {AdminPostList} from '../components/Admin'
 
 Vue.use(Router)
 export default new Router({

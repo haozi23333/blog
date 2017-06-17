@@ -2,12 +2,11 @@
  * Created by haozi on 6/14/2017.
  */
 import './MobileNavBar.sass'
-// require('./MobileNavbar.sass')
 import Vue from 'vue'
 import Component from 'vue-class-component'
 const Icon = require('vue-awesome/components/Icon.vue')
 import 'vue-awesome/icons/moon-o'
-import Posts from '../../../api/posts'
+import Posts from '../../../api/posts.ts'
 import haoziTypes from '../../../store/haoziTypes'
 import haoziStore from '../../../store/haozi'
 

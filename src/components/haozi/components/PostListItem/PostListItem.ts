@@ -5,7 +5,7 @@ import './PostListItem.sass'
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import {Prop} from 'vue-property-decorator'
-import Posts from '../../../../api/posts'
+import Posts from '../../../../api/posts.ts'
 import {Markdown} from '../../../index'
 import {formatDate} from '../../../../util/formatDate'
 

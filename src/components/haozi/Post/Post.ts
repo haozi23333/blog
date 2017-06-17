@@ -11,7 +11,7 @@ import {Prop} from 'vue-property-decorator'
 import {formatDate} from '../../../util/formatDate'
 import haoziStore from '../../../store/haozi'
 import haoziTypes from '../../../store/haoziTypes'
-import Posts from '../../../api/posts'
+import Posts from '../../../api/posts.ts'
 
 @Component({
   template: require('./Post.html'),
