@@ -20,26 +20,16 @@ export default new Vuex.Store({
     markdown: ''
   },
   mutations: {
-    /**
-     * 更新当前编辑器的markdown
-     * @param state
-     * @param markdown
-     */
-      [editorTypes.CHANGE_MARKDOWN] (state, markdown) {
-        state.markdown = markdown
-        state.html = String(
-          remark()
-            .use(qwq)
-            .use(remarkHtml)
-            .processSync(markdown)
-        )
-    },
+
     [editorTypes.SAVE_POST_LOCALSTORAGE] (state, post) {
       localStorage.setItem(`post-${post.postId}`, JSON.stringify({
         saveTime: new Date()
       }))
     },
     [editorTypes.SAVE_POST_SUCCESS] (state, savePosition) {
+    },
+    [editorTypes​​.UPDATE_EDITOR_MARKDOWN] (state, newMarkdown) {
+      this.markdown = newMarkdown
     }
   },
   actions: {
@@ -50,6 +40,20 @@ export default new Vuex.Store({
       } catch (e) {
         console.log('save error')
       }
-    }
+    },
+    /**
+     * 更新当前编辑器的markdown
+     * @param state
+     * @param markdown
+     */
+      [editorTypes.CHANGE_MARKDOWN] ({commit}, markdown) {
+        commit(editorTypes​​.UPDATE_EDITOR_MARKDOWN, markdown)
+        commit(editorTypes​​.UPDATE_EDITOR_HTML , String(
+          remark()
+            .use(qwq)
+            .use(remarkHtml)
+            .processSync(markdown)
+        ))
+    },
   }
 })

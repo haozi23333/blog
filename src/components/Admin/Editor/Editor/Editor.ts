@@ -13,24 +13,31 @@ import editorTypes from '../../../../store/editorTypes'
 
 @Component({
   template: require('./Editor.html'),
+  components: {
+
+  },
   name: 'Editor'
 })
 export default class extends Vue {
   store = new Store({
     modules: {
-      adminStore,
-      editorStore
+      adminStore: {
+        namespaced: true,
+        ...adminStore
+      },
+      editorStore: {
+        namespaced: true,
+        ...editorStore
+      },
     }
   })
-  markdown = '1'
-
-  public constructor () {
-    super()
+  public markdown = '1'
+  public $refs: {
+    textarea: HTMLTextAreaElement
   }
-
   @Watch('markdown')
   public onMarkdownChange(val) {
-    this.store.commit(editorTypes.CHANGE_MARKDOWN, val)
+    this.store.dispatch('editorStore/' + editorTypes.CHANGE_MARKDOWN, val)
   }
 
   keyDown (e) {
@@ -40,18 +47,12 @@ export default class extends Vue {
     if (e.keyCode === 9) {
       e.preventDefault()
       let indent = '  '
-      let start = (this.$refs as {
-        textarea: HTMLTextAreaElement
-      }).textarea.selectionStart
-      let end = (this.$refs as {
-        textarea: HTMLTextAreaElement
-      }).textarea.selectionEnd
+      let start = this.$refs.textarea.selectionStart
+      let end = this.$refs.textarea.selectionEnd
       let selected = window.getSelection().toString()
       selected = indent + selected.replace(/\n/g, '\n' + indent)
       this.markdown = this.markdown.substring(0, start) + selected + this.markdown.substring(end);
-      (this.$refs as {
-        textarea: HTMLTextAreaElement
-      }).textarea.setSelectionRange(start + indent.length, start + selected.length)
+      this.$refs.textarea.setSelectionRange(start + indent.length, start + selected.length)
     }
     /**
      * ctrl + s
