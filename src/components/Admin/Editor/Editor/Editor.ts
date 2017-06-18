@@ -6,10 +6,10 @@ import './Editor.sass'
 
 import Vue from 'vue'
 import {Store} from 'vuex'
-import {Component} from 'vue-property-decorator'
+import {Component, Watch} from 'vue-property-decorator'
 import editorStore from '../../../../store/editor'
 import adminStore from '../../../../store/admin'
-import {CHANGE_MARKDOWN} from '../../../../store/editorTypes'
+import editorTypes from '../../../../store/editorTypes'
 
 @Component({
   template: require('./Editor.html'),
@@ -23,6 +23,16 @@ export default class extends Vue {
     }
   })
   markdown = '1'
+
+  public constructor () {
+    super()
+  }
+
+  @Watch('markdown')
+  public onMarkdownChange(val) {
+    this.store.commit(editorTypes.CHANGE_MARKDOWN, val)
+  }
+
   keyDown (e) {
     /**
      * tab
@@ -30,12 +40,18 @@ export default class extends Vue {
     if (e.keyCode === 9) {
       e.preventDefault()
       let indent = '  '
-      let start = this.$refs.textarea.selectionStart
-      let end = this.$refs.textarea.selectionEnd
+      let start = (this.$refs as {
+        textarea: HTMLTextAreaElement
+      }).textarea.selectionStart
+      let end = (this.$refs as {
+        textarea: HTMLTextAreaElement
+      }).textarea.selectionEnd
       let selected = window.getSelection().toString()
       selected = indent + selected.replace(/\n/g, '\n' + indent)
-      this.markdown = this.markdown.substring(0, start) + selected + this.markdown.substring(end)
-      this.$refs.textarea.setSelectionRange(start + indent.length, start + selected.length)
+      this.markdown = this.markdown.substring(0, start) + selected + this.markdown.substring(end);
+      (this.$refs as {
+        textarea: HTMLTextAreaElement
+      }).textarea.setSelectionRange(start + indent.length, start + selected.length)
     }
     /**
      * ctrl + s
@@ -47,10 +63,5 @@ export default class extends Vue {
     }
   }
   mounted () {
-    this.$watch(() => {
-      return this.markdown
-    }, () => {
-      this.store.editorStore.commit(CHANGE_MARKDOWN, this.markdown)
-    })
   }
 }
