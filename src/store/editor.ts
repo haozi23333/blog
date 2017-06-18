@@ -26,13 +26,13 @@ export default new Vuex.Store({
      * @param markdown
      */
       [editorTypes.CHANGE_MARKDOWN] (state, markdown) {
-        state.markdown = markdown
-        state.html = String(
-          remark()
-            .use(qwq)
-            .use(remarkHtml)
-            .processSync(markdown)
-        )
+      state.markdown = markdown
+      state.html = String(
+        remark()
+          .use(qwq)
+          .use(remarkHtml)
+          .processSync(markdown)
+      )
     },
     [editorTypes.SAVE_POST_LOCALSTORAGE] (state, post) {
       localStorage.setItem(`post-${post.postId}`, JSON.stringify({

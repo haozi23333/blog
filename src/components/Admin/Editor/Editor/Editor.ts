@@ -16,6 +16,7 @@ import editorTypes from '../../../../store/editorTypes'
   name: 'Editor'
 })
 export default class extends Vue {
+  editorTypes = editorTypes
   store = new Store({
     modules: {
       adminStore,
@@ -29,10 +30,9 @@ export default class extends Vue {
   }
 
   @Watch('markdown')
-  public onMarkdownChange(val) {
-    this.store.commit(editorTypes.CHANGE_MARKDOWN, val)
+  public onMarkdownChange(val: string) {
+    this.store.commit(this.editorTypes.CHANGE_MARKDOWN, val)
   }
-
   keyDown (e) {
     /**
      * tab

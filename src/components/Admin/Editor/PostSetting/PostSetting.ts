@@ -5,7 +5,7 @@ import {Component} from 'vue-property-decorator'
 
 @Component({
     template: require('./PostSetting.html'),
-    component: {
+    components: {
     },
     name: 'PostSetting'
 })
