@@ -5,7 +5,6 @@
 import './EditorBox.sass'
 
 import Vue from 'vue'
-import {Store} from 'vuex'
 import {Component} from 'vue-property-decorator'
 import {Editor, EditorView} from '../../index'
 import 'vue-awesome/icons/cog'
