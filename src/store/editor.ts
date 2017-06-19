@@ -49,7 +49,6 @@ export default new Vuex.Store({
      * @param markdown
      */
       [editorTypes.CHANGE_MARKDOWN] ({commit}, markdown) {
-        console.log(markdown)
         commit(editorTypes.UPDATE_EDITOR_MARKDOWN, markdown)
         commit(editorTypes.UPDATE_EDITOR_HTML , String(
           remark()

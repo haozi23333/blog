@@ -8,7 +8,7 @@ import Vue from 'vue'
 import {Component} from 'vue-property-decorator'
 import {Editor, EditorView} from '../../index'
 import 'vue-awesome/icons/cog'
-console.log(Editor)
+
 @Component({
   template: require('./EditorBox.html'),
   components: {
@@ -18,4 +18,9 @@ console.log(Editor)
   name: 'EditorBox'
 })
 export default class extends Vue { 
+  public data () {
+    return {
+      savelocation: ''
+    }
+  }
 }

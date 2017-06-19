@@ -1,7 +1,7 @@
   <div class="admin-editor">
     <div class="admin-editor-title">
       <input type="text" placeholder="Your Post Title"><a>Save</a><a><Icon name="cog"></Icon></a>
-      <select>
+      <select v-model='savelocation'>
         <option value="localStorage">localStorage</option>
         <option value="server">server</option>
       </select>
