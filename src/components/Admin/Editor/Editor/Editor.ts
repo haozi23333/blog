@@ -19,25 +19,20 @@ import editorTypes from '../../../../store/editorTypes'
   name: 'Editor'
 })
 export default class extends Vue {
-  store = new Store({
-    modules: {
-      adminStore: {
-        namespaced: true,
-        ...adminStore
-      },
-      editorStore: {
-        namespaced: true,
-        ...editorStore
-      },
-    }
-  })
+  // store = new Store({
+  //   ...adminStore,
+  //   ...editorStore
+  // })
+  editorStore = editorStore
+  adminStore = adminStore
   public markdown = '1'
   public $refs: {
     textarea: HTMLTextAreaElement
   }
   @Watch('markdown')
   public onMarkdownChange(val) {
-    this.store.dispatch('editorStore/' + editorTypes.CHANGE_MARKDOWN, val)
+    console.log('send -> ' + editorTypes.CHANGE_MARKDOWN)
+    this.editorStore.dispatch( editorTypes.CHANGE_MARKDOWN, val)
   }
 
   keyDown (e) {
