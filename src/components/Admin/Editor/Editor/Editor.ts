@@ -52,20 +52,38 @@ export default class extends Vue {
     /**
      * ctrl + s
      */
-    if (e.ctrlKey === true && (e.keyCode === 83 || e.keyCode === 115)) {
-      event.preventDefault()
-      // console.log('save')
-        if (this.editorStore.state) {
-          this.editorStore.dispatch(editorTypes.SAVE_POST_LOCALSTORAGE)
-        }
-      return false
-    }
+    // if (e.ctrlKey === true && (e.keyCode === 83 || e.keyCode === 115)) {
+    //   event.preventDefault()
+    //   console.log('save')
+    // if (this.editorStore.state) {
+    //   this.editorStore.dispatch(editorTypes.SAVE_POST_LOCALSTORAGE)
+    // }
+    // return false
+    // }
+
   }
+
+  /**
+   * 在这里注册一下全局快捷键 = =  保存
+   */
+  public globalKeyDown () {
+    // key('⌘+s, ctrl+s', (event, handle) => {
+    //   event.preventDefault()
+    //   console.log('save')
+    //   if (this.editorStore.state) {
+    //     this.editorStore.dispatch(editorTypes.SAVE_POST_LOCALSTORAGE)
+    //   }
+    //
+    //   return false
+    // })
+  }
+
   mounted () {
     this.$watch(() => {
       return this.editorStore.state.post.markdown
     }, (newValue) => {
       this.$refs.textarea.value = newValue
     })
+    this.globalKeyDown()
   }
 }

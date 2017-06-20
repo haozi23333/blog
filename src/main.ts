@@ -5,9 +5,10 @@ import Vuex from 'vuex'
 import App from './App/App'
 import router from './router/index'
 import VueResoure from 'vue-resource'
+
 const Icon = require('vue-awesome/components/Icon.vue')
 
-
+import './assets/js/keymaster.js'
 
 /**
  * 加载Vuex的插件

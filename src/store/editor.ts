@@ -87,7 +87,9 @@ export default new Vuex.Store({
     },
     async [editorTypes.LOAD_POST_SERVER] ({dispatch, commit}, postId) {
       try {
-        commit(editorTypes.UPDATE_POST, await Posts.getPostById(postId))
+        const post =  await Posts.getPostById(postId)
+        commit(editorTypes.UPDATE_POST, post)
+        dispatch(editorTypes.CHANGE_MARKDOWN, post.markdown)
       } catch (e) {
         console.log('load error')
       }
