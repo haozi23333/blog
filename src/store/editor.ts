@@ -10,38 +10,53 @@ import editorTypes from './editorTypes'
 import remark = require('remark')
 import remarkHtml = require('remark-html')
 import qwq from 'remark-haozi-extend'
-import posts from '../api/posts.ts'
+import Posts from '../api/posts'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    html: '',
-    markdown: ''
+    post: {
+      postId: '1',
+      html: '',
+      markdown: '',
+      title: ''
+    },
+    savelocation: 'localStorage'
   },
   mutations: {
-    [editorTypes.SAVE_POST_LOCALSTORAGE] (state, post) {
-      localStorage.setItem(`post-${post.postId}`, JSON.stringify({
+    [editorTypes.SAVE_POST_LOCALSTORAGE] (state) {
+      localStorage.setItem(`post-${state.post.postId}`, JSON.stringify({
+        ...state.post,
         saveTime: new Date()
       }))
     },
-    [editorTypes.SAVE_POST_SUCCESS] (state, savePosition) {
+    [editorTypes.SAVE_POST_LOCALSTORAGE_SUCCESS] (state, savePosition) {
     },
     [editorTypes.UPDATE_EDITOR_MARKDOWN] (state, newMarkdown) {
-      state.markdown = newMarkdown
+      state.post.markdown = newMarkdown
     },
     [editorTypes.UPDATE_EDITOR_HTML] (state, newhtml) {
-      state.html = newhtml
+      state.post.html = newhtml
+    },
+    [editorTypes.UPDATE_POST] (state, post) {
+      state.post = {
+        ...state.post,
+        ...post
+      }
     }
   },
   actions: {
-    async [editorTypes.SAVE_POST_SERVER] ({commit}, post) {
-      try {
-        await posts.savePost(post)
-        // commit()
-      } catch (e) {
-        console.log('save error')
-      }
+    /**
+     * 在本地保存
+     * @param commit
+     * @returns {Promise<void>}
+     */
+    async [editorTypes.SAVE_POST_SERVER] ({commit}) {
+      commit(editorTypes.SAVE_POST_LOCALSTORAGE)
+    },
+    async [editorTypes.SAVE_POST_LOCALSTORAGE] ({commit}) {
+      commit(editorTypes.SAVE_POST_LOCALSTORAGE)
     },
     /**
      * 更新当前编辑器的markdown
@@ -56,6 +71,26 @@ export default new Vuex.Store({
             .use(remarkHtml)
             .processSync(markdown)
         ))
+    },
+    /**
+     *
+     * @param state
+     * @param post
+     */
+    [editorTypes.LOAD_POST_LOCALSTORAGE] ({dispatch, commit}, postId) {
+      const post = localStorage.getItem(`post-${postId}`)
+      if (!post) {
+        dispatch(editorTypes.LOAD_POST_SERVER, postId)
+      } else  {
+        commit(editorTypes.UPDATE_POST, JSON.parse(post))
+      }
+    },
+    async [editorTypes.LOAD_POST_SERVER] ({dispatch, commit}, postId) {
+      try {
+        commit(editorTypes.UPDATE_POST, await Posts.getPostById(postId))
+      } catch (e) {
+        console.log('load error')
+      }
     },
   }
 })

@@ -29,9 +29,9 @@ export default class extends Vue {
   public $refs: {
     textarea: HTMLTextAreaElement
   }
+
   @Watch('markdown')
   public onMarkdownChange(val) {
-    console.log('send -> ' + editorTypes.CHANGE_MARKDOWN)
     this.editorStore.dispatch( editorTypes.CHANGE_MARKDOWN, val)
   }
 
@@ -54,10 +54,18 @@ export default class extends Vue {
      */
     if (e.ctrlKey === true && (e.keyCode === 83 || e.keyCode === 115)) {
       event.preventDefault()
-      console.log('save')
+      // console.log('save')
+        if (this.editorStore.state) {
+          this.editorStore.dispatch(editorTypes.SAVE_POST_LOCALSTORAGE)
+        }
       return false
     }
   }
   mounted () {
+    this.$watch(() => {
+      return this.editorStore.state.post.markdown
+    }, (newValue) => {
+      this.$refs.textarea.value = newValue
+    })
   }
 }

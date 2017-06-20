@@ -15,10 +15,6 @@ import editorStore from '../../../../store/editor'
   name: 'EditorView'
 })
 export default class extends Vue {
-  store = new Store({
-    modules: {
-      adminStore,
-      editorStore
-    }
-  })
+  adminStore = adminStore
+  editorStore = editorStore
 }

@@ -1,14 +1,16 @@
-  <div class="admin-editor">
-    <div class="admin-editor-title">
-      <input type="text" placeholder="Your Post Title"><a>Save</a><a><Icon name="cog"></Icon></a>
-      <select v-model='savelocation'>
-        <option value="localStorage">localStorage</option>
-        <option value="server">server</option>
-      </select>
-    </div>
-    <div class="admin-editor-editSpace">
-      <Editor></Editor>
-      <EditorView></EditorView>
-    </div>
+<div class="admin-editor">
+  <div class="admin-editor-title">
+    <input @change="onSaveLocationChange" type="text" placeholder="Your Post Title" v-model.trim="editorStore.state.post.title">
+    <a @click="save">Save</a>
+    <a><Icon name="cog"></Icon></a>
+    <a @click="reload"><Icon name="refresh"></Icon></a>
+    <select v-model='editorStore.state.savelocation'>
+      <option selected value="localStorage">localStorage</option>
+      <option value="server">server</option>
+    </select>
   </div>
-  
+  <div class="admin-editor-editSpace">
+    <Editor></Editor>
+    <EditorView></EditorView>
+  </div>
+</div>
