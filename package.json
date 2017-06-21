@@ -40,6 +40,7 @@
     "vue-router": "^2.3.1",
     "vue-scroll": "^2.0.3",
     "vue-template-compiler": "^2.3.4",
+    "vue-toasted": "^1.0.28",
     "vuex": "^2.3.1",
     "vuex-class": "^0.2.0"
   },

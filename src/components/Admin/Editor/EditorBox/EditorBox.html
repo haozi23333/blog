@@ -4,7 +4,7 @@
     <a @click="save">Save</a>
     <a><Icon name="cog"></Icon></a>
     <a @click="reload"><Icon name="refresh"></Icon></a>
-    <select v-model='editorStore.state.savelocation'>
+    <select v-model='editorStore.state.savelocation' @change="onSaveLocationChange">
       <option selected value="localStorage">localStorage</option>
       <option value="server">server</option>
     </select>

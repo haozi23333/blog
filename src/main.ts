@@ -5,6 +5,7 @@ import Vuex from 'vuex'
 import App from './App/App'
 import router from './router/index'
 import VueResoure from 'vue-resource'
+import Toasted from 'vue-toasted'
 
 const Icon = require('vue-awesome/components/Icon.vue')
 
@@ -19,9 +20,12 @@ Vue.use(Vuex)
  */
 Vue.use(VueResoure)
 /**
- *  加载Vue的
+ *  加载一个Toast 组件
  */
-// Vue.use(VueScroll)
+Vue.use(Toasted)
+/**
+ * 全局注册图标组件
+ */
 Vue.component('Icon', Icon)
 /**
  * 生产模式的提示

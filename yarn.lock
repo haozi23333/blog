@@ -7711,6 +7711,10 @@ vue-template-es2015-compiler@^1.2.2:
   version "1.5.2"
   resolved "http://registry.npm.taobao.org/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.5.2.tgz#a0a6c50c941d2a4abda963f2f42c337ac450ee95"
 
+vue-toasted:
+  version "1.0.28"
+  resolved "http://registry.npm.taobao.org/vue-toasted/download/vue-toasted-1.0.28.tgz#37cdd767b69119d7a63fa88700abc2925b7cdef2"
+
 vue@^2.1.4:
   version "2.3.3"
   resolved "http://registry.npm.taobao.org/vue/download/vue-2.3.3.tgz#d1eaa8fde5240735a4563e74f2c7fead9cbb064c"
