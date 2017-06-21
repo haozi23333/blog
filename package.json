@@ -32,6 +32,7 @@
     "sass-mq": "^3.3.2",
     "ts-loader": "^2.1.0",
     "typescript": "^2.3.4",
+    "vee-validate": "^2.0.0-rc.5",
     "vue": "^2.3.4",
     "vue-awesome": "^2.3.1",
     "vue-class-component": "^5.0.1",

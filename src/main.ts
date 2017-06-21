@@ -6,6 +6,7 @@ import App from './App/App'
 import router from './router/index'
 import VueResoure from 'vue-resource'
 import Toasted from 'vue-toasted'
+import VeeValidate from'vee-validate'
 
 const Icon = require('vue-awesome/components/Icon.vue')
 
@@ -27,6 +28,10 @@ Vue.use(Toasted)
  * 全局注册图标组件
  */
 Vue.component('Icon', Icon)
+/**
+ * 一个数据验证插件
+ */
+// Vue.use(VeeValidate)
 /**
  * 生产模式的提示
  * @type {boolean}

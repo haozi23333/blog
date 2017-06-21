@@ -25,7 +25,10 @@ export default new Vuex.Store({
         path: '/admin/haozi',
         title: '导航4'
       }
-    ]
+    ],
+    user: {
+      // token: ''
+    }
   },
   mutations: {
   }

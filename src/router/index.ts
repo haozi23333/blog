@@ -10,9 +10,11 @@ import {Markdown} from '../components'
 import Admin from '../components/Admin/Admin/Admin'
 import EditorBox from '../components/Admin/Editor/EditorBox/EditorBox'
 import {AdminPostList} from '../components/Admin'
+import adminStore from '../store/admin'
+import AdminLogin from '../components/Admin/Login/Login'
 
 Vue.use(Router)
-export default new Router({
+const router =  new Router({
   mode: "history",
   routes: [
     {
@@ -46,10 +48,16 @@ export default new Router({
       path: '/admin',
       name: 'admin',
       component: Admin,
+      meta: {
+        /**
+         * 需要验证
+         */
+        requireAuth: true
+      },
       children: [
         {
           path: 'posts',
-          name: 'post -> ',
+          name: 'post -> 1',
           component: AdminPostList
         },
         {
@@ -59,10 +67,15 @@ export default new Router({
         },
         {
           path: 'editor/:postId',
-          name: 'post -> ',
+          name: 'post -> 2',
           component: EditorBox
         }
       ]
+    },
+    {
+      path: '/login',
+      name: 'post -> 3',
+      component: AdminLogin
     }
   ],
   scrollBehavior (to, from, savedPosition) {
@@ -78,3 +91,24 @@ export default new Router({
     }
   }
 })
+
+/**
+ * 拦截
+ */
+router.beforeEach((to, from, next) => {
+  if (to.meta.requireAuth) {
+    if (adminStore.state.user.token) {
+      next()
+    } else {
+      console.log('需要登录')
+      next({
+        path: 'login'
+      })
+    }
+  } else {
+    next()
+  }
+})
+
+export default router
+

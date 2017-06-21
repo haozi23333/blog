@@ -55,8 +55,10 @@ export default class extends Vue {
     if (e.ctrlKey === true && (e.keyCode === 83 || e.keyCode === 115)) {
       event.preventDefault()
       console.log('save')
-    if (this.editorStore.state) {
+    if (this.editorStore.state.savelocation === 'localStorage') {
       this.editorStore.dispatch(editorTypes.SAVE_POST_LOCALSTORAGE)
+    } else {
+      this.editorStore.dispatch(editorTypes.SAVE_POST_SERVER)
     }
     return false
     }

@@ -9,7 +9,6 @@ import axios from 'axios'
 export default class Posts {
   static async getPostById(id: string) {
     try {
-
       const res = await axios.get(`${Config.apiUrl}/post/${id}`)
       if (res.data && res.status === 200) {
         return res.data
