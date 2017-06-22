@@ -12,6 +12,7 @@ import EditorBox from '../components/Admin/Editor/EditorBox/EditorBox'
 import {AdminPostList} from '../components/Admin'
 import adminStore from '../store/admin'
 import AdminLogin from '../components/Admin/Login/Login'
+import adminTypes from '../store/adminTypes'
 
 Vue.use(Router)
 const router =  new Router({
@@ -58,17 +59,27 @@ const router =  new Router({
         {
           path: 'posts',
           name: 'post -> 1',
-          component: AdminPostList
+          component: AdminPostList,
+          meta: {
+            requireAuth: true
+          },
         },
         {
           path: 'editor',
           name: 'editor',
-          component: EditorBox
+          component: EditorBox,
+          meta: {
+            requireAuth: true
+          },
+
         },
         {
           path: 'editor/:postId',
           name: 'post -> 2',
-          component: EditorBox
+          component: EditorBox,
+          meta: {
+            requireAuth: true
+          },
         }
       ]
     },
@@ -97,7 +108,11 @@ const router =  new Router({
  */
 router.beforeEach((to, from, next) => {
   if (to.meta.requireAuth) {
-    if (adminStore.state.user.token) {
+    /**
+     * 加载本地的token值
+     */
+    adminStore.commit(adminTypes.LOAD_TOKEN)
+    if (adminStore.state.token !== '') {
       next()
     } else {
       console.log('需要登录')

@@ -26,7 +26,18 @@ export default class extends Vue {
 
   public login() {
     User.login(this.username, this.password).then((...v) => {
-      console.log(v)
+      this.$router.push('/admin')
+      Vue.toasted.success('登录成功', {
+        theme: "outline",
+        position: "bottom-center",
+        duration : 500
+      })
+    }).catch(() => {
+      Vue.toasted.success('登录失败', {
+        theme: "outline",
+        position: "bottom-center",
+        duration : 500
+      })
     })
   }
 }

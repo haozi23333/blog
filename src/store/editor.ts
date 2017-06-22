@@ -29,8 +29,8 @@ export default new Vuex.Store({
      * 在本地保存
      * @param state
      */
-    [editorTypes.SAVE_POST_LOCALSTORAGE] (state) {
-      localStorage.setItem(`post-${state.post.postId}`, JSON.stringify({
+    [editorTypes.SAVE_POST_LOCALSTORAGE] (state, username) {
+      localStorage.setItem(`post-${username}-${state.post.postId}`, JSON.stringify({
         ...state.post,
         saveTime: new Date()
       }))

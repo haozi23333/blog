@@ -19,7 +19,7 @@ import editorTypes from '../../../../store/editorTypes'
     Editor,
     EditorView,
   },
-  name: 'EditorBox',
+  name: 'EditorBox'
 })
 export default class extends Vue {
   /**
