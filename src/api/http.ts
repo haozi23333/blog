@@ -22,8 +22,9 @@ axios.interceptors.response.use((response) => {
 }, (error) => {
   if (error.response) {
     switch (error.response.status) {
-      case '401':
-        break
+      /**
+       * 不存在 = =
+       */
       case '404':
         break
       /**
@@ -39,3 +40,5 @@ axios.interceptors.response.use((response) => {
     return Promise.reject(error.response.data)
   }
 })
+
+export default axios

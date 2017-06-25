@@ -31,7 +31,6 @@ export default new Vuex.Store({
       }
     ],
     username: '',
-    token: '',
     user: {
       token: ''
     }
@@ -40,22 +39,26 @@ export default new Vuex.Store({
     [adminTypes.SET_USER] (state, user) {
       state.user = user
     },
-    [adminTypes.SET_TOKEN] (state, token) {
-      state.token = token
-    },
-    [adminTypes.LOAD_TOKEN] (state) {
-      state.token = getCookie('token')
-    }
   },
   actions: {
+    /**
+     *  加载本地用户数据
+     * @param commit
+     * @param dispatch
+     */
     [adminTypes.LOAD_LOCAL_USER_INFO] ({commit, dispatch}) {
       const user = JSON.parse(localStorage.getItem('user'))
       if (user) {
         commit(adminTypes.SET_USER, user)
       }
       dispatch(adminTypes.LOAD_SERVER_USER_INFO)
-      commit(adminTypes.SET_TOKEN, getCookie('token'))
     },
+    /**
+     *  从服务器加载用户数据 需要 cookie
+     * @param commit
+     * @param state
+     * @returns {Promise<void>}
+     */
     async [adminTypes.LOAD_SERVER_USER_INFO] ({commit, state}) {
       commit(adminTypes.SET_USER, await User.getUserInfo(state.username))
     },

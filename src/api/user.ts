@@ -3,7 +3,7 @@
  */
 
 import Config from '../config/config'
-import axios from 'axios'
+import axios from './http'
 import * as ts from "typescript/lib/tsserverlibrary";
 import Err = ts.server.Msg.Err;
 
