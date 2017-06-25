@@ -7,33 +7,56 @@ import axios from './http'
 import * as ts from "typescript/lib/tsserverlibrary";
 import Err = ts.server.Msg.Err;
 
-const userAPI = axios.create({
-  baseURL: Config.apiUrl
-})
-
 export default class {
+  /**
+   * 登录
+   * @param username  用户名
+   * @param password  密码
+   * @returns {Promise<undefined|null>}
+   */
   static async login(username, password) {
-    const res = await userAPI.post(`sessions`, {
+    const res = await axios.post(`sessions`, {
       username,
       password
     })
     if (res.data && res.status === 201) {
-      return await this.getUserInfo(username)
+      return true
     }
-    throw new Error()
   }
+
+  /**
+   *  获取用户信息 -> 需要cookie的
+   * @param username
+   * @returns {Promise<null>}
+   */
   static async getUserInfo (username) {
-    const res = await userAPI.get(`user/${username}`)
+    const res = await axios.get(`user/${username}`)
     if (res.data && res.status === 200) {
-      return
+      return res.data
     } else {
       return null
     }
   }
+
+  /**
+   * 更新用户信息
+   * @param username
+   * @param info
+   * @returns {Promise<boolean>}
+   */
   static async updateUserInfo (username, info) {
-    const res = await userAPI.put(`user/${username}`, info)
+    const res = await axios.put(`user/${username}`, info)
     if (res.data && res.status === 200) {
       return true
+    } else {
+      return false
+    }
+  }
+
+  static async logout(username) {
+    const res = await axios.delete(`sessions/logout`)
+    if (res.data && res.status === 204) {
+      //todo 登出成功
     } else {
       return false
     }

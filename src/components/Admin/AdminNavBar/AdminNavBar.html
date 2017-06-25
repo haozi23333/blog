@@ -6,6 +6,9 @@
           <a :herf="navigation.path" :class="{'active': index === active}" @click="selectNavigations(index)">{{navigation.title}}</a>
         </router-link>
       </li>
+      <li @click="logout">
+        logout
+      </li>
     </ul>
   </nav>
 </div>

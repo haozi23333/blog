@@ -111,14 +111,13 @@ router.beforeEach((to, from, next) => {
     /**
      * 加载本地的token值
      */
-    adminStore.commit(adminTypes.LOAD_TOKEN)
-    if (adminStore.state.token !== '') {
-      next()
-    } else {
-      console.log('需要登录')
+    adminStore.dispatch(adminTypes.LOAD_LOCAL_USER_INFO)
+    if (adminStore.state.username === '') {
       next({
         path: 'login'
       })
+    } else {
+      next()
     }
   } else {
     next()

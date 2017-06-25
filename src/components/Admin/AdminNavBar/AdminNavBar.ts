@@ -7,6 +7,8 @@ import './AdminNavBar.sass'
 import Vue from 'vue'
 import {Component} from 'vue-property-decorator'
 import adminStore from '../../../store/admin'
+import adminTypes from '../../../store/adminTypes'
+
 
 @Component({
   template: require('./AdminNavBar.html'),
@@ -27,5 +29,10 @@ export default class extends Vue {
         this.active = i
       }
     })
+  }
+
+  public logout() {
+    adminStore.dispatch(adminTypes.LOGOUT)
+    this.$router.push('/login')
   }
 }

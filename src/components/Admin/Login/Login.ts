@@ -7,6 +7,7 @@ import './Login.sass'
 import Vue from 'vue'
 import {Component} from 'vue-property-decorator'
 import adminStore from '../../../store/admin'
+import adminTypes from '../../../store/adminTypes'
 import User from '../../../api/user'
 
 @Component({
@@ -25,19 +26,10 @@ export default class extends Vue {
   }
 
   public login() {
-    User.login(this.username, this.password).then((...v) => {
-      this.$router.push('/admin')
-      Vue.toasted.success('登录成功', {
-        theme: "outline",
-        position: "bottom-center",
-        duration : 500
-      })
-    }).catch(() => {
-      Vue.toasted.success('登录失败', {
-        theme: "outline",
-        position: "bottom-center",
-        duration : 500
-      })
+    adminStore.dispatch(adminTypes.LOGIN, {
+      username: this.username,
+      password: this.password
     })
   }
+
 }
