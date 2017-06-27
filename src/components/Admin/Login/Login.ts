@@ -25,11 +25,27 @@ export default class extends Vue {
 
   }
 
-  public login() {
-    adminStore.dispatch(adminTypes.LOGIN, {
-      username: this.username,
-      password: this.password
-    })
+  public async login() {
+    // adminStore.dispatch(adminTypes.LOGIN, {
+    //   username: this.username,
+    //   password: this.password
+    // })
+    try {
+      if (await User.login(this.username, this.password)) {
+        adminStore.state.username = this.username
+        adminStore.dispatch(adminTypes.LOAD_SERVER_USER_INFO)
+        this.$router.push({
+          path: '/admin'
+        })
+        Vue.toasted.success('登录成功', {
+          theme: "outline",
+          position: "bottom-center",
+          duration : 1500
+        })
+      }
+    } catch (e) {
+
+    }
   }
 
 }

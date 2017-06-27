@@ -6,6 +6,7 @@ import Config from '../config/config'
 import axios from './http'
 import * as ts from "typescript/lib/tsserverlibrary";
 import Err = ts.server.Msg.Err;
+import router from "../router/index";
 
 export default class {
   /**
@@ -56,7 +57,9 @@ export default class {
   static async logout(username) {
     const res = await axios.delete(`sessions/logout`)
     if (res.data && res.status === 204) {
-      //todo 登出成功
+      router.push({
+        path: '/login'
+      })
     } else {
       return false
     }

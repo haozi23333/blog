@@ -1,14 +1,35 @@
 <div class="admin-nav">
   <nav>
+    <!--<ul>-->
+    <!--<li v-for="(navigation, index) in adminStore.state.navigations" role="presentation">-->
+    <!--<router-link :to="navigation.path">-->
+    <!--<a :herf="navigation.path" :class="{'active': index === active}" @click="selectNavigations(index)">{{navigation.title}}</a>-->
+    <!--</router-link>-->
+    <!--</li>-->
+    <!--&lt;!&ndash;<li>&ndash;&gt;-->
+    <!--&lt;!&ndash;<a href="/"></a>&ndash;&gt;-->
+    <!--&lt;!&ndash;</li>&ndash;&gt;-->
+    <!--</ul>-->
+
     <ul>
-      <li v-for="(navigation, index) in store.state.navigations" role="presentation">
-        <router-link :to="navigation.path">
-          <a :herf="navigation.path" :class="{'active': index === active}" @click="selectNavigations(index)">{{navigation.title}}</a>
+      <li role="presentation">
+        <a @click="createPost">new Post</a>
+      </li>
+      <li role="presentation">
+        <router-link to="/admin/posts">
+          post list
         </router-link>
       </li>
-      <li @click="logout">
-        logout
+      <li role="presentation">
+        <router-link to="/admin/setting">
+          setting
+        </router-link>
       </li>
     </ul>
+
+    <div @click="logout" class="footer">
+      logout
+    </div>
   </nav>
+
 </div>

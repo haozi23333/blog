@@ -30,7 +30,7 @@ axios.interceptors.response.use((response) => {
        * 没有权限
        */
       case 401:
-        Vue.toasted.success('老哥你没有权限访问这个东西', {
+        Vue.toasted.success('老哥你没有权限访问这个东西, 尝试登录吧~', {
           theme: "outline",
           position: "bottom-center",
           duration : 1500
@@ -40,7 +40,7 @@ axios.interceptors.response.use((response) => {
         })
         break
       case 400:
-        Vue.toasted.success(error.response.data.message, {
+        Vue.toasted.error(error.response.data.message, {
           theme: "outline",
           position: "bottom-center",
           duration : 1500

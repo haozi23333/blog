@@ -11,6 +11,9 @@ import remark = require('remark')
 import remarkHtml = require('remark-html')
 import qwq from 'remark-haozi-extend'
 import Posts from '../api/posts'
+import toasted from '../util/toasted'
+import router from "../router/index";
+import adminStore from './admin'
 
 Vue.use(Vuex)
 
@@ -29,16 +32,12 @@ export default new Vuex.Store({
      * 在本地保存
      * @param state
      */
-    [editorTypes.SAVE_POST_LOCALSTORAGE] (state, username) {
-      localStorage.setItem(`post-${username}-${state.post.postId}`, JSON.stringify({
+    [editorTypes.SAVE_POST_LOCALSTORAGE] (state) {
+      localStorage.setItem(`post-${adminStore.state.username}-${state.post.postId}`, JSON.stringify({
         ...state.post,
         saveTime: new Date()
       }))
-      Vue.toasted.success('save localStorage success', {
-        theme: "outline",
-        position: "bottom-center",
-        duration : 500
-      })
+      toasted.success(`postId -> ${state.post.postId} save localStorage success`,)
     },
     /**
      * 设置markdown
@@ -64,6 +63,9 @@ export default new Vuex.Store({
         ...state.post,
         ...post
       }
+    },
+    [editorTypes.SAVE_POST_SERVER_SUCCESS] (state) {
+      toasted.success(`postId -> ${state.post.postId} save server success`)
     }
   },
   actions: {
@@ -72,7 +74,8 @@ export default new Vuex.Store({
      * @param commit
      * @returns {Promise<void>}
      */
-    async [editorTypes.SAVE_POST_SERVER] ({commit}) {
+    async [editorTypes.SAVE_POST_SERVER] ({commit, state}) {
+      await Posts.savePost(state.post)
       commit(editorTypes.SAVE_POST_LOCALSTORAGE)
     },
     /**
@@ -98,16 +101,12 @@ export default new Vuex.Store({
      * @param post
      */
     [editorTypes.LOAD_POST_LOCALSTORAGE] ({dispatch, commit}, postId) {
-      const post = localStorage.getItem(`post-${postId}`)
+      const post = localStorage.getItem(`post-${adminStore.state.username}-${postId}`)
       if (!post) {
         dispatch(editorTypes.LOAD_POST_SERVER, postId)
       } else  {
         commit(editorTypes.UPDATE_POST, JSON.parse(post))
-        Vue.toasted.success('load localStorage success', {
-          theme: "outline",
-          position: "bottom-center",
-          duration : 500
-        })
+        toasted.success('load localStorage success')
       }
     },
     /**
@@ -126,5 +125,23 @@ export default new Vuex.Store({
         console.log('load error')
       }
     },
+    async [editorTypes.CREATE_POST] ({commit}) {
+      try {
+        commit(editorTypes.SAVE_POST_LOCALSTORAGE)
+        const newPost = await Posts.createPost()
+        if (newPost) {
+          router.push({
+            path: `/admin/editor/${newPost.postId}`
+          })
+          toasted.success('创建成功')
+        } else {
+          toasted.success('新文章创建失败')
+        }
+        commit(editorTypes.UPDATE_POST, newPost)
+
+      } catch (e) {
+
+      }
+    }
   }
 })

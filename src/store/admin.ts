@@ -26,10 +26,10 @@ export default new Vuex.Store({
         path: '/admin/setting',
         title: '设置'
       },
-      {
-        path: '/admin/haozi',
-        title: '导航4'
-      }
+      // {
+      //   path: '/admin/haozi',
+      //   title: '导航4'
+      // }
     ],
     username: '',
     user: {
@@ -39,6 +39,7 @@ export default new Vuex.Store({
   mutations: {
     [adminTypes.SET_USER] (state, user) {
       localStorage.setItem('username', user.name)
+      localStorage.setItem('user', JSON.stringify(user))
       state.user = user
       state.username = user.name
     }
@@ -52,7 +53,7 @@ export default new Vuex.Store({
     async [adminTypes.LOAD_LOCAL_USER_INFO] ({dispatch, state}) {
       state.user =  JSON.parse(localStorage.getItem('user'))
       state.username = localStorage.getItem('username')
-      if (state.username !== ''){
+      if (state.username !== null && state.username !== ''){
         console.log(state.username)
         dispatch(adminTypes.LOAD_SERVER_USER_INFO)
       }
@@ -75,17 +76,7 @@ export default new Vuex.Store({
      * @returns {Promise<void>}
      */
     async [adminTypes.LOGIN] ({dispatch, state}, {username, password}) {
-      try {
-        if (await User.login(username, password)) {
-          state.username = username
-          dispatch(adminTypes.LOAD_SERVER_USER_INFO)
-          router.push({
-            path: '/admin'
-          })
-        }
-      } catch (e) {
 
-      }
     },
     /**
      * 登出  = =

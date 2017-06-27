@@ -112,7 +112,7 @@ router.beforeEach((to, from, next) => {
      * 加载本地的token值
      */
     adminStore.dispatch(adminTypes.LOAD_LOCAL_USER_INFO)
-    if (adminStore.state.username === '') {
+    if (adminStore.state.username === '' || adminStore.state.user === null) {
       next({
         path: 'login'
       })
