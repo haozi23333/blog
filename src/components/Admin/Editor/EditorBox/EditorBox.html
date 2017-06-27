@@ -3,6 +3,7 @@
     <input @change="onSaveLocationChange" type="text" placeholder="Your Post Title" v-model.trim="editorStore.state.post.title">
     <a @click="save">Save</a>
     <a><Icon name="cog"></Icon></a>
+    <a @click="remove"><Icon name="trash-o"></Icon></a>
     <a @click="reload"><Icon name="refresh"></Icon></a>
     <select v-model='editorStore.state.savelocation' @change="onSaveLocationChange">
       <option selected value="localStorage">localStorage</option>

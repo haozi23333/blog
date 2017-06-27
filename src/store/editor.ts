@@ -32,7 +32,7 @@ export default new Vuex.Store({
      * 在本地保存
      * @param state
      */
-    [editorTypes.SAVE_POST_LOCALSTORAGE] (state) {
+      [editorTypes.SAVE_POST_LOCALSTORAGE] (state) {
       localStorage.setItem(`post-${adminStore.state.username}-${state.post.postId}`, JSON.stringify({
         ...state.post,
         saveTime: new Date()
@@ -44,7 +44,7 @@ export default new Vuex.Store({
      * @param state
      * @param newMarkdown
      */
-    [editorTypes.UPDATE_EDITOR_MARKDOWN] (state, newMarkdown) {
+      [editorTypes.UPDATE_EDITOR_MARKDOWN] (state, newMarkdown) {
       state.post.markdown = newMarkdown
       state.post.html = String(
         remark()
@@ -58,7 +58,7 @@ export default new Vuex.Store({
      * @param state
      * @param post
      */
-    [editorTypes.UPDATE_POST] (state, post) {
+      [editorTypes.UPDATE_POST] (state, post) {
       state.post = {
         ...state.post,
         ...post
@@ -92,7 +92,7 @@ export default new Vuex.Store({
      * @param markdown
      */
       [editorTypes.CHANGE_MARKDOWN] ({commit}, markdown) {
-        commit(editorTypes.UPDATE_EDITOR_MARKDOWN, markdown)
+      commit(editorTypes.UPDATE_EDITOR_MARKDOWN, markdown)
 
     },
     /**
@@ -100,7 +100,7 @@ export default new Vuex.Store({
      * @param state
      * @param post
      */
-    [editorTypes.LOAD_POST_LOCALSTORAGE] ({dispatch, commit}, postId) {
+      [editorTypes.LOAD_POST_LOCALSTORAGE] ({dispatch, commit}, postId) {
       const post = localStorage.getItem(`post-${adminStore.state.username}-${postId}`)
       if (!post) {
         dispatch(editorTypes.LOAD_POST_SERVER, postId)
@@ -126,21 +126,26 @@ export default new Vuex.Store({
       }
     },
     async [editorTypes.CREATE_POST] ({commit}) {
-      try {
-        commit(editorTypes.SAVE_POST_LOCALSTORAGE)
-        const newPost = await Posts.createPost()
-        if (newPost) {
-          router.push({
-            path: `/admin/editor/${newPost.postId}`
-          })
-          toasted.success('创建成功')
-        } else {
-          toasted.success('新文章创建失败')
-        }
-        commit(editorTypes.UPDATE_POST, newPost)
-
-      } catch (e) {
-
+      commit(editorTypes.SAVE_POST_LOCALSTORAGE)
+      const newPost = await Posts.createPost()
+      if (newPost) {
+        router.push({
+          path: `/admin/editor/${newPost.postId}`
+        })
+        toasted.success('创建成功')
+      } else {
+        toasted.success('新文章创建失败')
+      }
+      commit(editorTypes.UPDATE_POST, newPost)
+    },
+    async [editorTypes.DELETE_POPST] ({commit, state}) {
+      if (await Posts.deletePost(state.post.postId)) {
+        commit(editorTypes.UPDATE_POST, {})
+        localStorage.removeItem(`post-${adminStore.state.username}-${state.post.postId}`)
+        router.push({
+          path: '/admin/posts'
+        })
+        toasted.success('删除成功')
       }
     }
   }

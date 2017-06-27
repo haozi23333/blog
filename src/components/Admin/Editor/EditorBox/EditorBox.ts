@@ -12,6 +12,7 @@ import 'vue-awesome/icons/refresh'
 import adminStore from '../../../../store/admin'
 import editorStore from '../../../../store/editor'
 import editorTypes from '../../../../store/editorTypes'
+import 'vue-awesome/icons/trash-o'
 
 @Component({
   template: require('./EditorBox.html'),
@@ -68,11 +69,15 @@ export default class extends Vue {
    * 重新从本地加载数据 -> 放弃
    */
   private reload () {
-    if(this.editorStore.state.savelocation === 'server') {
-      this.editorStore.dispatch(editorTypes.LOAD_POST_SERVER)
-    } else {
-      this.editorStore.dispatch(editorTypes.LOAD_POST_LOCALSTORAGE)
-    }
+    // if(this.editorStore.state.savelocation === 'server') {
+    //   this.editorStore.dispatch(editorTypes.LOAD_POST_SERVER)
+    // } else {
+    //   this.editorStore.dispatch(editorTypes.LOAD_POST_LOCALSTORAGE)
+    // }
+    this.editorStore.dispatch(this.editorStore.state.savelocation === 'server' ? editorTypes.LOAD_POST_SERVER: editorTypes.LOAD_POST_LOCALSTORAGE )
   }
 
+  private async remove () {
+    this.editorStore.dispatch(editorTypes.DELETE_POPST)
+  }
 }

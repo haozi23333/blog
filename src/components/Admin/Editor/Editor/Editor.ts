@@ -23,8 +23,8 @@ export default class extends Vue {
   //   ...adminStore,
   //   ...editorStore
   // })
-  editorStore = editorStore
-  adminStore = adminStore
+  private editorStore = editorStore
+  private adminStore = adminStore
   public markdown = '1'
   public $refs: {
     textarea: HTMLTextAreaElement
@@ -35,7 +35,7 @@ export default class extends Vue {
     this.editorStore.dispatch( editorTypes.CHANGE_MARKDOWN, val)
   }
 
-  keyDown (e) {
+  public keyDown (e) {
     /**
      * tab
      */
@@ -79,7 +79,7 @@ export default class extends Vue {
     // })
   }
 
-  mounted () {
+  public mounted () {
     this.$watch(() => {
       return this.editorStore.state.post.markdown
     }, (newValue) => {
@@ -87,4 +87,5 @@ export default class extends Vue {
     })
     this.globalKeyDown()
   }
+
 }
