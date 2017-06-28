@@ -25,5 +25,6 @@ interface IPost{
   publishDate: Date
   publishBy: string
   excerpt: string
-  commits: ICommit[]
+  commits: ICommit[],
+  edit: boolean
 }

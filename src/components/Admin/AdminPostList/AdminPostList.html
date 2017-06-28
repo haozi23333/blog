@@ -2,7 +2,17 @@
   <div class="admin-post-list">
     <ul>
       <li v-for="post in posts" @click="preview(post.postId)">
-        title: {{ post.title}}
+        <!--<router-link :to='"/admin/editor/" + post.postId'>-->
+        <a>
+          <div class="admin-postlist-item">
+            <span>#{{ post.postId}} - {{ post.title}}</span>
+            <div>
+              <img :src='"/file/" + post.createBy + ".png"' alt="">
+              <a class="edit">{{ ifHasLocalStorageVersion(post) ? 'Draft' : '' }}</a>
+            </div>
+          </div>
+        </a>
+        <!--</router-link>-->
       </li>
     </ul>
   </div>

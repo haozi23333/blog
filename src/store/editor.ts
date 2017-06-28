@@ -45,6 +45,7 @@ export default new Vuex.Store({
      * @param newMarkdown
      */
       [editorTypes.UPDATE_EDITOR_MARKDOWN] (state, newMarkdown) {
+      (state.post as IPost).edit = true
       state.post.markdown = newMarkdown
       state.post.html = String(
         remark()
@@ -64,7 +65,12 @@ export default new Vuex.Store({
         ...post
       }
     },
-    [editorTypes.SAVE_POST_SERVER_SUCCESS] (state) {
+    /**
+     * 保存成功的回调
+     * @param state
+     */
+      [editorTypes.SAVE_POST_SERVER_SUCCESS] (state) {
+      (state.post as IPost).edit = false
       toasted.success(`postId -> ${state.post.postId} save server success`)
     }
   },
@@ -76,6 +82,7 @@ export default new Vuex.Store({
      */
     async [editorTypes.SAVE_POST_SERVER] ({commit, state}) {
       await Posts.savePost(state.post)
+      commit(editorTypes.SAVE_POST_SERVER_SUCCESS)
       commit(editorTypes.SAVE_POST_LOCALSTORAGE)
     },
     /**
@@ -91,9 +98,8 @@ export default new Vuex.Store({
      * @param state
      * @param markdown
      */
-      [editorTypes.CHANGE_MARKDOWN] ({commit}, markdown) {
+    [editorTypes.CHANGE_MARKDOWN] ({commit}, markdown) {
       commit(editorTypes.UPDATE_EDITOR_MARKDOWN, markdown)
-
     },
     /**
      *  从本地取回最新的blog， 本地没有数据的话就从服务器取回
@@ -120,11 +126,17 @@ export default new Vuex.Store({
       try {
         const post =  await Posts.getPostById(postId)
         commit(editorTypes.UPDATE_POST, post)
-        dispatch(editorTypes.CHANGE_MARKDOWN, post.markdown)
+        await dispatch(editorTypes.CHANGE_MARKDOWN, post.markdown)
+        dispatch(editorTypes.SAVE_POST_LOCALSTORAGE)
       } catch (e) {
         console.log('load error')
       }
     },
+    /**
+     * 创建新的 post
+     * @param commit
+     * @returns {Promise<void>}
+     */
     async [editorTypes.CREATE_POST] ({commit}) {
       commit(editorTypes.SAVE_POST_LOCALSTORAGE)
       const newPost = await Posts.createPost()
@@ -138,6 +150,12 @@ export default new Vuex.Store({
       }
       commit(editorTypes.UPDATE_POST, newPost)
     },
+    /**
+     * 删除 post
+     * @param commit
+     * @param state
+     * @returns {Promise<void>}
+     */
     async [editorTypes.DELETE_POPST] ({commit, state}) {
       if (await Posts.deletePost(state.post.postId)) {
         commit(editorTypes.UPDATE_POST, {})

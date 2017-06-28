@@ -26,20 +26,21 @@ export default class extends Vue {
     html: '',
     excerpt: ''
   }
-  mounted () {
-//      posts.getPostById(this.postId).then()
+  public mounted () {
     this.postId = this.$route.params.postId || this.postId
     this.getData().then(() => {})
   }
-  async getData () {
+  public async getData () {
     const post = await Posts.getPostById(this.postId)
     if (post) {
       this.loaded = true
       this.post = post
+      console.log(this.post.excerpt)
       this.post.excerpt = (`<h1 role="title">
-      <router-link :to="postUrl">${this.post.title}</router-link>
+      <a href="${this.postUrl}">${this.post.title}</a>
     </h1>
     <time>${formatDate(this.post.createDate)}</time>` + this.post.excerpt)
+      console.log(this.post.excerpt)
     }
   }
 }

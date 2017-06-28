@@ -27,7 +27,7 @@ export default class extends Vue {
    * 两个store
    * @type {Store<{navigations: [{path: string; title: string},{path: string; title: string},{path: string; title: string},{path: string; title: string}]}>}
    */
-  adminStore = adminStore
+  // adminStore = adminStore
   editorStore = editorStore
 
   /**
@@ -69,14 +69,13 @@ export default class extends Vue {
    * 重新从本地加载数据 -> 放弃
    */
   private reload () {
-    // if(this.editorStore.state.savelocation === 'server') {
-    //   this.editorStore.dispatch(editorTypes.LOAD_POST_SERVER)
-    // } else {
-    //   this.editorStore.dispatch(editorTypes.LOAD_POST_LOCALSTORAGE)
-    // }
-    this.editorStore.dispatch(this.editorStore.state.savelocation === 'server' ? editorTypes.LOAD_POST_SERVER: editorTypes.LOAD_POST_LOCALSTORAGE )
+    this.editorStore.dispatch(editorTypes.LOAD_POST_SERVER, this.$route.params.postId)
   }
 
+  /**
+   * 删除这个文章
+   * @returns {Promise<void>}
+   */
   private async remove () {
     this.editorStore.dispatch(editorTypes.DELETE_POPST)
   }
