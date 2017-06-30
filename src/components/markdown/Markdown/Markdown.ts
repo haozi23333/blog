@@ -3,7 +3,7 @@
  */
 import './Markdown.sass'
 import Vue from 'vue'
-import Component from 'vue-class-component'
+import {Component, Prop, Watch} from 'vue-property-decorator'
 import "vue-awesome/icons/cog"
 import http from '../../../api/http'
 import toasted from "../../../util/toasted"
@@ -58,11 +58,13 @@ export default class extends Vue {
   }
   public async mounted() {
     await this.aceInit()
-    setInterval(() => {
-      this.aceInit().then(_=>{})
-    }, 1000)
   }
 
+  /**
+   * 动态加载库
+   * @param url
+   * @returns {Promise<void>}
+   */
   public async getScript(url) {
     const {status, data} = await http.get(url)
     if (status === 200 && data) {
@@ -70,5 +72,9 @@ export default class extends Vue {
     } else {
       throw  new Error("get error")
     }
+  }
+
+  public setHtml(html: string) {
+    this.$el.innerHTML = html
   }
 }

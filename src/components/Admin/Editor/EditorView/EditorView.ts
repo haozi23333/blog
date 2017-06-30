@@ -17,4 +17,11 @@ import editorStore from '../../../../store/editor'
 export default class extends Vue {
   adminStore = adminStore
   editorStore = editorStore
+  public mounted() {
+    this.$watch(() => {
+      return this.editorStore.state.post.html
+    }, (val: string) => {
+      (this.$refs.view as Markdown).setHtml(val)
+    })
+  }
 }
