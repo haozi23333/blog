@@ -80,6 +80,11 @@ export default class extends Vue {
   }
 
   public mounted () {
+
+    setInterval(_ => {
+      this.editorStore.dispatch(editorTypes.SAVE_POST_LOCALSTORAGE)
+    }, 10000)
+
     this.$watch(() => {
       return this.editorStore.state.post.markdown
     }, (newValue) => {
