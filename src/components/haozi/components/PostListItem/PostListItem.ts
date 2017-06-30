@@ -20,7 +20,7 @@ export default class extends Vue {
   @Prop()
   postId:string
   loaded = false
-  postUrl = `/haozi/post/${this.postId}`
+  postUrl = `/post/${this.postId}`
   post = {
     title: '',
     html: '',

@@ -1,4 +1,5 @@
 @import "../../../assets/css/global.sass"
+@import "../../../assets/css/mq"
 
 .haozi-footer
   flex: 0 0 auto
@@ -15,3 +16,8 @@
     line-height: 60px
     color: #2c3e50
     text-align: center
+
+    @include mq($until: tablet)
+      line-height: 30px
+      a
+        display: block

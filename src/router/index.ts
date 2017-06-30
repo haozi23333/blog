@@ -13,13 +13,15 @@ import {AdminPostList} from '../components/Admin'
 import adminStore from '../store/admin'
 import AdminLogin from '../components/Admin/Login/Login'
 import adminTypes from '../store/adminTypes'
+import Project from '../components/haozi/Project/Project'
 
 Vue.use(Router)
 const router =  new Router({
   mode: "history",
   routes: [
     {
-      path: '/haozi',
+      // path: '/haozi',
+      path: '/',
       name: 'haozi index',
       component: Haozi,
       children: [
@@ -42,6 +44,11 @@ const router =  new Router({
           path: 'post/:postId',
           name: 'post -> ',
           component: Post
+        },
+        {
+          path: 'project',
+          name: 'project',
+          component: Project
         }
       ]
     },

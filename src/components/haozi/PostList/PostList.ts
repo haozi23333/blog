@@ -7,6 +7,8 @@ import './PostList.sass'
 import Vue from 'vue'
 import Component from 'vue-class-component'
 import {PostListItem} from '../index'
+import Posts from "../../../api/posts";
+
 
 @Component({
   template: require('./PostList.html'),
@@ -16,5 +18,11 @@ import {PostListItem} from '../index'
   name: 'PostList'
 })
 export default class extends Vue {
-
+  private postList: IPost[] = []
+  public async mounted() {
+    await this.getPostList()
+  }
+  public async getPostList() {
+    this.postList = await Posts.getPostList()
+  }
 }

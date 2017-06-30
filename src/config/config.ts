@@ -3,5 +3,5 @@
  */
 
 export default {
-  apiUrl: 'http://haozi.com/api'
+  apiUrl: '/api'
 }

@@ -1,6 +1,6 @@
 <section class="haozi-posts">
-  <!--<h1>文章列表</h1>-->
-  <PostListItem v-once postId="1"></PostListItem>
-  <PostListItem v-once postId="2"></PostListItem>
-  <PostListItem v-once postId="3"></PostListItem>
+  <h1>文章列表</h1>
+  <div  v-for="post in postList" >
+    <PostListItem v-once :postId="post.postId"></PostListItem>
+  </div>
 </section>

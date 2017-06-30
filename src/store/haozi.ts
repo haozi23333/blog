@@ -20,19 +20,23 @@ export default new Vuex.Store({
     },
     navigations: [
       {
-        path: '/haozi',
+        path: '/',
         title: 'HOME'
       },
       {
-        path: '/haozi/markdown',
+        path: '/markdown',
         title: 'Markdown Test'
       },
       {
-        path: '/haozi/posts',
+        path: '/posts',
         title: '文章列表'
       },
       {
-        path: '/haozi/about',
+        path: '/project',
+        title: 'Project'
+      },
+      {
+        path: '/about',
         title: 'about'
       }]
   },
