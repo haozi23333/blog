@@ -35,12 +35,10 @@ export default class extends Vue {
     if (post) {
       this.loaded = true
       this.post = post
-      console.log(this.post.excerpt)
       this.post.excerpt = (`<h1 role="title">
       <a href="${this.postUrl}">${this.post.title}</a>
     </h1>
     <time>${formatDate(this.post.createDate)}</time>` + this.post.excerpt)
-      console.log(this.post.excerpt)
     }
   }
 }

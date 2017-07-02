@@ -76,5 +76,6 @@ export default class extends Vue {
 
   public setHtml(html: string) {
     this.$el.innerHTML = html
+    this.aceInit()
   }
 }
