@@ -14,13 +14,18 @@
 
     input
       height: 40px
-      width: calc(100% - 330px)
 
       margin-left: 10px
       margin-right: 10px
       box-shadow: none
       border: none
 
+      &[type="text"]
+        width: calc(100% - 430px)
+
+      &[type="checkbox"]
+        width: 1em
+        height: auto
       &:focus
         outline: none
   .admin-editor-selectSaveLocation

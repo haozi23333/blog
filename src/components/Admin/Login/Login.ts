@@ -9,6 +9,7 @@ import {Component} from 'vue-property-decorator'
 import adminStore from '../../../store/admin'
 import adminTypes from '../../../store/adminTypes'
 import User from '../../../api/user'
+import toasted from "../../../util/toasted";
 
 @Component({
   template: require('./Login.html'),
@@ -34,14 +35,8 @@ export default class extends Vue {
       if (await User.login(this.username, this.password)) {
         adminStore.state.username = this.username
         adminStore.dispatch(adminTypes.LOAD_SERVER_USER_INFO)
-        this.$router.push({
-          path: '/admin'
-        })
-        Vue.toasted.success('登录成功', {
-          theme: "outline",
-          position: "bottom-center",
-          duration : 1500
-        })
+        this.$router.go(-1)
+        toasted.success('登录成功')
       }
     } catch (e) {
 

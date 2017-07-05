@@ -10,6 +10,7 @@ import Vue from 'vue'
 import axios from 'axios'
 import config from '../config/config'
 import router from '../router'
+import toasted from "../util/toasted";
 
 // axios 配置
 axios.defaults.timeout = 5000
@@ -25,26 +26,17 @@ axios.interceptors.response.use((response) => {
        * 不存在 = =
        */
       case 404:
+
         break
       /**
        * 没有权限
        */
       case 401:
-        Vue.toasted.success('老哥你没有权限访问这个东西, 尝试登录吧~', {
-          theme: "outline",
-          position: "bottom-center",
-          duration : 1500
-        })
-        router.replace({
-          path: 'login'
-        })
+        toasted.error('老哥你没有权限访问这个东西, 尝试登录吧~')
+        router.push('/login')
         break
       case 400:
-        Vue.toasted.error(error.response.data.message, {
-          theme: "outline",
-          position: "bottom-center",
-          duration : 1500
-        })
+        toasted.error(error.response.data.message)
         break
     }
     return Promise.reject(error.response.data)

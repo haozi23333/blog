@@ -26,7 +26,7 @@ export default class extends Vue {
   }
 
   public async loadPosts () {
-    this.posts = await Posts.getPostList()
+    this.posts = await Posts.getPostList('?isShow=false')
   }
 
   public preview (postId) {

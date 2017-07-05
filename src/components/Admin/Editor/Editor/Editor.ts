@@ -25,7 +25,8 @@ export default class extends Vue {
   // })
   private editorStore = editorStore
   private adminStore = adminStore
-  public markdown = '1'
+  private markdown = '1'
+  private autoSaveTimmer = null
   public $refs: {
     textarea: HTMLTextAreaElement
   }
@@ -35,6 +36,13 @@ export default class extends Vue {
     this.editorStore.dispatch( editorTypes.CHANGE_MARKDOWN, val)
   }
 
+  /**
+   * 处理一下及格基本的快捷键
+   * 1. ctrl + s
+   * 2. tab
+   * @param e
+   * @return {boolean}
+   */
   public keyDown (e) {
     /**
      * tab
@@ -54,13 +62,8 @@ export default class extends Vue {
      */
     if (e.ctrlKey === true && (e.keyCode === 83 || e.keyCode === 115)) {
       event.preventDefault()
-      console.log('save')
-    if (this.editorStore.state.savelocation === 'localStorage') {
-      this.editorStore.dispatch(editorTypes.SAVE_POST_LOCALSTORAGE)
-    } else {
-      this.editorStore.dispatch(editorTypes.SAVE_POST_SERVER)
-    }
-    return false
+      this.save(this.editorStore.state.savelocation)
+      return false
     }
   }
 
@@ -79,18 +82,48 @@ export default class extends Vue {
     // })
   }
 
-  public mounted () {
-
-    setInterval(_ => {
+  public save(savelocation: string) {
+    if (savelocation === 'localStorage') {
       this.editorStore.dispatch(editorTypes.SAVE_POST_LOCALSTORAGE)
-    }, 10000)
+    } else {
+      this.editorStore.dispatch(editorTypes.SAVE_POST_SERVER)
+    }
+  }
+
+  public mounted () {
+    this.autoSave()
 
     this.$watch(() => {
       return this.editorStore.state.post.markdown
     }, (newValue) => {
       this.$refs.textarea.value = newValue
     })
+
     this.globalKeyDown()
+  }
+
+
+  /**
+   * 被销毁之前调用
+   */
+  public beforeDestroy() {
+    /**
+     * 停止 自动保存
+     */
+    if (this.autoSaveTimmer) {
+      clearInterval(this.autoSaveTimmer)
+    }
+  }
+
+  /**
+   * 自动保存  保存到本地
+   */
+  public autoSave() {
+    if (!this.autoSaveTimmer) {
+      this.autoSaveTimmer = setInterval(_ => {
+        this.save('localStorage')
+      }, 10000)
+    }
   }
 
 }

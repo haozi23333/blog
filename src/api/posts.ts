@@ -20,11 +20,11 @@ export default class Posts {
    * 获取 文章列表
    * @returns {Promise<Array>}
    */
-  static async getPostList (): Promise<IPost[] | null> {
+  static async getPostList (param: string = '?isShow=true'): Promise<IPost[] | null> {
     const {
       data,
       status
-    } = await axios.get(`posts`)
+    } = await axios.get(`posts${ param}`)
     return status === 200? data : null
   }
 

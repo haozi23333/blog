@@ -141,9 +141,7 @@ export default new Vuex.Store({
       commit(editorTypes.SAVE_POST_LOCALSTORAGE)
       const newPost = await Posts.createPost()
       if (newPost) {
-        router.push({
-          path: `/admin/editor/${newPost.postId}`
-        })
+        router.push(`/admin/editor/${newPost.postId}`)
         toasted.success('创建成功')
       } else {
         toasted.success('新文章创建失败')
@@ -160,9 +158,7 @@ export default new Vuex.Store({
       if (await Posts.deletePost(state.post.postId)) {
         commit(editorTypes.UPDATE_POST, {})
         localStorage.removeItem(`post-${adminStore.state.username}-${state.post.postId}`)
-        router.push({
-          path: '/admin/posts'
-        })
+        router.push('/admin/posts')
         toasted.success('删除成功')
       }
     }
