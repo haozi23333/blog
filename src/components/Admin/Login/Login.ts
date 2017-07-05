@@ -35,7 +35,7 @@ export default class extends Vue {
       if (await User.login(this.username, this.password)) {
         adminStore.state.username = this.username
         adminStore.dispatch(adminTypes.LOAD_SERVER_USER_INFO)
-        this.$router.go(-1)
+        this.$router.push('/admin')
         toasted.success('登录成功')
       }
     } catch (e) {
