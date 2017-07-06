@@ -17,16 +17,19 @@ import adminStore from '../../../store/admin'
   name: 'AdminPostList'
 })
 export default class extends Vue {
-  posts: any[] = []
-  selectpost = {
+
+  private posts: IPost[] = []
+
+  private selectpost = {
     html: '????'
-  }
-  mounted () {
+  } as IPost
+
+  public mounted () {
     this.loadPosts().then(_ => {})
   }
 
   public async loadPosts () {
-    this.posts = await Posts.getPostList('?isShow=false')
+    this.posts = await Posts.getPostList('?isShow=true')
   }
 
   public preview (postId) {

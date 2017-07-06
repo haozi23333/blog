@@ -7,12 +7,12 @@ import './EditorBox.sass'
 import Vue from 'vue'
 import {Component} from 'vue-property-decorator'
 import {Editor, EditorView} from '../../index'
-import 'vue-awesome/icons/cog'
-import 'vue-awesome/icons/refresh'
-import adminStore from '../../../../store/admin'
 import editorStore from '../../../../store/editor'
 import editorTypes from '../../../../store/editorTypes'
+
 import 'vue-awesome/icons/trash-o'
+import 'vue-awesome/icons/cog'
+import 'vue-awesome/icons/refresh'
 
 @Component({
   template: require('./EditorBox.html'),

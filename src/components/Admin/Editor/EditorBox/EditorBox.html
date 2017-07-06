@@ -2,7 +2,7 @@
   <div class="admin-editor-title">
     <input @change="onSaveLocationChange" type="text" placeholder="Your Post Title" v-model.trim="editorStore.state.post.title">
     <a @click="save">Save</a>
-    <a>ifShow <input type="checkbox" v-model="editorStore.state.isShow"></a>
+    <a>ifShow <input type="checkbox" v-model="editorStore.state.post.isShow"></a>
     <a><Icon name="cog"></Icon></a>
     <a @click="remove"><Icon name="trash-o"></Icon></a>
     <a @click="reload"><Icon name="refresh"></Icon></a>

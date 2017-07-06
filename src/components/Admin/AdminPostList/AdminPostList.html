@@ -9,6 +9,7 @@
             <div>
               <img :src='"/file/" + post.createBy + ".png"' alt="">
               <a class="edit">{{ ifHasLocalStorageVersion(post) ? 'Draft' : '' }}</a>
+              <a class="publish">{{ post.isShow ? '' : 'unpublish' }}</a>
             </div>
           </div>
         </a>
