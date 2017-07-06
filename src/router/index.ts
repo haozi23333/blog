@@ -23,7 +23,8 @@ const router =  new Router({
       // path: '/haozi',
       path: '/',
       name: 'haozi index',
-      component: PostList,
+      component: Haozi,
+      redirect: '/posts',
       children: [
         {
           path: 'markdown',
