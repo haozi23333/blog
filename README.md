@@ -3,9 +3,12 @@
 > A Vue.js project.
 于2017年5月28日开工
 
+由于没有设计师, 拿了比较喜欢的 vue 的风格
 
 ## todo
-todo已死
+
+  * 写测试
+  * 服务器渲染
 
 ## 用到了的资料
 * [Vue.js 官方文档](https://cn.vuejs.org/v2/guide/)
