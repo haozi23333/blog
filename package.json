@@ -14,7 +14,6 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
-    "ace": "ajaxorg/ace",
     "animate.css": "^3.5.2",
     "axios": "^0.16.2",
     "babel-plugin-transform-class-properties": "^6.24.1",
