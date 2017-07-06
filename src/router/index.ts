@@ -13,7 +13,7 @@ import {AdminPostList} from '../components/Admin'
 import adminStore from '../store/admin'
 import AdminLogin from '../components/Admin/Login/Login'
 import adminTypes from '../store/adminTypes'
-import Project from '../components/haozi/Project/Project'
+// import Project from '../components/haozi/Project/Project'
 
 Vue.use(Router)
 const router =  new Router({
@@ -45,11 +45,11 @@ const router =  new Router({
           name: 'post -> ',
           component: Post
         },
-        {
-          path: 'project',
-          name: 'project',
-          component: Project
-        }
+        // {
+        //   path: 'project',
+        //   name: 'project',
+        //   component: Project
+        // }
       ]
     },
     {

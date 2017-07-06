@@ -20,7 +20,7 @@ export default new Vuex.Store({
     },
     navigations: [
       {
-        path: '/',
+        path: '/posts',
         title: 'HOME'
       },
       {
@@ -31,10 +31,10 @@ export default new Vuex.Store({
         path: '/posts',
         title: '文章列表'
       },
-      {
-        path: '/project',
-        title: 'Project'
-      },
+      // {
+      //   path: '/project',
+      //   title: 'Project'
+      // },
       {
         path: '/about',
         title: 'about'
