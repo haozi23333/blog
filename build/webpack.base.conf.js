@@ -27,7 +27,6 @@ module.exports = {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
       'haozi': resolve('src/components/haozi'),
-      'keke': resolve('src/components/keke'),
       'emoticon': resolve(('src/assets/emoticon'))
     }
   },
