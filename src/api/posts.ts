@@ -20,7 +20,7 @@ export default class Posts {
    * 获取 文章列表
    * @returns {Promise<Array>}
    */
-  static async getPostList (param: string = '?isShow=true'): Promise<IPost[] | null> {
+  static async getPostList (param: string = '?isShow=false'): Promise<IPost[] | null> {
     const {
       data,
       status
