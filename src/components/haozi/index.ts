@@ -10,6 +10,7 @@ import About from './About/About'
 import Post from './Post/Post'
 import PostListItem from './components/PostListItem/PostListItem'
 import PostList from './PostList/PostList'
+import Disqus from './Disqus/Disqus'
 
 export {
   Post,
@@ -18,6 +19,7 @@ export {
   MobileNavBar,
   About,
   PostListItem,
-  PostList
+  PostList,
+  Disqus
 }
 

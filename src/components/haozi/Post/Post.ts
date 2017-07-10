@@ -12,13 +12,15 @@ import {formatDate} from '../../../util/formatDate'
 import haoziStore from '../../../store/haozi'
 import haoziTypes from '../../../store/haoziTypes'
 import Posts from '../../../api/posts.ts'
+import Disqus from '../Disqus/Disqus'
 
 @Component({
   template: require('./Post.html'),
   name: 'Post',
   components: {
     Markdown,
-    loadOne
+    loadOne,
+    Disqus
   }
 })
 export default class extends Vue {

@@ -6,11 +6,12 @@
   >
     <article role="article" v-if="loaded">
       <h1 role="title">
-        <router-link :to="this.post.postId">{{post.title}}</router-link>
+        <router-link :to="String(post.postId)">{{post.title}}</router-link>
       </h1>
       <time>{{ post.createDate }}</time>
       <Markdown v-html="post.html">
       </Markdown>
+      <Disqus></Disqus>
     </article>
   </transition>
   <transition
