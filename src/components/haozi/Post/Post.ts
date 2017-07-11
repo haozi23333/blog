@@ -27,24 +27,20 @@ export default class extends Vue {
   @Prop({
     default: ''
   })
-  postId: string
-  store = haoziStore
-  loaded = false
-  post = {
-    postId: '',
-    title: '',
-    html: '',
-    excerpt: '',
-    createDate: ''
-  }
-  mounted () {
+  private postId: string
+  private store = haoziStore
+  private loaded = false
+  private post = {} as IPost
+
+  public async mounted () {
     this.post.postId = this.$route.params.postId || this.postId
-    this.getData().then(() => {})
+    await this.getData()
   }
-  destroyed () {
+
+  public destroyed () {
     this.store.commit(haoziTypes.CLOSE_POST)
   }
-  async getData () {
+  private async getData () {
     const post = await Posts.getPostById(this.post.postId)
     if (post) {
       this.store.commit(haoziTypes.OPEN_POST, post)
