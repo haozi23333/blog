@@ -5,15 +5,13 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Haozi from '../components/haozi/Haozi/Haozi'
-import {About, PostList, Post} from '../components/haozi'
-import {Markdown} from '../components'
+import { PostList, Post} from '../components/haozi'
 import Admin from '../components/Admin/Admin/Admin'
 import EditorBox from '../components/Admin/Editor/EditorBox/EditorBox'
 import {AdminPostList} from '../components/Admin'
 import adminStore from '../store/admin'
 import AdminLogin from '../components/Admin/Login/Login'
 import adminTypes from '../store/adminTypes'
-// import Project from '../components/haozi/Project/Project'
 
 Vue.use(Router)
 const router =  new Router({
@@ -27,30 +25,15 @@ const router =  new Router({
       redirect: '/posts',
       children: [
         {
-          path: 'markdown',
-          name: 'markdown',
-          component: Markdown
-        },
-        {
           path: 'posts',
           name: 'PostList',
           component: PostList
-        },
-        {
-          path: 'about',
-          name: 'about',
-          component: About
         },
         {
           path: 'post/:postId',
           name: 'post -> ',
           component: Post
         },
-        // {
-        //   path: 'project',
-        //   name: 'project',
-        //   component: Project
-        // }
       ]
     },
     {

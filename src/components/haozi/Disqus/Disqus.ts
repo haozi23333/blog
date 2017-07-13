@@ -20,7 +20,7 @@ export default class Disqus extends Vue {
      */
     const d = document,
       s = d.createElement('script')
-    s.src = 'https://haozi-moe.disqus.com/embed.js'
+    s.src = 'https://haozinowo.disqus.com/embed.js'
     s.setAttribute('data-timestamp', String(new Date()));
     (d.head || d.body).appendChild(s)
   }

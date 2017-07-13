@@ -24,6 +24,7 @@
     "html-loader": "^0.4.5",
     "node-sass": "^4.5.2",
     "normalize": "^0.3.1",
+    "prerender-spa-plugin": "^2.0.1",
     "remark": "^7.0.1",
     "remark-collapse": "^0.1.2",
     "remark-github": "^7.0.0",

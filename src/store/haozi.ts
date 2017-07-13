@@ -24,21 +24,10 @@ export default new Vuex.Store({
         title: 'HOME'
       },
       {
-        path: '/markdown',
-        title: 'Markdown Test'
-      },
-      {
         path: '/posts',
         title: '文章列表'
-      },
-      // {
-      //   path: '/project',
-      //   title: 'Project'
-      // },
-      {
-        path: '/about',
-        title: 'about'
-      }]
+      }
+     ]
   },
   mutations: {
     [haoziTypes.SWITCH_DEVICE] (state, {isMobile}) {
