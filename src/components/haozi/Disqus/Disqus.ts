@@ -17,6 +17,7 @@ export default class Disqus extends Vue {
     /**
      * Disqus 的 js
      * @type {Document}
+     * 
      */
     const d = document,
       s = d.createElement('script')
