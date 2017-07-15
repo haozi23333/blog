@@ -5,8 +5,6 @@
 import './Disqus.sass'
 import {Component} from 'vue-property-decorator'
 import Vue from 'vue'
-import http from '../../../api/http'
-import toasted from "../../../util/toasted"
 
 @Component({
   template: require('./Disqus.html'),
