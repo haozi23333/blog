@@ -26,4 +26,12 @@ export default class extends Vue {
       }
     })
   }
+
+  private list: {a: number}[] = []
+
+  private add () {
+    this.list.push({
+      a: 2333
+    })
+  }
 }

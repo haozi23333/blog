@@ -1,6 +1,13 @@
-<section class="haozi-posts">
-  <!--<h1>文章列表</h1>-->
-  <div v-for="post in postList" >
-    <PostListItem :postId="post.postId"></PostListItem>
+<div>
+  <section class="haozi-posts">
+    <!--<h1>文章列表</h1>-->
+    <div v-for="(post, index) in data" v-if="data" >
+      <PostListItem :post="post" :index="index"></PostListItem>
+    </div>
+
+  </section>
+  <div class="haozi-posts-pagination">
+    <a :href="prevPage" class="haozi-posts-pagination-left-btn" v-if="prev">prev</a>
+    <a @click="nextPage" class="haozi-posts-pagination-right-btn" v-if="next">next</a>
   </div>
-</section>
+</div>

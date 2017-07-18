@@ -24,8 +24,8 @@ export default class extends Vue {
     html: '????'
   } as IPost
 
-  public mounted () {
-    this.loadPosts().then(_ => {})
+  public async mounted () {
+    await this.loadPosts()
   }
 
   public async loadPosts () {
@@ -53,5 +53,9 @@ export default class extends Vue {
     const localPost = JSON.parse(localStorage.getItem(`post-${adminStore.state.username}-${post.postId}`))
     // console.log(localPost && post.edit)
     return localPost && localPost.edit
+  }
+
+  public openPreView() {
+    window.open(`/post/${this.selectpost.postId}`)
   }
 }
