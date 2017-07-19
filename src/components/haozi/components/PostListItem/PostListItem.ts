@@ -18,7 +18,7 @@ import haoziStore from '../../../../store/haozi'
 })
 export default class extends Vue {
   @Prop()
-  private post:IPost
+  private post: IPost
   @Prop()
   private index: number
 

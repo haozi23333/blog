@@ -31,6 +31,11 @@ const router =  new Router({
           component: PostList
         },
         {
+          path: 'posts/:type',
+          name: 'PostList',
+          component: PostList
+        },
+        {
           path: 'post/:postId',
           name: 'post -> ',
           component: Post
