@@ -7,7 +7,6 @@ import Component from 'vue-class-component'
 import {Prop} from 'vue-property-decorator'
 import {Markdown} from '../../../index'
 import {formatDate} from '../../../../util/formatDate'
-import haoziStore from '../../../../store/haozi'
 
 @Component({
   template: require('./PostListItem.html'),

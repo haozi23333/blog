@@ -29,7 +29,7 @@ export default class extends Vue {
   }
 
   public async loadPosts () {
-    this.posts = await Posts.getPostList('?isShow=true')
+    this.posts = (await Posts.getPostList('?isShow=true')).data
   }
 
   public preview (postId) {
@@ -51,7 +51,6 @@ export default class extends Vue {
    */
   public ifHasLocalStorageVersion(post: IPost): boolean {
     const localPost = JSON.parse(localStorage.getItem(`post-${adminStore.state.username}-${post.postId}`))
-    // console.log(localPost && post.edit)
     return localPost && localPost.edit
   }
 

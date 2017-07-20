@@ -8,7 +8,7 @@ import Vue from 'vue'
 import {PostListItem} from '../index'
 import Posts from "../../../api/posts";
 import {Prop, Component, Watch} from "vue-property-decorator";
-import * as http from "http";
+import http from "../../../api/http";
 
 interface PostListData {
   prev: string,
@@ -47,13 +47,13 @@ export default class extends Vue {
 
   private posts = {} as PostListData
 
-  // todo
   public async mounted() {
     if (this.$route.query.page) {
-      this.page = Number(this.$route.query.page)
+      this.page = Number(this.$route.query.page) || 1
     } else {
       this.page = 1
     }
+    await this.getPostList(this.page)
   }
 
   @Watch('page')
@@ -63,22 +63,24 @@ export default class extends Vue {
 
   @Watch('posts')
   public onPostsChange(posts: PostListData) {
-    this.next = posts.next !== '' ?  `/posts${this.type ? "/" + this.type : ''}/page/${this.page + 1}` : ''
-    this.prev = posts.prev !== '' ?  `/posts${this.type ? "/" + this.type : ''}/page/${this.page - 1}` : ''
+    this.next = posts.next !== '' ?  `/posts${(this.type ? "/" + this.type : '') + posts.next.match(/\?.*/).shift()}`  : ''
+    this.prev = posts.prev !== '' ?  `/posts${(this.type ? "/" + this.type : '') + posts.prev.match(/\?.*/).shift()}`  : ''
   }
 
   @Watch('$route')
   public onRouteChange(to, form) {
     if (to.params) {
       if (to.query.page) {
-        this.page = Number(to.params.page)
+        this.page = Number(to.query.page) || 1
       }
     }
   }
 
   public async getPostList(page: number = 1) {
-    const data = await http.get(`/api/posts${this.type ? "/" + this.type + "/" : ''}?page=${page}`)
-    debugger
+    const {
+      data,
+      status
+    } = await http.get(`/posts${this.type ? "/" + this.type + "/" : ''}?page=${page}`)
     if (data && status === 200) {
       console.log(data)
       this.posts = data
