@@ -5,13 +5,12 @@
 import './Post.sass'
 
 import Vue from 'vue'
-import Component from 'vue-class-component'
 import {Markdown, loadOne} from '../../'
-import {Prop} from 'vue-property-decorator'
+import {Component} from 'vue-property-decorator'
 import {formatDate} from '../../../util/formatDate'
 import haoziStore from '../../../store/haozi'
 import haoziTypes from '../../../store/haoziTypes'
-import Posts from '../../../api/posts.ts'
+import Posts from '../../../api/posts'
 import Disqus from '../Disqus/Disqus'
 
 @Component({
@@ -24,24 +23,22 @@ import Disqus from '../Disqus/Disqus'
   }
 })
 export default class extends Vue {
-  @Prop({
-    default: ''
-  })
-  private postId: string
+  private postId: number
   private store = haoziStore
   private loaded = false
   private post = {} as IPost
 
   public async mounted () {
-    this.post.postId = this.$route.params.postId || this.postId
+    this.postId = Number(this.$route.params.postId || this.postId)
     await this.getData()
   }
 
-  public destroyed () {
-    this.store.commit(haoziTypes.CLOSE_POST)
-  }
+  /**
+   * 获取数据
+   * @returns {Promise<void>}
+   */
   private async getData () {
-    const post = await Posts.getPostById(this.post.postId)
+    const post = await Posts.getPostById(this.postId)
     if (post) {
       this.store.commit(haoziTypes.OPEN_POST, post)
       this.loaded = true

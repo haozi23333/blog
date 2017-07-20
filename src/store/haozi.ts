@@ -5,6 +5,7 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
 import haoziTypes from './haoziTypes'
+import Posts from "../api/posts";
 
 Vue.use(Vuex)
 
@@ -13,11 +14,11 @@ export default new Vuex.Store({
     isMobile: false,
     isOpenBar: false,
     logoTop: 0,
-    nowPost: null,
     bodyScroll: {
       x: 0,
       y: 0
     },
+    posts: [],
     navigations: [
       {
         path: '/posts',
@@ -44,15 +45,18 @@ export default new Vuex.Store({
     [haoziTypes.MOBILE_SCLOLL] (state, {scrollTop}) {
       state.logoTop = ~scrollTop + 1
     },
-    [haoziTypes.OPEN_POST] (state, post) {
-      console.log(haoziTypes.OPEN_POST)
-      state.nowPost = post
-    },
-    [haoziTypes.CLOSE_POST] (state) {
-      state.nowPost = null
-    },
     [haoziTypes.BODY_SCROLL] (state, scroll) {
       state.bodyScroll = scroll
+    },
+    [haoziTypes.SET_POSTS] (state, posts: IPost[]) {
+      state.posts = posts
+    }
+  },
+  actions: {
+    async [haoziTypes.GET_POSTS] ({commit}, page = 1, limit = 10) {
+     // const posts =  await Posts.getPostList(`?showAll=false&page=${page}&limit=${limit}`)
+     //
+     //  commit(haoziTypes.SET_POSTS, posts)
     }
   }
 })

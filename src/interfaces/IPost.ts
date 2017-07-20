@@ -5,8 +5,6 @@
 interface IPost{
   // 文章ID
   postId: string
-  // 当前版本
-  ref: string
   // 文章标题
   title: string
   // 标签
@@ -17,14 +15,14 @@ interface IPost{
   markdown: string
   // 预编译好的html 储存
   html: string
-  publish: boolean
-  createDate: Date
+  // 是否展示
+  isShow: boolean
+  // 创建时间
+  createDate: string
+  // 创建人
   createBy: string
-  updateDate: Date
-  updateBy: string
-  publishDate: Date
-  publishBy: string
+  // 更新日期
+  updateDate: string
+  // 概览
   excerpt: string
-  commits: ICommit[],
-  edit: boolean
 }

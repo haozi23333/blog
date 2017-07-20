@@ -8,7 +8,7 @@ import axios from './http'
 import toasted from '../util/toasted'
 
 export default class Posts {
-  static async getPostById(id: string): Promise<IPost | null> {
+  static async getPostById(id: number): Promise<IPost | null> {
     const {
       data,
       status
@@ -20,11 +20,16 @@ export default class Posts {
    * 获取 文章列表
    * @returns {Promise<Array>}
    */
-  static async getPostList (param: string = '?isShow=false'): Promise<IPost[] | null> {
+  static async getPostList (param: string = '?showAll=false'): Promise<{
+    next: string,
+    prev: string,
+    data: IPost[],
+    total: number
+  }> {
     const {
       data,
       status
-    } = await axios.get(`posts${ param}`)
+    } = await axios.get(`posts${param}`)
     return status === 200? data : null
   }
 
