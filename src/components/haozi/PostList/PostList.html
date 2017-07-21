@@ -1,7 +1,7 @@
-<div>
-  <section class="haozi-posts">
+<div class="haozi-posts">
+  <section>
     <!--<h1>文章列表</h1>-->
-    <div v-for="(post, index) in posts.data" v-if="posts.data" >
+    <div v-for="(post, index) in posts.data" v-if="posts.data" :key="post.postId" >
       <PostListItem :post="post" :index="index"></PostListItem>
     </div>
   </section>

@@ -12,11 +12,8 @@ import store from '../../../store/haozi'
 import haoziTypes from '../../../store/haoziTypes'
 
 @Component({
-  template: require('./NavBar.html'),
-  components: {
-  },
+  template: require('./Navbar.html'),
   name: 'Navbar',
-  style: ''
 })
 export default class extends Vue {
   active: number = -1
