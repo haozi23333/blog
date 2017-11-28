@@ -6,7 +6,6 @@ import './PostList.sass'
 
 import Vue from 'vue'
 import {PostListItem} from '../index'
-import Posts from "../../../api/posts";
 import {Prop, Component, Watch} from "vue-property-decorator";
 import http from "../../../api/http";
 
@@ -63,8 +62,8 @@ export default class extends Vue {
 
   @Watch('posts')
   public onPostsChange(posts: PostListData) {
-    this.next = posts.next !== '' ?  `/posts${(this.type ? "/" + this.type : '') + posts.next.match(/\?.*/).shift()}`  : ''
-    this.prev = posts.prev !== '' ?  `/posts${(this.type ? "/" + this.type : '') + posts.prev.match(/\?.*/).shift()}`  : ''
+    this.next = posts.next ?  posts.next.replace(/\/api/, '')  : ''
+    this.prev = posts.prev ?  posts.prev.replace(/\/api/, '')  : ''
   }
 
   @Watch('$route')

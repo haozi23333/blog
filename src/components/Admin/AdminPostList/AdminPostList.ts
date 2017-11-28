@@ -29,7 +29,7 @@ export default class extends Vue {
   }
 
   public async loadPosts () {
-    this.posts = (await Posts.getPostList('?isShow=true')).data
+    this.posts = (await Posts.getPostList('?showAll=true&limit=80')).data
   }
 
   public preview (postId) {
